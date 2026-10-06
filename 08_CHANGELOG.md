@@ -457,3 +457,7 @@ RG-001 now has:
 
 ### Verification
 PASS
+
+
+### Frontier follow-up
+- `6a1d7978d7e9076758689a6d2df2d1a99d9d28b7` — aligned Recovery Decision Certificate hero values with RG-001 (Decision Exposure 9.50, materiality threshold 5.00, Action Gate ASK_FIRST).
