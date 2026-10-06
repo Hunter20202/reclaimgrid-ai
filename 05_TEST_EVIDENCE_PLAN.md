@@ -656,5 +656,53 @@ May be deferred if it does not affect judging or safety.
 - Prefer deterministic automated tests over visual-only checks where possible.
 - Use manual checks for browser/account/submission states that cannot be safely automated.
 
+## RESEARCH-UPGRADE TEST ADDENDUM
+
+The Recovery Decision Graph upgrade adds mandatory tests before G3/G4/G5 can PASS:
+
+### Recovery graph correctness
+- graph is acyclic
+- only state-valid actions appear
+- downstream failure/success branches are included
+- excluded actions cannot re-enter later through another path
+- same case + assumptions produce identical path values
+
+### Multi-stage economics
+- hand-calculated hero case matches engine path EV
+- downstream salvage value is included exactly once
+- no double-counting of shipping/RTO/refurbishment cost
+- baseline uses the same canonical financial inputs
+- winner and runner-up are reproducible
+
+### Robustness / break-even
+- break-even threshold matches a hand calculation
+- threshold outside valid probability/value range is handled explicitly
+- ROBUST/FRAGILE label follows a documented rule
+- close-call fixture changes winner at the expected threshold
+- sensitivity analysis never changes canonical inputs silently
+
+### AMD Case Interpreter
+- extracted reason_code is schema-valid
+- evidence_span actually exists in source text
+- unsupported signal is rejected or marked unknown
+- low confidence remains visible
+- missing fields remain explicit
+- model cannot inject financial values into the deterministic core
+
+### Decision Ledger
+- ledger records accepted extraction, policy result, path values, winner/runner-up, break-even result, and approval state
+- ledger never stores secrets/real PII
+- ledger output is sufficient to reconstruct the judge-facing decision
+
+### Hero demo acceptance
+The hero failed-delivery case cannot pass G5 unless it visibly proves:
+1. messy note -> AMD extraction,
+2. recovery graph,
+3. deterministic multi-stage path values,
+4. winner + runner-up + value gap,
+5. break-even threshold,
+6. grounded AMD explanation,
+7. human approval.
+
 ## NEXT SAFE ACTION
-Create `06_SUBMISSION_CHECKLIST.md` defining the future submission assets, required links/fields, evidence-to-claim mapping, pre-submit validation, and final freeze checklist — without creating submission content yet.
+Keep implementation blocked pre-kickoff. Continue only research, formula/fixture design, and judge-story hardening until G1 authorizes build.
