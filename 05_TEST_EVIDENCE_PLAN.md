@@ -798,5 +798,36 @@ The hero failed-delivery case cannot pass G5 unless it visibly proves:
 9. grounded AMD explanation,
 10. human approval.
 
+## TECHNICAL BLUEPRINT TEST ADDENDUM
+
+### Frontend/API boundary
+- no AMD credential appears in browser bundle
+- browser cannot select model
+- browser cannot submit arbitrary system prompt
+- browser cannot control max generation tokens
+- unknown case/task rejected
+
+### GPU-credit abuse controls
+- rate limit config exists on public AI function
+- AMD_LIVE_ENABLED=false prevents upstream call
+- timeout path returns clean fallback
+- no uncontrolled automatic retry
+- recorded AMD proof is labeled RECORDED, not LIVE
+
+### Deployment
+- production Vite build PASS
+- Netlify static app PASS
+- AI function smoke PASS without secret exposure
+- 60-second hosting limit is never used as the application timeout target
+
+### E2E minimum
+- hero
+- fallback
+- proof surface
+
+See:
+- `23_TECHNICAL_FEASIBILITY_AND_BUILD_BLUEPRINT.md`
+- `24_IMPLEMENTATION_SEQUENCE_AND_RISK_REGISTER.md`
+
 ## NEXT SAFE ACTION
-Keep implementation blocked pre-kickoff. At G1 authorization, implement deterministic/eval contracts so RecoveryBench evidence exists from the start rather than being added at the end.
+Keep implementation blocked pre-kickoff. At G1 authorization, execute M0 -> M15 from the frozen implementation sequence one verified milestone at a time.
