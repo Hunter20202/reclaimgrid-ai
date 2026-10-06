@@ -111,7 +111,11 @@ For a terminal state:
 `V(terminal) = TerminalFutureValue(terminal)`
 
 For a non-terminal state:
-`V(s) = max over eligible actions a of EV(s,a)`
+`FeasibleActions(s) = PolicyAllowed ∩ ServiceAllowed ∩ EvidenceSupported ∩ OperationallyAvailable`
+
+`V(s) = max over a ∈ FeasibleActions(s) of EV(s,a)`
+
+Hard feasibility constraints are applied before economic optimization.
 
 This is simple backward induction over a bounded DAG.
 
@@ -365,21 +369,29 @@ A strong system must contain fixtures where:
 
 ---
 
-# 15. POLICY CONSTRAINTS
+# 15. POLICY & SERVICE FEASIBILITY CONSTRAINTS
 
-The optimizer is not allowed to maximize over impossible or forbidden paths.
+The optimizer is not allowed to maximize over impossible, unsupported, policy-violating, or service-violating paths.
 
 Examples:
 - no more reattempts after limit
+- confirmed refusal blocks another forced redelivery
+- approved customer remedy / promised SLA cannot be silently downgraded
 - damaged item cannot be sold as new
 - certain products cannot be refurbished
 - liquidate route unavailable in a region
-- action missing required data is blocked
+- action missing required evidence is blocked
+- route/provider/capacity unavailable means the path is infeasible
 
 Mathematically:
-`EligibleActions(s) ⊆ AllActions(s)`
+`FeasibleActions(s) ⊆ AllActions(s)`
 
-Optimization only occurs over `EligibleActions(s)`.
+Optimization only occurs over `FeasibleActions(s)`.
+
+V1 explicitly rejects an opaque weighted score such as:
+`w1 × margin + w2 × loyalty + w3 × service`
+
+because the weights and loyalty values would not be defensible with synthetic data. Customer/service value is represented through transparent hard constraints and, only when required, explicit deterministic tie-break rules.
 
 ---
 
