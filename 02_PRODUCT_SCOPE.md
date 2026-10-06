@@ -509,3 +509,60 @@ See:
 
 ## NEXT SAFE ACTION
 Keep implementation blocked until kickoff/rules re-verification and AMD credit state permit progression. Use the research window only for further validation, math design, fixture design, and judge-story hardening.
+
+
+---
+
+## JUDGE-HARDENING ADDENDUM — 2026-10-07
+
+### Assumption Register
+Every uncertain canonical input used by the economics engine must record:
+- field name
+- base value
+- low/high range
+- unit
+- provenance
+- entered_by
+- evidence/reference when available
+
+Allowed V1 provenance:
+- synthetic fixture
+- merchant provided
+- policy defined
+- deterministic derivation
+
+An AI model may not silently create a canonical financial/probability assumption.
+Material assumptions must appear in the Decision Certificate.
+
+### Fair baseline ablation
+Final evaluation uses two non-AI baselines with the same inputs and constraints:
+
+1. **Static Policy** — fixed stage-specific merchant rule.
+2. **Myopic Greedy** — highest immediate feasible next-step value, ignoring downstream recovery consequences.
+
+ReclaimGrid then evaluates complete feasible recovery paths including downstream outcomes.
+
+This comparison isolates the value of multi-stage path reasoning and prevents a deliberately weak baseline.
+
+### Multi-factor uncertainty fail-safe
+V1 keeps one-dimensional sensitivity for explainability.
+
+If multiple unresolved material uncertain variables can each change the winning path:
+- do not label the case ROBUST,
+- mark multi-factor uncertainty,
+- route to HUMAN REVIEW unless one explicit bounded rule resolves the ambiguity.
+
+V1 must prefer honest escalation over false precision.
+
+### Judge-facing wording
+Prefer:
+- Expected Recovery Value
+- Flip Point
+- Value at Risk
+- Act / Ask / Review
+- Decision Certificate
+
+Keep internal terms such as EFRC, Decision Hinge, and Decision Exposure in technical proof/documentation.
+
+Research basis:
+`25_JUDGE_ATTACK_FAILURE_SIMULATION_PREMORTEM.md`
