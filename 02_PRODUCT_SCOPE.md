@@ -229,7 +229,7 @@ This is not a V1 blocker.
 Every judge-visible decision should preserve:
 - source inputs,
 - AI-extracted signals,
-- evidence span/confidence,
+- evidence spans + deterministic Evidence Status,
 - policy rules fired,
 - eligible/excluded paths,
 - deterministic calculations,
