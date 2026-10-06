@@ -192,6 +192,82 @@ A decision may be:
 - REASON: Visual confidence alone is insufficient.
 - IMPACTED GATES: G0-G9
 
+## D-021 — Competitive red-team finding
+- DATE: 2026-10-06
+- STATUS: FROZEN
+- DECISION: Generic AI returns/NDR automation, confidence/explanation, highest-recovery disposition, and human-review workflows are not sufficient differentiation.
+- REASON: 2026 competitor research found substantial overlap across Loop, Optoro, AfterShip, ClickPost, ReverseLogix, and related platforms.
+- IMPACTED GATES: G1, G3, G4, G7
+- DEMO/JUDGING IMPACT: The product must visibly demonstrate a more specific decision-science advantage.
+- EVIDENCE: `09_COMPETITIVE_RESEARCH_AND_PRODUCT_UPGRADE.md`.
+
+## D-022 — Recovery Decision Graph upgrade
+- DATE: 2026-10-06
+- STATUS: PROVISIONAL
+- PREVIOUS DECISION: D-004, D-005
+- DECISION: Upgrade the core from single-step route ranking to a bounded **Recovery Decision Graph** that propagates downstream recovery value across multi-stage outcomes.
+- REASON: Multi-stage counterfactual path economics is more defensible and more judge-distinct than generic next-action recommendation.
+- IMPACTED GATES: G1, G3, G5, G7
+- COST IMPACT: Low; implementable with a small deterministic DAG and backward induction rather than heavy ML.
+- DEMO/JUDGING IMPACT: Stronger originality, measurable business value, and visual clarity.
+- REVIEW TRIGGER: G1/G3 feasibility freeze.
+
+## D-023 — Decision robustness is mandatory V1
+- DATE: 2026-10-06
+- STATUS: PROVISIONAL
+- DECISION: V1 must show a break-even threshold / one-dimensional sensitivity analysis for the top competing recovery paths and label decisions ROBUST or FRAGILE.
+- REASON: Expected-value recommendations without sensitivity can create false precision; robustness is both commercially useful and judge-distinct.
+- IMPACTED GATES: G3, G5, G7
+- COST IMPACT: Low if limited to one dominant uncertain variable per case.
+- DEMO/JUDGING IMPACT: Strengthens originality, transparency, and trust.
+- REVIEW TRIGGER: G3 equation design.
+
+## D-024 — AMD AI upgraded to evidence-grounded Case Interpreter
+- DATE: 2026-10-06
+- STATUS: PROVISIONAL
+- PREVIOUS DECISION: D-006, D-010
+- DECISION: The primary AMD-hosted AI workload must include bounded extraction of structured signals from messy NDR/return text with confidence, evidence span, and explicit missing fields; grounded explanation remains a second AI task.
+- REASON: This makes AMD operationally central rather than decorative while preserving deterministic financial authority.
+- IMPACTED GATES: G2, G4, G5, G7
+- SECURITY IMPACT: Model output remains untrusted and schema-validated; AI cannot invent canonical financial values.
+- DEMO/JUDGING IMPACT: Stronger Application of Technology score and clearer judge-visible AMD role.
+- REVIEW TRIGGER: G2 model/runtime validation.
+
+## D-025 — Decision Ledger
+- DATE: 2026-10-06
+- STATUS: PROVISIONAL
+- DECISION: V1 must expose a decision ledger containing accepted AI evidence, policy rules, path calculations, winner/runner-up, break-even result, and human approval state.
+- REASON: The ledger turns explainability and auditability into a concrete product feature rather than a documentation claim.
+- IMPACTED GATES: G3-G7
+- SECURITY IMPACT: Synthetic data only; no secret/PII logging.
+- DEMO/JUDGING IMPACT: Strengthens trust, presentation, and originality.
+
+## D-026 — Value Leak Map is should-have, not core blocker
+- DATE: 2026-10-06
+- STATUS: DEFERRED
+- DECISION: Portfolio-level economic leakage by failure cause is a SHOULD-HAVE/STRETCH feature after the core graph is stable.
+- REASON: It improves Track 3 business insight but must not steal time from the core decision engine.
+- IMPACTED GATES: G5, G7
+- COST IMPACT: Low-to-moderate.
+- REVIEW TRIGGER: Core G3/G4 stability.
+
+## D-027 — Multimodal condition analysis is stretch only
+- DATE: 2026-10-06
+- STATUS: DEFERRED
+- DECISION: AMD-hosted image/condition interpretation may be added only if credits, runtime, model compatibility, and core stability permit.
+- REASON: Visually impressive but overlaps existing market capabilities and increases GPU/runtime complexity.
+- IMPACTED GATES: G2, G4, G7
+- COST IMPACT: Potentially higher GPU/runtime cost.
+- REVIEW TRIGGER: After G4 core PASS.
+
+## D-028 — Safe originality framing
+- DATE: 2026-10-06
+- STATUS: FROZEN
+- DECISION: Do not claim first-ever or that competitors lack returns optimization. Position differentiation around transparent multi-stage counterfactual recovery-path economics, robustness/break-even analysis, and evidence-grounded AMD AI.
+- REASON: Competitor research proves adjacent capabilities already exist.
+- IMPACTED GATES: G7-G9
+- DEMO/JUDGING IMPACT: More credible pitch and lower overclaim risk.
+
 ---
 
 ## FUTURE DECISION ENTRY TEMPLATE
@@ -213,4 +289,4 @@ A decision may be:
 - NOTES:
 
 ## NEXT SAFE ACTION
-Create `08_CHANGELOG.md` to record repository/control-system changes chronologically and distinguish document/state changes from decision changes.
+Keep implementation blocked pre-kickoff. Continue only research/math/fixture/judge-story hardening until G1 authorization and AMD credit status allow progression.
