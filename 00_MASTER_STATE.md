@@ -8,7 +8,7 @@
 - CURRENT GATE: G1 — Rules & Scope Freeze (WAITING FOR KICKOFF)
 - STATUS: PRE-KICKOFF HOLD / G0 PASS
 - LAST VERIFIED: 2026-10-07
-- VERIFIED MAIN SHA BEFORE THIS STATE UPDATE: 548038c6fb6e8b67aca1830cbfa56b13fdeb7f7d
+- VERIFIED MAIN SHA BEFORE THIS STATE UPDATE: 4dea4756c136a7d7eaec1a011ad9d8939715d67e
 
 ## COMPLETED
 - AMD account access: PASS
@@ -25,7 +25,7 @@
 - Public GitHub repository created: Hunter20202/reclaimgrid-ai
 - Default branch: main
 - Canonical Control Room document set 00–08: COMPLETE / VERIFIED
-- Competitive/product hardening research 09–25: COMPLETE / VERIFIED
+- Competitive/product hardening research 09–26: COMPLETE / VERIFIED
 - README.md exists on main
 
 ## CANONICAL CONTROL FILE AUDIT
@@ -56,6 +56,7 @@ Verified present on `main`:
 - `23_TECHNICAL_FEASIBILITY_AND_BUILD_BLUEPRINT.md`
 - `24_IMPLEMENTATION_SEQUENCE_AND_RISK_REGISTER.md`
 - `25_JUDGE_ATTACK_FAILURE_SIMULATION_PREMORTEM.md`
+- `26_NEW_CHAT_RESUME_PACKET.md`
 - `README.md`
 
 CONTROL-DOC AUDIT RESULT: PASS
@@ -336,3 +337,25 @@ Until kickoff:
 - do not add new pre-kickoff features unless a new rule or material competitive finding requires it,
 - continue only material research/control hardening,
 - avoid small cosmetic research iterations that do not change product strategy or evidence quality.
+
+
+---
+
+## NEW-CHAT RECOVERY PROTOCOL
+
+Canonical cross-chat resume file:
+`26_NEW_CHAT_RESUME_PACKET.md`
+
+Resume commands:
+- `RG-ACT3 RESUME`
+- `RECLAIMGRID RESUME`
+
+On any new chat:
+1. verify the live latest `main` SHA,
+2. read `00_MASTER_STATE.md`,
+3. read `26_NEW_CHAT_RESUME_PACKET.md`,
+4. inspect the canonical file named by the current NEXT SAFE ACTION,
+5. trust live repository state over remembered/chat state,
+6. continue from the first unresolved safe action only.
+
+Do not restart discovery from zero.
