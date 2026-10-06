@@ -268,6 +268,50 @@ A decision may be:
 - IMPACTED GATES: G7-G9
 - DEMO/JUDGING IMPACT: More credible pitch and lower overclaim risk.
 
+## D-029 — Decision Hinge / Next Best Evidence
+- DATE: 2026-10-06
+- STATUS: PROVISIONAL
+- PREVIOUS DECISION: D-023
+- DECISION: For the hero FRAGILE case, V1 must identify the decision hinge (uncertain variable + break-even threshold) and recommend one bounded Next Best Evidence action before commitment.
+- REASON: Sensitivity becomes operationally useful only when the user knows what evidence matters next. Reverse-logistics value-of-information literature supports the idea that reducing the right uncertainty can improve decisions.
+- IMPACTED GATES: G3, G4, G5, G7
+- COST IMPACT: Low; reuses the existing break-even engine.
+- DEMO/JUDGING IMPACT: Strong "aha" moment and clearer commercial action.
+- SCOPE LIMIT: Formal EVPI/EVSI, Bayesian updating, and learned probability calibration remain out of V1.
+- EVIDENCE: `14_DECISION_HINGE_AND_NEXT_BEST_EVIDENCE.md`.
+
+## D-030 — Position ReclaimGrid as a decision layer, not a workflow suite
+- DATE: 2026-10-06
+- STATUS: FROZEN
+- PREVIOUS DECISION: D-004, D-021
+- DECISION: Position ReclaimGrid as a recovery-intelligence decision layer that can sit above existing carrier, returns, WMS, inventory, or support systems rather than replacing mature workflow platforms.
+- REASON: Competitor research shows workflow automation breadth is already strong in Loop, AfterShip, ClickPost, Optoro, and ReverseLogix.
+- IMPACTED GATES: G1, G5, G7, G8
+- DEMO/JUDGING IMPACT: Reduces direct feature-comparison risk and sharpens differentiation.
+- EVIDENCE: `13_COMPETITOR_MATRIX_AND_WHITE_SPACE.md`.
+
+## D-031 — AMD model selection ladder
+- DATE: 2026-10-06
+- STATUS: PROVISIONAL
+- PREVIOUS DECISION: D-011, D-024
+- DECISION: When credit becomes active, use Qwen3-8B + vLLM for the first AMD smoke/structured-output proof. Test Qwen3-32B or Qwen3-30B-A3B only if 8B fails task-quality thresholds and cost remains safe.
+- REASON: AMD officially demonstrates Qwen3-8B on one MI300X and documents Qwen3-32B / Qwen3-30B-A3B support on one MI300X. The product's AI tasks are narrow and do not justify starting with a large model.
+- IMPACTED GATES: G2, G4
+- COST IMPACT: Minimizes credit burn and setup risk.
+- SECURITY IMPACT: vLLM structured JSON output + application semantic validation remains mandatory.
+- DEMO/JUDGING IMPACT: Increases probability of reliable AMD proof.
+- EVIDENCE: `15_AMD_MODEL_AND_SERVING_PLAN.md`.
+- REVIEW TRIGGER: Actual AMD credit activation and runtime availability.
+
+## D-032 — Structured output is mandatory for Case Interpreter
+- DATE: 2026-10-06
+- STATUS: PROVISIONAL
+- DECISION: The AMD Case Interpreter must use schema-constrained structured output plus semantic evidence-span validation; free-form extraction is not sufficient.
+- REASON: vLLM supports structured outputs, but schema validity alone does not prove semantic correctness.
+- IMPACTED GATES: G2, G4, G6
+- SECURITY IMPACT: Reduces malformed/unsafe model-output risk.
+- EVIDENCE: `15_AMD_MODEL_AND_SERVING_PLAN.md`.
+
 ---
 
 ## FUTURE DECISION ENTRY TEMPLATE
