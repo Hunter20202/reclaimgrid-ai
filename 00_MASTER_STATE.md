@@ -8,7 +8,7 @@
 - CURRENT GATE: G1 — Rules & Scope Freeze (WAITING FOR KICKOFF)
 - STATUS: PRE-KICKOFF HOLD / G0 PASS
 - LAST VERIFIED: 2026-10-07
-- VERIFIED MAIN SHA BEFORE THIS STATE UPDATE: aa38a898a634c234d50842ddf5821b859def7e6f
+- VERIFIED MAIN SHA BEFORE THIS STATE UPDATE: 13ff0f30aaf5d6ef17b6d7e367911a0b80d46a56
 
 ## COMPLETED
 - AMD account access: PASS
@@ -278,7 +278,8 @@ Deep research now includes:
 - current returns/NDR/reverse-logistics products including Loop, Optoro, AfterShip, ClickPost, ReverseLogix, Narvar, and Happy Returns,
 - recent reverse-logistics decision-support research including SSADS, sensitivity-analysis work, value-of-information work, and a 2026 systematic review,
 - prior AMD ACT I / ACT II podium submissions and their evaluation/telemetry patterns,
-- current LLM calibration research relevant to model self-confidence.
+- current LLM calibration research relevant to model self-confidence,
+- fresh official ACT III page rechecks; prize amounts are treated as volatile and currently parse as $11,000+.
 
 Result:
 - Generic AI returns/NDR automation is NOT sufficient differentiation.
