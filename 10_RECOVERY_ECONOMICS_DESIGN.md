@@ -202,7 +202,89 @@ This is more defensible than labeling a decision "high confidence" without a mat
 
 ---
 
-# 8. OPEN-BOX RETURN CASE
+# 8. DECISION EXPOSURE
+
+For the base-case winning action `a*` over the declared one-dimensional plausible interval `X=[L,U]`:
+
+`Regret(x,a*) = BestEV(x) - EV(a*,x)`
+
+`DecisionExposure(a*) = max_{x in X} Regret(x,a*)`
+
+For V1's linear hero cases, evaluate:
+- lower endpoint,
+- upper endpoint,
+- break-even point if it lies inside the interval.
+
+Interpretation:
+**Maximum expected-value opportunity cost of sticking with the base-case winner over the stated scenario range.**
+
+This is not:
+- guaranteed loss,
+- probability of failure,
+- AI confidence.
+
+The UI should use wording such as:
+"Potential decision exposure under stated scenario range."
+
+---
+
+# 9. ACTION GATE
+
+Use a visible synthetic merchant materiality threshold `M`.
+
+### ACT_NOW
+When:
+- decision is ROBUST, OR
+- decision is FRAGILE but `DecisionExposure < M`.
+
+### ASK_FIRST
+When:
+- decision is FRAGILE,
+- `DecisionExposure >= M`,
+- and one bounded evidence request maps to the hinge variable.
+
+### HUMAN_REVIEW
+When:
+- required evidence is unavailable,
+- policy is ambiguous,
+- AI evidence is invalid/conflicting,
+- no valid path remains,
+- or rules explicitly require a person.
+
+The Action Gate is deterministic.
+
+AMD AI may draft an ASK_FIRST message but cannot choose `M`, alter the exposure calculation, or silently switch action mode.
+
+---
+
+# 10. RECOVERY DECISION CERTIFICATE
+
+The judge-facing product object should assemble:
+
+- current state
+- source evidence
+- accepted AMD extraction
+- policy/eligibility
+- full recovery paths
+- winner and runner-up
+- EFRC values
+- value gap
+- hinge variable
+- plausible range
+- break-even threshold
+- ROBUST / FRAGILE
+- Decision Exposure
+- Action Gate
+- Next Best Evidence
+- AMD grounded explanation/draft
+- human approval state
+- baseline comparison
+
+This certificate reuses the same canonical calculations and does not create a second source of truth.
+
+---
+
+# 11. OPEN-BOX RETURN CASE
 
 At `RETURN_RECEIVED`, possible actions:
 
@@ -226,7 +308,7 @@ Only one dominant sensitivity dimension is mandatory.
 
 ---
 
-# 9. INVENTORY TIME DECAY
+# 12. INVENTORY TIME DECAY
 
 Returned inventory can lose recoverable value with delay.
 
@@ -245,7 +327,7 @@ No learned demand forecast is required.
 
 ---
 
-# 10. BASELINE FAIRNESS
+# 13. BASELINE FAIRNESS
 
 Baseline and ReclaimGrid must use:
 - same canonical item values
@@ -262,7 +344,7 @@ This avoids a rigged comparison.
 
 ---
 
-# 11. OPPORTUNITY COST
+# 14. OPPORTUNITY COST
 
 For each case:
 
@@ -283,7 +365,7 @@ A strong system must contain fixtures where:
 
 ---
 
-# 12. POLICY CONSTRAINTS
+# 15. POLICY CONSTRAINTS
 
 The optimizer is not allowed to maximize over impossible or forbidden paths.
 
@@ -301,7 +383,7 @@ Optimization only occurs over `EligibleActions(s)`.
 
 ---
 
-# 13. MISSING DATA
+# 16. MISSING DATA
 
 Never convert missing into zero silently.
 
@@ -315,7 +397,7 @@ AI may identify that a field is missing; AI may not invent it.
 
 ---
 
-# 14. PROBABILITY SOURCE DISCIPLINE
+# 17. PROBABILITY SOURCE DISCIPLINE
 
 For the synthetic hackathon demo, probabilities are explicit scenario assumptions.
 
@@ -330,7 +412,7 @@ Future product potential may learn/calibrate them from historical data, but that
 
 ---
 
-# 15. PRECISION / ROUNDING
+# 18. PRECISION / ROUNDING
 
 Recommended internal math:
 - decimal currency representation or integer cents
@@ -345,7 +427,7 @@ Exact implementation rule freezes in G3.
 
 ---
 
-# 16. REQUIRED HAND-CALCULATED FIXTURES
+# 19. REQUIRED HAND-CALCULATED FIXTURES
 
 Before G3 PASS:
 1. hero NDR retry vs stop case
@@ -368,7 +450,7 @@ Each fixture needs:
 
 ---
 
-# 17. VISUAL OUTPUT CONTRACT
+# 20. VISUAL OUTPUT CONTRACT
 
 For the hero case, the UI should show:
 
@@ -386,13 +468,17 @@ For the hero case, the UI should show:
 - Plausible low/base/high
 - Break-even threshold
 - ROBUST / FRAGILE
+- Decision Exposure
+- Action Gate: ACT NOW / ASK FIRST / HUMAN REVIEW
+- Next Best Evidence when applicable
+- Recovery Decision Certificate status
 - Baseline decision + EFRC
 - Opportunity cost avoided
 - Human approval
 
 ---
 
-# 18. WHY THIS IS JUDGE-STRONG
+# 21. WHY THIS IS JUDGE-STRONG
 
 Application of Technology:
 - AMD extracts meaningful unstructured evidence used by the decision system.
@@ -401,7 +487,7 @@ Business Value:
 - economics is directly quantified.
 
 Originality:
-- multi-stage path value + explicit break-even robustness.
+- multi-stage path value + explicit break-even robustness + judge-visible Recovery Decision Certificate.
 
 Presentation:
 - graph + winner + threshold creates a visual "aha" moment.
@@ -411,10 +497,16 @@ Trust:
 
 ---
 
-# 19. RESEARCH BASIS
+# 22. RESEARCH BASIS
 
 Recent reverse-logistics decision-support work explicitly uses simulation, multi-criteria ranking, and sensitivity analysis to test strategy robustness under operational uncertainty:
 https://doi.org/10.1108/BPMJ-01-2026-0150
+
+A 2026 systematic review emphasizes decision making under uncertainty as a growing reverse-logistics research area:
+https://doi.org/10.1016/j.cie.2026.112241
+
+Recent semantic-signal research also shows narrative return notes can feed a separate recovery optimizer, which means ReclaimGrid cannot claim that architecture alone as novel:
+https://arxiv.org/abs/2609.02116
 
 Industry validation for highest-value reverse-logistics decisioning:
 https://www.mckinsey.com/industries/logistics/our-insights/from-cost-center-to-competitive-advantage-modernizing-reverse-logistics-with-ai
@@ -422,4 +514,4 @@ https://www.mckinsey.com/industries/logistics/our-insights/from-cost-center-to-c
 This document does not claim these mathematical ideas are novel by themselves. ReclaimGrid's hackathon product value comes from combining them into a transparent post-purchase Recovery Decision Graph with evidence-grounded AMD AI.
 
 ## NEXT SAFE ACTION
-Design the synthetic fixture blueprint and hero-case numbers so every important equation, robustness state, and judge claim can be proven before implementation.
+Keep the V1 uncertainty model one-dimensional per case. Implement Decision Exposure and Action Gate only after G1 authorizes build; do not expand into full stochastic/robust optimization during the hackathon.
