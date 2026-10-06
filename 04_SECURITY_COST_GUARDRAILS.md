@@ -4,9 +4,9 @@
 - PROJECT: ReclaimGrid AI
 - CONTROL CODE: RG-ACT3
 - FILE: 04_SECURITY_COST_GUARDRAILS.md
-- SNAPSHOT DATE: 2026-10-06
+- SNAPSHOT DATE: 2026-10-07
 - STATUS: PRE-KICKOFF SECURITY/COST FREEZE
-- CURRENT GATE: G0 — Registration & Environment
+- CURRENT GATE: G1 — Rules & Scope Freeze (WAITING FOR KICKOFF)
 - IMPLEMENTATION STATUS: NOT STARTED
 - PURPOSE: Freeze the minimum security, privacy, AI-trust, logging, dependency, and GPU-cost controls before any product implementation begins.
 
@@ -500,3 +500,54 @@ This guardrail file is effective only if the implementation later satisfies:
 
 ## NEXT SAFE ACTION
 Create `05_TEST_EVIDENCE_PLAN.md` defining the future gate-by-gate verification matrix, deterministic test cases, AMD proof evidence, security checks, demo evidence, and pass/fail criteria — without writing implementation code.
+
+
+---
+
+## PUBLIC AI PROXY / GPU-CREDIT ABUSE CONTROLS — 2026-10-07 ADDENDUM
+
+Final browser app must never call the AMD endpoint directly.
+
+Use a same-origin Netlify Function that:
+- accepts only `caseId` + bounded `task`,
+- rejects arbitrary prompts,
+- rejects arbitrary model names,
+- rejects client-controlled max token values,
+- loads canonical synthetic input server-side,
+- uses server-side environment variables,
+- enforces a hard request timeout,
+- exposes only sanitized telemetry.
+
+Initial production rate-limit target:
+- 4 AI calls / 60 seconds / IP+domain
+
+Netlify currently supports function rate limiting in code on all plans.
+
+Add a hard kill switch:
+`AMD_LIVE_ENABLED=false`
+
+When disabled:
+- no upstream AMD call,
+- deterministic app remains available,
+- UI must not claim live inference.
+
+Do not automatically retry inference loops.
+
+Recommended:
+- one manual retry at most,
+- no retry on schema/semantic validation failure,
+- no retry that can multiply GPU credit burn invisibly.
+
+### Public demo modes
+- DEV_MOCK — clearly mock; never evidence
+- LIVE_AMD — real measured inference
+- VERIFIED_RECORDED — previously captured real AMD output/proof, clearly labeled recorded
+
+Recorded proof must never be mislabeled live.
+
+Sources:
+- https://docs.netlify.com/manage/security/secure-access-to-sites/rate-limiting/
+- https://docs.netlify.com/build/functions/configuration/
+
+See:
+`23_TECHNICAL_FEASIBILITY_AND_BUILD_BLUEPRINT.md`
