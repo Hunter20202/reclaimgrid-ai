@@ -150,12 +150,16 @@ CONTROL RULES:
 - License choice must be checked against the final submission requirement before G8 freeze.
 
 ## PRIZES — CURRENTLY VERIFIED
-Current official ACT III event page shows:
-- Total prize pool: $12,000+
+Fresh official-page recheck on 2026-10-07 currently shows:
+- Total prize pool: $11,000+
 - AMD prizes: $5,000
-- Google prizes: $5,000
 - Evolus track prizes are also listed.
 - Vibe Generation special prize is also listed.
+- Google remains described as an optional partner technology/award path on the event page, but the currently parsed prize section does not expose a stable Google cash amount.
+
+IMPORTANT:
+- Prize content has changed across recent page snapshots, so prize amounts are treated as volatile.
+- Do not optimize scope around an assumed Google cash amount until kickoff/final rules re-verification.
 
 IMPORTANT:
 - Partner technologies such as Google and Evolus are optional for the main AMD project unless a partner-track requirement is intentionally selected.
