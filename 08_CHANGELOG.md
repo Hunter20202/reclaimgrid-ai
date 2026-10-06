@@ -401,3 +401,59 @@ Plus:
 
 ## NEXT SAFE ACTION
 Sync `00_MASTER_STATE.md` to the research-upgraded product state and keep implementation blocked until kickoff/G1 and AMD credit re-verification.
+
+
+---
+
+## 2026-10-06 — Frontier red-team and Recovery Decision Certificate
+
+### Commits
+- `01ba8b74c3e85d3f00ce2cb2683340bc7371737f` — frontier red-team + certificate design
+- `8442d935e36eccfb5158d6553395bc8c9339d42e` — Decision Exposure / Action Gate economics
+- `e53515c34ea509c915677d28f430c4ddc5846974` — third competitor red-team addendum
+- `f2f35722cee27f9d2493ae589a80f08d09119a10` — Next Best Evidence hardened with deterministic Action Gate
+- `a87c043487061961b970ce106268afcf43f24425` — V1 centered on Recovery Decision Certificate
+- `21dac5d9cb8c0e19ce547fa107b41cb6f35a5684` — architecture adds Decision Exposure / Action Gate / certificate
+- `cb32940b4d593acacb723726eeeba42b59b9ef96` — certificate/action-gate tests
+- `348d6331109e0455711ddd4da3589ab60004432b` — judge story centered on certificate
+- `d1ec26851f70f78aa1bc743596c28d777f176cfd` — submission claim mapping updated
+- `7035aaa4c2395f0834c403d2afab02bc20625bdd` — decisions D-033 through D-037
+- `556651dd9195c994ca3c77e25531cde6926822b2` — hero fixture gets concrete Decision Exposure / Action Gate
+- `c4a69a0379e865cd80419216f232df8a2a6d587e` — hero materiality threshold aligned
+
+### File added
+- `16_FRONTIER_RED_TEAM_AND_DECISION_CERTIFICATE.md`
+
+### Frontier findings
+- Narvar's 2026 public material already frames post-purchase as agentic/context-aware decisioning across delivery/returns/claims.
+- Happy Returns supports agent-driven return flows through MCP.
+- ReverseLogix can ask for more information, preserve AI evidence, and route with rules.
+- September 2026 SSADS research already combines narrative return-note extraction with a separate reverse-logistics optimizer.
+
+### Product response
+- Generic "agentic post-purchase" and "semantic extraction + optimizer" are no longer treated as originality.
+- Recovery Decision Certificate becomes the primary judge artifact.
+- Decision Exposure quantifies scenario-bounded regret of the base winner.
+- Deterministic Action Gate selects ACT NOW / ASK FIRST / HUMAN REVIEW.
+- Next Best Evidence is valuable because it is tied to the exact Decision Hinge, not because asking for more information is novel.
+- One-dimensional uncertainty per case remains a hard V1 scope boundary.
+
+### Hero fixture
+RG-001 now has:
+- RETRY EFRC = 46.20
+- STOP & RTO EFRC = 35.00
+- break-even = 55.6%
+- plausible range = 45%–80%
+- Decision Exposure = 9.50
+- synthetic merchant materiality threshold = 5.00
+- Action Gate = ASK_FIRST
+- Next Best Evidence = customer availability confirmation
+
+### Gate effect
+- G0 remains IN PROGRESS.
+- AMD complimentary cloud credit is still pending.
+- No product implementation code was created.
+- No paid GPU action occurred.
+
+### Verification
+PASS
