@@ -368,3 +368,55 @@ A transparent recovery-path decision layer.
 
 ## NEXT SAFE ACTION
 Preserve this judge story while waiting for G1. Any future feature proposal must demonstrate that it improves one of the four official judging criteria more than it increases build risk.
+
+
+---
+
+## JUDGE-ATTACK HARDENING — 2026-10-07
+
+### Plain-language rule
+Prefer:
+- Expected Recovery Value
+- Flip Point
+- Value at Risk
+- Act / Ask / Review
+- Decision Certificate
+
+Keep EFRC, Decision Hinge, and Decision Exposure in technical proof.
+
+### AMD necessity proof
+Hero must visibly show:
+raw operational note -> AMD structured evidence -> exact source spans -> Evidence Quality -> deterministic decision.
+
+The deterministic fallback is a safety feature, not evidence that AMD is decorative.
+
+### Fair baseline proof
+Show:
+- Static Policy
+- Myopic Greedy
+- ReclaimGrid full-path result
+
+All use identical canonical inputs and constraints.
+
+### Assumption transparency
+The hero exposes the provenance of its material probability/range.
+Never present a synthetic assumption as an empirical prediction.
+
+### Multi-factor uncertainty
+If multiple unresolved material uncertainties can change the winner, do not force a one-dimensional ROBUST label.
+Route to HUMAN REVIEW and show multi-factor uncertainty.
+
+### 90-second review target
+0–10s: problem
+10–25s: AMD evidence extraction
+25–50s: path decision + challenger
+50–65s: Flip Point + Value at Risk + Act/Ask/Review
+65–80s: RecoveryBench / AMD proof
+80–90s: synthetic baseline comparison
+
+### Hardware claim discipline
+Do not claim AMD is uniquely required or superior to another vendor without a direct benchmark.
+The required claim is narrower: the meaningful working AI component actually runs on AMD and its runtime is measured.
+
+Research basis:
+`25_JUDGE_ATTACK_FAILURE_SIMULATION_PREMORTEM.md`
