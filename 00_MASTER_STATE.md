@@ -8,7 +8,7 @@
 - CURRENT GATE: G1 — Rules & Scope Freeze (WAITING FOR KICKOFF)
 - STATUS: PRE-KICKOFF HOLD / G0 PASS
 - LAST VERIFIED: 2026-10-07
-- VERIFIED MAIN SHA BEFORE THIS STATE UPDATE: 13ff0f30aaf5d6ef17b6d7e367911a0b80d46a56
+- VERIFIED MAIN SHA BEFORE THIS STATE UPDATE: 5cb5fb686f8f6553992ca84945eab94a266cbe6a
 
 ## COMPLETED
 - AMD account access: PASS
@@ -25,7 +25,7 @@
 - Public GitHub repository created: Hunter20202/reclaimgrid-ai
 - Default branch: main
 - Canonical Control Room document set 00–08: COMPLETE / VERIFIED
-- Competitive/product hardening research 09–21: COMPLETE / VERIFIED
+- Competitive/product hardening research 09–22: COMPLETE / VERIFIED
 - README.md exists on main
 
 ## CANONICAL CONTROL FILE AUDIT
@@ -52,6 +52,7 @@ Verified present on `main`:
 - `19_RECOVERYBENCH_EVAL_PLAN.md`
 - `20_AI_EVIDENCE_QUALITY_CONTRACT.md`
 - `21_TRACK_FIT_AND_PIVOT_AUDIT.md`
+- `22_DECISION_QUALITY_AND_BENCHMARK_INTEGRITY.md`
 - `README.md`
 
 CONTROL-DOC AUDIT RESULT: PASS
@@ -87,6 +88,9 @@ Until complimentary credit is visibly active:
 - Core architecture:
   Synthetic Case + Free-text Evidence -> Validation -> AMD Case Interpreter -> Accepted Structured Signals -> Merchant Policy / Eligibility -> Recovery Decision Graph -> Multi-stage Deterministic Path Economics -> Counterfactual Ranking -> Robustness / Break-even -> Decision Exposure -> Action Gate -> Next Best Evidence -> Recovery Decision Certificate -> AMD Grounded Explanation -> Decision Ledger -> Human Approval
 - Financial/scoring calculations remain deterministic.
+- Policy & Service Feasibility Envelope is applied before EFRC optimization.
+- Higher raw EFRC can never override hard merchant-policy, customer-remedy/service, evidence, or operational constraints.
+- V1 forbids fabricated CLTV/churn/loyalty-dollar scoring and opaque weighted multi-objective formulas.
 - Multi-stage recovery-path expected value is the core deterministic differentiator.
 - Break-even / ROBUST-vs-FRAGILE sensitivity analysis is mandatory V1.
 - Hero FRAGILE case must show Decision Hinge + Next Best Evidence.
@@ -248,6 +252,7 @@ If memory/chat conflicts with the repository or a newly verified official state,
 - `19_RECOVERYBENCH_EVAL_PLAN.md`: frozen task/economics/adversarial/AMD evaluation plan
 - `20_AI_EVIDENCE_QUALITY_CONTRACT.md`: deterministic evidence-quality states replacing model self-confidence
 - `21_TRACK_FIT_AND_PIVOT_AUDIT.md`: Track 3 keep/pivot decision and partner-prize strategy
+- `22_DECISION_QUALITY_AND_BENCHMARK_INTEGRITY.md`: policy/service feasibility envelope, no-fake-CLTV rule, RecoveryBench holdout/versioning
 
 ## G0 FINAL STATE
 G0 PASS as of 2026-10-07.
@@ -290,7 +295,8 @@ Result:
 - Product is positioned as a recovery-intelligence decision layer, not a workflow-suite replacement.
 - Generic agentic post-purchase decisioning, ask-for-more-information, and semantic extraction + optimizer are NOT treated as originality by themselves.
 - AMD serving plan is frozen provisionally: Qwen3-8B + vLLM first, then escalate only if the frozen RecoveryBench quality gates demand it.
-- RecoveryBench proof plan is frozen: 48 interpreter notes, 16 adversarial notes, 20 hand-calculated economics fixtures, 12 certificate-integrity cases, plus real AMD runtime measurements.
+- RecoveryBench proof plan is frozen: 48 interpreter notes split DEV 32 + locked HOLDOUT 16, 16 adversarial notes, 20 hand-calculated economics fixtures, 12 certificate-integrity cases, plus real AMD runtime measurements.
+- RecoveryBench public results must be versioned and tied to fixture/prompt/model/code identity; post-HOLDOUT prompt/schema changes require benchmark version/rerun.
 - Model self-reported numerical confidence has been removed from authoritative product logic.
 - Track 3 remains the strongest current fit; no pivot recommended before G1 unless official rules/feasibility materially change.
 - Partner priority: main AMD/Track 3 first; Vibe naturally; Google only if requirements/model fit align; Evolus only after core PASS with adequate time.
