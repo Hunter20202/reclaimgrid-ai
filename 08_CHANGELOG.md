@@ -559,3 +559,11 @@ PASS
 
 ### Verification
 PASS
+
+
+### Deep-research consistency cleanup
+- `164fab5a1757a388a77125599933ec5ac1eb8505` — removed stale confidence reference from product scope
+- `5d029688a2f812bb47c4d95de73bc69cf44f1b0d` — removed stale confidence references from architecture
+- `1d3fe04433fc7d8c2c00af3d032e792686769ab5` — replaced stale confidence test with deterministic Evidence Status
+- `74c21493969ab9850c2de5eb826f62573c7aa854` — aligned judge story to Evidence Status
+- `55564ec3433a5ba69460d042c5bb66c30684421f` — fixed submission-checklist numbering
