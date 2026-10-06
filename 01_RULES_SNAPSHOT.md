@@ -151,15 +151,16 @@ CONTROL RULES:
 
 ## PRIZES — CURRENTLY VERIFIED
 Fresh official-page recheck on 2026-10-07 currently shows:
-- Total prize pool: $11,000+
+- Total prize pool: $12,000+
 - AMD prizes: $5,000
+- Google prizes: $5,000
 - Evolus track prizes are also listed.
 - Vibe Generation special prize is also listed.
-- Google remains described as an optional partner technology/award path on the event page, but the currently parsed prize section does not expose a stable Google cash amount.
 
 IMPORTANT:
-- Prize content has changed across recent page snapshots, so prize amounts are treated as volatile.
-- Do not optimize scope around an assumed Google cash amount until kickoff/final rules re-verification.
+- Prize content has changed across recent page snapshots, so amounts remain volatile.
+- Re-verify prize details again at G1 and G8.
+- Do not weaken the core product merely to chase a partner prize.
 
 IMPORTANT:
 - Partner technologies such as Google and Evolus are optional for the main AMD project unless a partner-track requirement is intentionally selected.
@@ -252,6 +253,15 @@ Do not mark G1 PASS until all are re-verified after kickoff:
 - Geographic/prize eligibility
 - Any special kickoff-only requirements or event codes
 - Whether any implementation timing restriction exists
+
+## CURRENT MAIN-PAGE JUDGING SNAPSHOT — 2026-10-07
+The official main page currently states:
+- Application of Technology: effectiveness of model integration
+- Presentation: clarity/effectiveness
+- Business Value: practical business impact/fit
+- Originality: uniqueness/creativity/behaviors demonstrated
+- submissions must be original and MIT-compliant
+- Event Schedule section still says "To be announced"
 
 ## NEXT SAFE ACTION
 At kickoff, re-verify both the main event page and live dashboard before G1 PASS.
