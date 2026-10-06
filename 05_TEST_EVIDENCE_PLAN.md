@@ -289,12 +289,17 @@ Prove AMD AI adds interpretation/explanation value without gaining financial aut
 
 ## Mandatory tests
 
-### Structured extraction
+### Structured extraction / evidence quality
 - bounded free text -> valid allowed schema
 - unknown information remains unknown
-- model does not invent canonical price/cost
+- model does not invent canonical price/cost/probability
 - malformed output rejected
 - unknown enum rejected
+- exact evidence spans exist in source note
+- contradiction becomes AMBIGUOUS when unresolved
+- required missing information becomes INCOMPLETE
+- invalid contract output becomes INVALID and is discarded
+- model-authored numerical confidence is not used as decision authority
 
 ### Prompt-injection resistance
 Test synthetic case text containing instructions such as:
@@ -742,6 +747,18 @@ The Recovery Decision Graph upgrade adds mandatory tests before G3/G4/G5 can PAS
 - ledger never stores secrets/real PII
 - ledger output is sufficient to reconstruct the judge-facing decision
 
+### RecoveryBench acceptance
+Use the frozen plan in `19_RECOVERYBENCH_EVAL_PLAN.md`.
+
+Required measured layers:
+- Layer A: Case Interpreter quality
+- Layer B: adversarial / trust boundary
+- Layer C: deterministic economics
+- Layer D: Recovery Decision Certificate integrity
+- Layer E: real AMD runtime performance
+
+No result may be marked PASS before it is actually measured.
+
 ### AMD model-serving acceptance
 - Qwen3-8B smoke inference succeeds on real AMD infrastructure first
 - structured JSON output passes schema validation
@@ -764,4 +781,4 @@ The hero failed-delivery case cannot pass G5 unless it visibly proves:
 10. human approval.
 
 ## NEXT SAFE ACTION
-Keep implementation blocked pre-kickoff. Continue only research, formula/fixture design, and judge-story hardening until G1 authorizes build.
+Keep implementation blocked pre-kickoff. At G1 authorization, implement deterministic/eval contracts so RecoveryBench evidence exists from the start rather than being added at the end.
