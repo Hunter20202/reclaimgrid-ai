@@ -5,10 +5,10 @@
 - CONTROL CODE: RG-ACT3
 - EVENT: AMD Developer Hackathon: ACT III
 - MODE: Control Room / one safe action at a time
-- CURRENT GATE: G0 — Registration & Environment
-- STATUS: IN PROGRESS
-- LAST VERIFIED: 2026-10-06
-- VERIFIED MAIN SHA BEFORE THIS STATE UPDATE: a59110459b86d58e236ac305d47837f9ebe46fed
+- CURRENT GATE: G1 — Rules & Scope Freeze (WAITING FOR KICKOFF)
+- STATUS: PRE-KICKOFF HOLD / G0 PASS
+- LAST VERIFIED: 2026-10-07
+- VERIFIED MAIN SHA BEFORE THIS STATE UPDATE: 4a2bfd1c3604c717731af2aab4c6e40489c3204c
 
 ## COMPLETED
 - AMD account access: PASS
@@ -25,7 +25,7 @@
 - Public GitHub repository created: Hunter20202/reclaimgrid-ai
 - Default branch: main
 - Canonical Control Room document set 00–08: COMPLETE / VERIFIED
-- Competitive/product hardening research 09–16: COMPLETE / VERIFIED
+- Competitive/product hardening research 09–17: COMPLETE / VERIFIED
 - README.md exists on main
 
 ## CANONICAL CONTROL FILE AUDIT
@@ -47,18 +47,28 @@ Verified present on `main`:
 - `14_DECISION_HINGE_AND_NEXT_BEST_EVIDENCE.md`
 - `15_AMD_MODEL_AND_SERVING_PLAN.md`
 - `16_FRONTIER_RED_TEAM_AND_DECISION_CERTIFICATE.md`
+- `17_HACKATHON_CRITICAL_PATH.md`
 - `README.md`
 
 CONTROL-DOC AUDIT RESULT: PASS
 
-## CURRENT BLOCKER
+## CURRENT BLOCKERS / HOLDS
+
+### Global implementation hold
+Pre-kickoff implementation remains blocked until G1 rules re-verification at kickoff.
+
+### G2-specific blocker
 AMD complimentary Developer Cloud credit approval/activation is still not verified.
 
 Known state:
 - credit request was submitted successfully,
-- AMD said activation instructions should arrive by email after account validation,
-- AMD also warned approvals may be delayed due to high demand,
-- current paid MI300X path previously showed $1.99/hour and Billing ACTION NEEDED.
+- activation email has not been received,
+- visible complimentary credit was not active at last billing check,
+- paid MI300X path previously showed $1.99/hour and Billing ACTION NEEDED.
+
+This blocks real AMD proof / G2 PASS only.
+
+It does NOT block post-kickoff deterministic/local work after G1 PASS.
 
 Until complimentary credit is visibly active:
 - no payment method,
@@ -112,7 +122,7 @@ Blocked:
 - any action that weakens originality/timing compliance
 
 ## GATE PLAN
-- G0 Registration & Environment
+- G0 Registration & Safe Access
 - G1 Rules & Scope Freeze
 - G2 AMD Proof
 - G3 Economics Core
@@ -123,13 +133,20 @@ Blocked:
 - G8 Submission Freeze
 - G9 FINAL AUDIT & SUBMIT
 
-No gate advances unless the prior gate is verified PASS.
+Gate control is dependency-based after G1:
+- G2 AMD Proof and G3 Economics Core may proceed as independent lanes after G1 when their own prerequisites are met.
+- G2 credit delay must not block G3 deterministic/local implementation.
+- G4 requires real AMD serving proof plus stable schemas.
+- G5 integrates the completed deterministic + AI lanes.
+- G6–G9 remain sequential.
+
+See `17_HACKATHON_CRITICAL_PATH.md`.
 
 ## GATE STATE
-- G0: IN PROGRESS
-- G1: NOT STARTED
-- G2: NOT STARTED
-- G3: NOT STARTED
+- G0: PASS
+- G1: WAITING FOR KICKOFF / NOT YET PASSABLE
+- G2: BLOCKED BY CREDIT ACTIVATION
+- G3: BLOCKED BY PRE-KICKOFF G1 HOLD
 - G4: NOT STARTED
 - G5: NOT STARTED
 - G6: NOT STARTED
@@ -176,9 +193,17 @@ BASELINE FROZEN:
 Current official-page inconsistency remains unresolved:
 - main ACT III event page: online build 12–18 October 2026
 - live/dashboard-style text: online build 12–17 October 2026
-- currently visible submission-close milestone: 18 October 2026 at 15:00 UTC
+- live dashboard: submission closes 18 October 2026 at 15:00 UTC
+- main event page currently publishes Track 3 — Reinvent Commerce
+- live dashboard currently shows Tracks: TBA / Announced soon
 
-Rules/schedule must be re-verified at G1 before implementation freeze.
+Internal risk-control target until kickoff resolves this:
+- core feature complete target: 15 Oct
+- integrated demo target: 16 Oct
+- build/security/evidence freeze target: 17 Oct
+- 18 Oct reserved for submission verification
+
+These are internal targets, not official deadlines.
 
 ## SOURCE OF TRUTH
 This GitHub repository is the authoritative project source of truth.
@@ -209,21 +234,31 @@ If memory/chat conflicts with the repository or a newly verified official state,
 - `14_DECISION_HINGE_AND_NEXT_BEST_EVIDENCE.md`: fragile-decision hinge and evidence-gathering design
 - `15_AMD_MODEL_AND_SERVING_PLAN.md`: low-risk AMD model ladder, vLLM structured-output plan, credit containment
 - `16_FRONTIER_RED_TEAM_AND_DECISION_CERTIFICATE.md`: Narvar/SSADS frontier red-team, Decision Exposure, Action Gate, Recovery Decision Certificate
+- `17_HACKATHON_CRITICAL_PATH.md`: dependency-based parallel gate plan and credit-delay contingency
 
-## CURRENT G0 EXIT BLOCKER
-The control-document requirement is COMPLETE.
+## G0 FINAL STATE
+G0 PASS as of 2026-10-07.
 
-Latest read-only cloud/billing recheck on 2026-10-06:
+Verified:
+- event enrollment / online mode / team / Discord
+- AMD AI Developer Program membership
+- AMD Developer Cloud SSO/account access
+- complimentary credit request submitted
+- public repository/control system
+- no payment method added
+- no GPU resource created
+- no accidental charges
+
+Latest read-only cloud/billing recheck:
 - AMD complimentary Developer Cloud credit: NOT VISIBLE / NOT ACTIVE
 - Credits applied: $0.00
 - Total usage: $0.00
 - Estimated balance owed: $0.00
 - Saved payment method: NONE
 - Billing status: ACTION NEEDED
-- Approval/activation email check: NOT RECEIVED (user-confirmed)
+- Approval/activation email: NOT RECEIVED
 
-Remaining primary G0 blocker:
-**AMD complimentary Developer Cloud credit approval/activation must be verified before any GPU use or before G0 can be considered for PASS.**
+Credit activation is now formally a **G2 blocker**, not a G0 blocker.
 
 ## PRE-KICKOFF PRODUCT HARDENING STATUS
 Research red-team completed on 2026-10-06 against current returns/NDR/reverse-logistics products including Loop, Optoro, AfterShip, ClickPost, ReverseLogix, Narvar, and Happy Returns. A frontier research pass also audited September/October 2026 reverse-logistics decision-support work including SSADS and a new systematic review.
@@ -243,18 +278,16 @@ Canonical current tagline:
 **Find the best recovery path — and prove why it wins.**
 
 ## NEXT SAFE ACTION
-No user execution is required now.
+No user execution is required before kickoff unless AMD credit activation arrives.
 
-Wait for either:
-1. AMD credit approval/activation, or
-2. ACT III kickoff/G1 rules re-verification.
+At kickoff:
+1. perform G1 rules/track/deadline re-verification,
+2. authorize implementation if rules permit,
+3. begin G3 deterministic economics core immediately,
+4. run G2 AMD proof in parallel whenever safe credited compute becomes available.
 
-Until then:
-- continue only research/math/judge-story hardening if new evidence materially improves the product,
-- preserve the Decision Hinge / Decision Exposure / Action Gate / Next Best Evidence scope restraint,
-- preserve Recovery Decision Certificate as the primary judge artifact,
-- preserve one-dimensional uncertainty per case as a hard V1 limit,
-- preserve the Qwen3-8B-first AMD proof strategy,
+Until kickoff:
+- continue only research/control hardening,
 - do not create paid GPU resources,
 - do not add a payment method,
 - do not start submission implementation code.
