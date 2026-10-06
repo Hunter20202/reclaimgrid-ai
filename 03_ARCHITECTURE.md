@@ -5,350 +5,405 @@
 - CONTROL CODE: RG-ACT3
 - FILE: 03_ARCHITECTURE.md
 - SNAPSHOT DATE: 2026-10-06
-- STATUS: PROVISIONAL PRE-KICKOFF ARCHITECTURE FREEZE
+- STATUS: PROVISIONAL PRE-KICKOFF ARCHITECTURE FREEZE — RESEARCH UPGRADED
 - CURRENT GATE: G0 — Registration & Environment
 - IMPLEMENTATION STATUS: NOT STARTED
-- PURPOSE: Define the smallest auditable architecture that separates deterministic recovery economics from AMD-hosted AI assistance.
+- PURPOSE: Define the smallest auditable architecture for the Recovery Decision Graph while keeping deterministic economics authoritative and AMD AI bounded.
 
 ## ARCHITECTURE PRINCIPLE
-ReclaimGrid is a decision-support system with two deliberately separated reasoning layers:
+ReclaimGrid has three deliberately separated reasoning responsibilities:
 
-1. **Deterministic recovery economics** decides the financial ranking.
-2. **AMD-hosted AI** interprets unstructured context and explains/drafts bounded next actions.
+1. **AMD-hosted Case Interpreter** converts messy operational text into bounded, evidence-grounded structured signals.
+2. **Deterministic Recovery Decision Graph** computes economically valid multi-stage recovery paths and their expected value.
+3. **AMD-hosted Decision Explainer** explains the deterministic result without changing it.
 
-The AI layer must never silently become the source of financial truth.
+Human approval remains the final authority for consequential actions.
 
 ## HIGH-LEVEL FLOW
 
 ```text
-Synthetic Case Data
-      |
-      v
-Input Validation / Normalization
-      |
-      v
-Merchant Policy + Route Eligibility
-      |
-      v
-Deterministic Recovery Economics Engine
-      |
-      v
-Recovery Route Ranking
-      |
-      +----------------------+
-      |                      |
-      v                      v
-Structured Decision      Free-text Context
-      |                      |
-      +----------+-----------+
-                 |
-                 v
-       AMD-hosted AI Layer
-                 |
-                 v
- Explanation / Structured Interpretation /
- Merchant Note / Customer Message Draft
-                 |
-                 v
-        Policy & Output Guardrails
-                 |
-                 v
-          Human Approval UI
-                 |
-                 v
-      Suggested Recovery Action
+Synthetic Case + Free-text Note
+            |
+            +------------------------+
+            |                        |
+            v                        v
+Input Validation              AMD Case Interpreter
+            |                        |
+            |                 bounded signals +
+            |                 confidence/evidence
+            |                        |
+            +------------+-----------+
+                         |
+                         v
+               Human/Schema Validation
+                         |
+                         v
+             Merchant Policy / Eligibility
+                         |
+                         v
+               Recovery Decision Graph
+                         |
+                         v
+          Multi-stage Path Expected Values
+                         |
+                         v
+             Counterfactual Path Ranking
+                         |
+                         v
+          Robustness / Break-even Analysis
+                         |
+                         v
+                Canonical Decision Package
+                         |
+              +----------+----------+
+              |                     |
+              v                     v
+      AMD Decision Explainer   Decision Ledger
+              |                     |
+              +----------+----------+
+                         |
+                         v
+                   Human Approval
+                         |
+                         v
+              Demo Recovery Decision
 ```
 
-## COMPONENTS
+## A. DEMO CASE SOURCE
+Use local synthetic JSON/CSV fixtures.
 
-### A. Demo Case Source
-Purpose:
-- provide reproducible synthetic ecommerce recovery cases
-- avoid PII and external integration dependencies
-- make baseline-vs-ReclaimGrid comparison repeatable
+Goals:
+- reproducibility
+- no PII
+- transparent assumptions
+- reliable baseline comparison
+- deterministic testability
 
-Expected form:
-- local JSON/CSV fixture or similarly simple static dataset
+No live merchant integration is required for V1.
 
-No live merchant data is required for V1.
-
-### B. Input Validator / Normalizer
+## B. INPUT VALIDATOR / NORMALIZER
 Responsibilities:
-- reject malformed numeric fields
-- reject impossible values
-- normalize case type and condition labels
-- enforce allowed enumerations
+- validate numeric values
+- normalize enums
 - distinguish missing from zero
 - bound free-text length
-- preserve source values for auditability
+- preserve raw source text for evidence
+- reject impossible or malformed inputs
 
-The validator must run before financial calculations or AI calls.
+Canonical financial values cannot come from unvalidated model output.
 
-### C. Merchant Policy / Eligibility Layer
+## C. AMD CASE INTERPRETER
+
+### Purpose
+Turn messy operational text into a bounded schema that the application can review and use safely.
+
+Candidate output:
+- reason_code
+- customer_intent
+- condition_hint
+- urgency_hint
+- confidence
+- evidence_span
+- missing_fields
+
+### Rules
+- source text is untrusted data
+- unknown stays unknown
+- no financial values may be invented
+- evidence span must support the extracted signal
+- output must pass schema validation
+- low-confidence/ambiguous fields may require human confirmation
+
+This is a meaningful AMD workload because it converts unstructured business evidence into structured decision inputs.
+
+## D. MERCHANT POLICY / ELIGIBILITY LAYER
 Responsibilities:
-- determine which recovery routes are allowed
-- encode deterministic merchant constraints
-- prevent AI from enabling a prohibited route
+- define allowed states/actions
+- exclude prohibited actions
+- encode small deterministic merchant constraints
+- prevent AI from directly enabling a forbidden path
 
 Examples:
-- redelivery may be blocked after a route-specific limit
-- restock may be blocked for certain damage states
-- liquidation may be unavailable for specific product classes
-- exchange/store credit may require defined eligibility
+- reattempt count limit
+- restock blocked for damage state
+- liquidation unavailable for certain items
+- refurbishment only when repair cost/value conditions are met
 
-V1 policies remain intentionally small and explicit.
+## E. RECOVERY DECISION GRAPH
 
-### D. Deterministic Recovery Economics Engine
-This is the financial authority.
+### Concept
+A small directed acyclic graph of recovery states and actions.
 
-Responsibilities:
-- compute route-specific expected recovery values
-- apply explicit cost assumptions
-- apply deterministic route exclusions
-- return route math
-- rank eligible routes
-- expose alternatives
-- preserve identical output for identical normalized input + assumptions
+Candidate states:
+- DELIVERY_EXCEPTION
+- CUSTOMER_RESPONSE
+- RETURN_TO_ORIGIN
+- RETURN_RECEIVED
+- RECOVERY_INVENTORY
+- CLOSED
 
-Required output shape concept:
+Exact V1 graph is frozen in G3.
+
+### Why a graph
+It allows the engine to include downstream recovery value in today's decision instead of evaluating only the immediate next action.
+
+Example:
+Reattempt delivery can lead to:
+- successful delivery
+- failed reattempt -> RTO -> returned-item recovery
+
+The downstream value must be included in the reattempt path economics.
+
+## F. DETERMINISTIC PATH ECONOMICS ENGINE
+
+### Financial authority
+All canonical route/path economics are deterministic.
+
+For a bounded acyclic graph:
+
+`EV(state, action) = immediate_net_contribution + Σ p(outcome) × EV(next_state)`
+
+The exact equation set and probability assumptions are frozen in G3.
+
+### Responsibilities
+- compute path values
+- apply costs and explicit assumptions
+- enforce eligibility
+- rank paths
+- expose formulas
+- return winner and runner-up
+- calculate baseline comparison
+- remain reproducible
+
+Candidate output:
 - case_id
-- eligible_routes
-- excluded_routes + reason
-- route_values
-- ranked_routes
-- winning_route
-- winning_expected_recovery_value
+- current_state
+- eligible_actions
+- excluded_actions + reasons
+- path_values
+- winning_path
+- runner_up_path
+- winner_value
+- runner_up_value
+- value_gap
 - assumptions_used
-- baseline_route
-- baseline_expected_recovery_value
+- baseline_path
+- baseline_value
 - uplift_absolute
 - uplift_percent
 
-Exact schema and equations are frozen in G3, not here.
+## G. ROBUSTNESS / BREAK-EVEN ENGINE
 
-### E. AMD AI Gateway
-Purpose:
-Provide one narrow interface between the application and the AMD-hosted model.
+### Purpose
+Prevent false precision when the winner depends on uncertain assumptions.
 
-Candidate deployment:
-- AMD Developer Cloud
-- AMD Instinct GPU
-- ROCm-compatible serving
-- vLLM or SGLang
-- open model selected only after environment validation
+For the dominant uncertain variable in the hero case, compute:
+- current assumption
+- break-even threshold
+- winner/runner-up value gap
+- ROBUST or FRAGILE label
 
-Responsibilities:
-- send bounded prompts
-- enforce timeouts
-- request structured output when applicable
-- record model/server metadata for proof
-- return failure states cleanly
-- prevent arbitrary application control
+Examples:
+- minimum redelivery-success probability for reattempt to remain best
+- minimum resale value for refurbish to beat liquidation
 
-The rest of the product should not depend on a specific model vendor API shape.
+V1 priority:
+- one-dimensional sensitivity
 
-### F. AI Tasks
-Authorized AI tasks:
-1. Extract bounded structured meaning from a free-text return/NDR reason.
-2. Explain the deterministic ranking in plain language.
-3. Summarize route tradeoffs.
-4. Draft a merchant-facing next-action note.
-5. Draft a customer-facing message.
-6. Flag ambiguity / missing data.
+Stretch:
+- two-variable scenario matrix/heatmap
 
-Unauthorized AI tasks:
-- invent prices/costs
-- alter route values
-- change deterministic eligibility
-- execute refunds/shipments
-- write directly to merchant systems
-- decide a final consequential action without human approval
+No large stochastic simulation is required.
 
-### G. Policy / Output Guardrails
-Every AI response must pass application-side checks before display/use.
-
-Controls:
-- schema validation
-- allowed action enum
-- maximum text length
-- no hidden route mutation
-- no financial-number replacement
-- reject output that contradicts deterministic winner without explicitly labeling it as commentary
-- safe fallback when parse fails
-
-### H. Human Approval Layer
-The UI should show:
-- case summary
-- eligible/excluded routes
-- recovery math
-- ranked options
+## H. CANONICAL DECISION PACKAGE
+Before AI explanation, generate a deterministic package containing:
+- validated case inputs
+- AI-extracted signals that were accepted
+- policy results
+- eligible/excluded paths
+- path calculations
+- winner and runner-up
+- value gap
+- break-even/robustness result
 - baseline comparison
-- AI explanation
-- assumptions
-- approve / reject / inspect alternative
 
-For V1, "Approve" records a demo decision only.
-It must not trigger a real refund, courier action, payment, or inventory mutation.
+This package is the single source of truth for the explanation UI.
 
-### I. Evidence / Telemetry Layer
-V1 needs lightweight evidence capture, not enterprise observability.
+## I. AMD DECISION EXPLAINER
+The AMD-hosted model receives the canonical decision package and may:
+- explain why the winner wins
+- explain the tradeoff against runner-up
+- explain the break-even threshold
+- draft merchant next action
+- draft customer message
 
-Record enough to prove:
-- deterministic result
-- baseline result
-- AI request status
-- AI response status
-- AMD serving metadata
-- fallback activation if any
-- human approval/rejection in demo
+It may NOT:
+- change financial values
+- change winner
+- alter eligibility
+- invent missing assumptions
+- execute any action
+
+If the explanation contradicts the canonical package, reject or visibly flag it.
+
+## J. OPTIONAL MULTIMODAL CONDITION SIGNAL
+Stretch only if AMD credits/model/runtime are stable.
+
+Flow:
+synthetic returned-item image
+-> AMD-hosted multimodal model
+-> bounded condition hint + evidence
+-> human confirmation
+-> deterministic engine
+
+This must not become a G2/G4 blocker.
+
+## K. DECISION LEDGER
+Persist/display enough evidence to reconstruct a decision:
+- source case
+- accepted AI extraction
+- evidence span/confidence
+- policy rules fired
+- formulas/assumptions
+- path ranking
+- break-even result
+- AMD explanation status
+- human approval/rejection
 - timestamps where useful
 
-Do not log secrets or sensitive credentials.
+No enterprise database is required; lightweight in-memory/local/demo persistence is sufficient unless implementation proves otherwise.
 
-## TRUST BOUNDARIES
+## L. HUMAN APPROVAL LAYER
+Judge-facing UI should show:
+- case summary
+- source evidence
+- recovery graph
+- excluded paths
+- path values
+- winner/runner-up
+- value gap
+- break-even threshold
+- baseline comparison
+- AMD explanation
+- explicit approval
 
-### Trusted deterministic core
-Trusted for financial ranking:
-- normalized numeric inputs
-- explicit policy rules
-- explicit route equations
-- deterministic ranking code
+For V1, approval records only a demo outcome.
 
-### Untrusted / bounded AI output
-Treat model output as untrusted application input.
+No real refund, payment, courier, customer, or inventory mutation.
 
-Required behavior:
-- validate
-- constrain
-- never directly execute
-- never accept model-generated financial values as authoritative
-- render explanations separately from canonical calculations
+## M. OPTIONAL VALUE LEAK MAP
+Should-have/stretch after core stability.
 
-### External infrastructure boundary
-AMD Developer Cloud is external compute.
-Credentials stay in environment variables or secure runtime configuration.
+Aggregate synthetic cases by cause and show economic leakage, not just counts.
 
-No:
-- API key in source code
-- token in commits
-- token in screenshots used for judging
-- secret in logs
+Example:
+- address failures -> $X avoidable recovery gap
+- open-box damage -> $Y recovery gap
 
-## DATA FLOW OWNERSHIP
+This helps Track 3 judges see business-level insight from case decisions.
 
-### Canonical financial data
-Owned by deterministic engine.
+## N. AMD AI GATEWAY
+One narrow provider interface should isolate model-serving specifics.
 
-### Canonical policy data
-Owned by merchant-policy configuration / code.
+Candidate:
+- AMD Developer Cloud
+- AMD Instinct
+- ROCm
+- vLLM or SGLang
+- open model selected after environment validation
 
-### Canonical explanatory text
-Generated by AI but treated as non-authoritative narrative.
+Responsibilities:
+- bounded prompts
+- structured output
+- timeout
+- sanitized metadata
+- clean error state
+- no arbitrary tool execution
 
-### Canonical final action
-Chosen by the human approval step for the V1 demo.
+The app should remain model-agnostic behind this interface.
 
-## AMD PROOF PATH
+## O. AMD PROOF PATH
+Minimum judge proof:
+1. Real inference on AMD infrastructure.
+2. AMD/Instinct/ROCm serving evidence.
+3. Case Interpreter output used by the product.
+4. Judge-visible evidence span/confidence.
+5. Grounded Decision Explainer output.
+6. Sanitized model/runtime metadata.
+7. Deterministic engine still works when AMD inference is unavailable.
 
-The final judge demo must prove AMD is doing meaningful work, not just appearing in the architecture diagram.
+This makes AMD central but not financially authoritative.
 
-Minimum proof package should include:
-1. A working AI inference path hosted on AMD infrastructure.
-2. Visible AMD Developer Cloud / AMD Instinct / ROCm-related serving evidence.
-3. A case where unstructured text is interpreted or the deterministic result is explained by the AMD-hosted model.
-4. Model response displayed inside the product.
-5. Repository documentation describing the AMD serving path.
-6. Evidence that the deterministic financial ranking still works if the model is unavailable.
+## P. FALLBACK BEHAVIOR
 
-Potential evidence artifacts:
-- architecture screenshot
-- server/runtime metadata
-- terminal/service startup evidence with secrets redacted
-- demo recording showing a live AMD-backed inference
-- captured request/response timing without credentials
+### Case Interpreter unavailable
+- allow synthetic pre-structured case input
+- label AI interpretation unavailable
+- deterministic graph remains usable
 
-Exact proof artifacts are frozen in G2.
+### Case Interpreter invalid
+- reject output
+- preserve raw note
+- require manual/synthetic structured signal
+- do not guess
 
-## FALLBACK BEHAVIOR
+### Decision Explainer unavailable
+- show canonical math/robustness without AI prose
 
-### If AI service is unavailable
-The app must:
-- keep deterministic route ranking functional
-- display a clear "AI explanation unavailable" state
-- not block financial decision inspection
-- allow human review of deterministic math
+### AI timeout
+- bounded timeout
+- no uncontrolled retry
+- deterministic result remains usable
 
-### If AI times out
-The app must:
-- stop waiting after a bounded timeout
-- avoid repeated uncontrolled retries
-- return fallback state
-- preserve deterministic result
+### No eligible path
+- display explicit blocked state
+- require review
 
-### If AI output is invalid
-The app must:
-- reject malformed output
-- not partially trust invalid structured fields
-- optionally retry once with a constrained repair prompt if G4 authorizes it
-- otherwise fall back safely
-
-### If route inputs are invalid
-The app must:
-- block calculation
-- identify validation errors
-- avoid AI calls that would mask bad financial input
-
-### If AMD credits / GPU are unavailable
-Before implementation or demo:
-- do not create paid infrastructure automatically
-- preserve a local/mock interface for UI integration testing
-- do not falsely present mock inference as AMD proof
+### AMD credit/GPU unavailable
+- no paid resource automatically
+- mock/provider stub allowed only for development after kickoff
+- mock must never be presented as AMD proof
 - G2 cannot PASS without real AMD evidence
 
-## COST CONTAINMENT ARCHITECTURE
-Because GPU credit is limited:
+## Q. COST CONTAINMENT
+- no training/fine-tuning
 - no always-on GPU by default
-- no large training job
-- no fine-tuning in V1
 - no background inference
-- no AI call for deterministic-only cases unless demo value justifies it
-- cache/reuse static demo explanation only during non-proof development when appropriate
-- start GPU only when needed and shut it down immediately after verified use
-- measure runtime and credit burn during G2
+- no agent swarm
+- no large batch calls
+- minimum proof calls
+- start GPU only when needed
+- shut down/delete immediately after test
+- track runtime/credit burn
 
-Any design requiring persistent paid infrastructure must be rejected unless explicitly re-authorized.
-
-## SECURITY MINIMUM
+## R. SECURITY MINIMUM
 Before G6 PASS:
-- secrets only in environment variables
+- secrets in environment variables only
 - `.env` ignored
-- `.env.example` contains placeholders only
-- strict request/input validation
-- strict AI response validation
+- placeholder-only `.env.example`
+- strict input/schema validation
+- AI output validation
+- prompt-injection tests
 - output escaping
 - dependency audit
-- no real customer PII in demo
-- no hidden external write actions
-- no model-controlled shell/database/payment actions
-- no secrets in Git history
+- synthetic data only
+- no model-controlled shell/database/payment tools
+- no secrets in Git history/evidence
 
-## PROVISIONAL TECHNOLOGY SHAPE
-Not final; subject to kickoff and feasibility.
+## S. PROVISIONAL TECHNOLOGY SHAPE
+Candidate minimal implementation:
+- one web app
+- TypeScript frontend/server
+- local synthetic fixtures
+- domain modules for graph/economics/robustness
+- one AMD inference API boundary
+- no database unless necessary
+- no auth unless deployment requires it
+- simple deployable architecture
 
-Candidate minimal app:
-- single web application
-- TypeScript-based frontend/server boundary
-- deterministic economics module
-- local synthetic dataset
-- small API route/server function for AMD inference
-- no production database unless evidence shows it is necessary
-- no auth unless required by deployment
-- simple deployable architecture optimized for judge demo reliability
+Framework choice remains unfrozen until build authorization.
 
-Framework choice is intentionally not frozen in this file.
-
-## MODULE BOUNDARIES
-Suggested logical modules:
+## T. LOGICAL MODULE BOUNDARIES
 
 ```text
 /data
@@ -358,85 +413,84 @@ Suggested logical modules:
 /domain
   schemas
   policy
+  recovery-graph
   economics
-  ranking
+  robustness
+  decision-package
 
 /ai
   provider interface
   AMD gateway
-  prompt contracts
+  case-interpreter contract
+  decision-explainer contract
   response schemas
 
 /app
   case input
+  graph view
   decision view
   approval flow
-  metrics/demo dashboard
+  metrics
 
 /evidence
-  AMD proof notes
-  demo fixtures
+  decision ledger
+  AMD proof
   test outputs
 ```
 
-These are conceptual boundaries, not authorization to create implementation code pre-kickoff.
+Conceptual only; not implementation authorization.
 
-## FAILURE MODES TO TEST LATER
+## U. FAILURE MODES TO TEST
 - malformed numeric input
-- negative/unsupported costs
-- no eligible routes
-- tie between top routes
-- missing free-text note
-- ambiguous reason
+- unknown enum
+- missing assumption
+- no eligible path
+- graph cycle introduced accidentally
+- tie
+- zero/negative uplift
+- break-even outside valid range
 - AI timeout
 - AI malformed JSON
-- AI contradicts deterministic math
+- AI evidence span unsupported
+- AI invents financial number
+- AI contradicts canonical winner
+- prompt injection in case note
 - AMD endpoint unavailable
-- baseline route excluded
-- division-by-zero in uplift percentage
-- extreme but valid values
-- duplicate case IDs
+- duplicate case ID
 
-## ARCHITECTURE ACCEPTANCE TEST
-Before implementation, architecture must satisfy all:
-1. Deterministic financial logic can run without AI.
+## V. ARCHITECTURE ACCEPTANCE TEST
+Before implementation, all must be true:
+1. Deterministic path economics works with AI off.
 2. AI cannot overwrite financial truth.
-3. AMD powers a meaningful visible workload.
-4. Human approval remains in the loop.
-5. Demo can run on synthetic data.
-6. Core demo survives AI failure.
-7. No real external consequential action is required.
-8. GPU cost can be tightly controlled.
-9. Every major component contributes to judge value.
-10. Architecture can be explained in under one minute.
+3. Recovery graph includes downstream outcomes.
+4. Winner and runner-up are transparent.
+5. Break-even/robustness is reproducible.
+6. AMD performs meaningful visible work.
+7. Human approval remains in loop.
+8. Demo can run on synthetic data.
+9. Core flow survives AI failure.
+10. GPU cost is tightly bounded.
+11. Architecture can be explained in under one minute.
+12. Every major component improves judging value.
 
-## ARCHITECTURE NON-GOALS
-Do not add preemptively:
+## W. ARCHITECTURE NON-GOALS
+Do not add:
 - microservices
-- message queues
+- queues
 - Kubernetes
-- vector database
+- vector database without need
 - agent framework
 - workflow engine
-- production data warehouse
+- production warehouse
 - event streaming
 - complex auth
 - multi-tenant billing
-- full observability stack
+- RL optimizer
+- model training
 
-A tool is added only when a verified requirement demands it.
-
-## CHANGE CONTROL
-This architecture is provisional until G1/G2 feasibility verification.
-
-Architecture changes after freeze must record:
-- reason
-- impacted gate
-- security/cost effect
-- demo effect
-- decision outcome
-
-in `07_DECISION_LOG.md` once created.
+## RESEARCH BASIS
+See:
+`09_COMPETITIVE_RESEARCH_AND_PRODUCT_UPGRADE.md`
 
 ## NEXT SAFE ACTION
-Create `04_SECURITY_COST_GUARDRAILS.md` to freeze secret handling, PII rules, AI trust boundaries, GPU/payment controls, dependency safety, logging rules, and stop conditions before any implementation begins.
+Keep implementation blocked until kickoff/rules re-verification. During the wait window, only continue research, formula design, synthetic fixture design, and judge-story hardening.
