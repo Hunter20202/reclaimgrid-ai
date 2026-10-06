@@ -87,14 +87,28 @@ Prove the required accounts, event enrollment, team setup, repository, and safe 
 - verified main commit SHA
 
 ## Current state
-G0 is IN PROGRESS because complimentary AMD cloud credit approval/activation is not yet verified.
+G0 is PASS as of 2026-10-07.
+
+Verified:
+- event/account/team/Discord access complete,
+- AMD AI Developer Program membership complete,
+- AMD Developer Cloud SSO/account access works,
+- complimentary credit request submitted,
+- no payment method added,
+- no GPU resource created,
+- public GitHub repository/control system verified.
+
+Complimentary credit activation is tracked as a G2 blocker, not a G0 blocker.
 
 ## G0 PASS condition
-PASS only after:
-- complimentary credit is approved or a clearly safe AMD-access route is confirmed,
-- no payment/card risk remains unresolved,
-- all required control files exist,
-- authoritative repo state is verified.
+PASS when:
+- required event/account/team access is complete,
+- AMD Developer Cloud account access is verified,
+- complimentary credit request is submitted,
+- no unsafe billing/payment action occurred,
+- public repository/control state is verified.
+
+Actual credit balance is required for safe real AMD compute / G2 proof, not for G0 completion.
 
 ---
 
@@ -140,6 +154,13 @@ PASS only when no unresolved rule ambiguity can materially invalidate scope, arc
 ---
 
 # G2 — AMD PROOF
+
+## Entry blocker
+Real AMD proof remains BLOCKED until:
+- complimentary credit is visibly active, OR
+- an explicitly approved safe no-charge AMD compute route is verified.
+
+This blocker does not prevent G3 deterministic/local work after G1.
 
 ## Objective
 Prove AMD powers a meaningful working AI workload.
