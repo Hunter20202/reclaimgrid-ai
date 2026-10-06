@@ -349,7 +349,7 @@ Do not publish:
 - placeholder 100% metrics,
 - self-reported AI confidence as reliability proof.
 
-## 16. SECURITY / TRUST SECTION
+## 15. SECURITY / TRUST SECTION
 
 Optional in final copy but required in build:
 - synthetic demo data
@@ -362,7 +362,7 @@ Optional in final copy but required in build:
 
 Use this to strengthen credibility, not overwhelm pitch.
 
-## 15. TECHNOLOGY TAGS
+## 16. TECHNOLOGY TAGS
 
 Potential tags may include:
 - AMD
