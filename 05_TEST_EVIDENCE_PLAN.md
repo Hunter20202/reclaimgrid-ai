@@ -686,6 +686,16 @@ May be deferred if it does not affect judging or safety.
 
 The Recovery Decision Graph upgrade adds mandatory tests before G3/G4/G5 can PASS:
 
+### Policy & Service Feasibility Envelope
+- merchant-policy violation excludes the path
+- confirmed refusal can block another forced retry
+- approved remedy/SLA cannot be silently downgraded
+- AMBIGUOUS/INCOMPLETE evidence blocks evidence-dependent paths
+- operationally unavailable route is excluded
+- excluded path includes deterministic reason
+- higher raw EFRC cannot override a hard constraint
+- no hidden CLTV/loyalty weighting exists
+
 ### Recovery graph correctness
 - graph is acyclic
 - only state-valid actions appear
@@ -749,6 +759,14 @@ The Recovery Decision Graph upgrade adds mandatory tests before G3/G4/G5 can PAS
 
 ### RecoveryBench acceptance
 Use the frozen plan in `19_RECOVERYBENCH_EVAL_PLAN.md`.
+
+Benchmark integrity:
+- DEV and locked HOLDOUT results reported separately
+- fixture commit SHA recorded
+- prompt-contract version recorded
+- model/serving/code SHA recorded
+- prompt/schema change after HOLDOUT scoring triggers benchmark version/rerun
+- no judge-facing score is based only on the DEV set
 
 Required measured layers:
 - Layer A: Case Interpreter quality
