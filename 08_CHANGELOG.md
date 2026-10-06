@@ -767,3 +767,35 @@ Event details remain volatile until G1.
 
 ### Verification
 PASS
+
+
+---
+
+## 2026-10-07 — Cross-chat continuity lock
+
+### Added
+- `26_NEW_CHAT_RESUME_PACKET.md`
+
+### Purpose
+- make new-chat recovery deterministic,
+- reduce dependence on imperfect conversational memory,
+- prevent restarting discovery from zero,
+- force live GitHub verification before resuming.
+
+### Resume commands
+- `RG-ACT3 RESUME`
+- `RECLAIMGRID RESUME`
+
+### Recovery order
+1. verify live latest `main` SHA,
+2. read `00_MASTER_STATE.md`,
+3. read `26_NEW_CHAT_RESUME_PACKET.md`,
+4. inspect the current NEXT SAFE ACTION dependency,
+5. live repository overrides remembered/chat state.
+
+### Commits
+- `4dea4756c136a7d7eaec1a011ad9d8939715d67e` — canonical new-chat resume packet
+- `6ef84073ab98735a174c71f17ec26d53ebbeb3b2` — master-state recovery protocol
+
+### Verification
+PASS
