@@ -716,3 +716,54 @@ A formal risk register now covers:
 
 ### Verification
 PASS
+
+
+---
+
+## 2026-10-07 — Judge attack, failure simulation, and pre-mortem hardening
+
+### Research added
+- `25_JUDGE_ATTACK_FAILURE_SIMULATION_PREMORTEM.md`
+
+### Fresh official-page recheck
+Current main ACT III page shows:
+- online phase 12–18 Oct 2026
+- total prize pool $12,000+
+- AMD prizes $5,000
+- Google prizes $5,000
+- Track 3 — Reinvent Commerce
+- judging criteria: Application of Technology, Presentation, Business Value, Originality
+- submissions must be original and MIT-compliant
+- Event Schedule still "To be announced"
+
+Event details remain volatile until G1.
+
+### Product hardening
+- Material Assumption Register required.
+- Added fair two-baseline ablation: Static Policy + Myopic Greedy.
+- Added multi-factor uncertainty fail-safe to prevent false ROBUST labels.
+- Froze plain-language judge labels.
+- Added no-unbenchmarked-AMD-superiority claim rule.
+- Added live-demo failure simulation.
+- Added judge red-team scorecard.
+- Preserved mock/live/recorded AMD provenance honesty.
+
+### Commits
+- `a9e119af21b89071a4c63f4de9fa4ecab05ae01c` — judge attack / pre-mortem research
+- `3e92033fe903ac3f989207b049693c1c3916480a` — current ACT III prize/judging snapshot
+- `889ae1b602302dc67b9bb10586baf1f0b9c6da7b` — scope judge-hardening controls
+- `ee1a4a671aac9d59686a6a0c24f1697f796b64b9` — judge-attack / ablation tests
+- `8a51bfc09d7af55d15004abfa25e2244b5bf0603` — economics assumption/baseline hardening
+- `4a6ae596cd66c2e269e33ee4a089bd538fbd7aaf` — judge presentation hardening
+- `6ca165e00a647340137f259a3e4b749732a2131f` — decisions D-054 through D-058
+- `d1f4afdf5d0ff51917058d62f9f6ba5d51896e07` — submission-control link
+
+### Gate effect
+- No implementation code created.
+- G0 PASS.
+- G1 waiting for kickoff.
+- G2 blocked by safe AMD compute/credit.
+- G3 blocked only by G1 pre-kickoff hold.
+
+### Verification
+PASS
