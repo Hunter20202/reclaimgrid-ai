@@ -693,11 +693,28 @@ The Recovery Decision Graph upgrade adds mandatory tests before G3/G4/G5 can PAS
 - FRAGILE case identifies the correct hinge variable
 - break-even threshold is unchanged from deterministic robustness output
 - hinge distance is calculated correctly
-- Hinge Exposure, if shown, matches the bounded scenario calculation
 - ROBUST case does not manufacture an unnecessary evidence request
 - Next Best Evidence maps to the hinge variable
 - AMD-drafted evidence request cannot alter canonical economics
 - formal EVPI/EVSI is not silently approximated or mislabeled
+
+### Decision Exposure / Action Gate
+- Decision Exposure equals maximum regret of the base winner over the declared one-dimensional plausible range
+- lower/upper endpoint calculations are hand-verified for linear hero fixtures
+- value is never described as guaranteed loss
+- ACT NOW rule matches robustness/materiality condition
+- ASK FIRST rule requires fragile + material exposure + bounded evidence path
+- HUMAN REVIEW appears for invalid/conflicting/missing critical evidence or policy ambiguity
+- model output cannot choose or override the Action Gate
+
+### Recovery Decision Certificate
+- certificate values exactly match the canonical decision package
+- winner/runner-up/value gap match deterministic outputs
+- hinge/break-even/robustness match robustness engine
+- Decision Exposure / Action Gate match deterministic rules
+- accepted AMD evidence span exists in source note
+- certificate can be reconstructed from logged synthetic inputs and outputs
+- no private/secrets/real PII appear in certificate
 
 ### Decision Ledger
 - ledger records accepted extraction, policy result, path values, winner/runner-up, break-even result, Decision Hinge, and approval state
@@ -719,9 +736,11 @@ The hero failed-delivery case cannot pass G5 unless it visibly proves:
 3. deterministic multi-stage path values,
 4. winner + runner-up + value gap,
 5. break-even threshold,
-6. Decision Hinge + Next Best Evidence,
-7. grounded AMD explanation,
-8. human approval.
+6. Decision Hinge + Decision Exposure,
+7. Action Gate + Next Best Evidence,
+8. Recovery Decision Certificate,
+9. grounded AMD explanation,
+10. human approval.
 
 ## NEXT SAFE ACTION
 Keep implementation blocked pre-kickoff. Continue only research, formula/fixture design, and judge-story hardening until G1 authorizes build.
