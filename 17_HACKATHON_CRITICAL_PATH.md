@@ -111,14 +111,14 @@ Can begin immediately after G1 PASS.
 Does NOT require AMD credit.
 
 Tasks:
-- schemas
-- Recovery Decision Graph
-- EFRC
-- path ranking
-- break-even
-- ROBUST / FRAGILE
-- Decision Exposure
-- Action Gate
+- M0 repository scaffold
+- M1 schemas/contracts
+- M2 Policy & Service Feasibility Envelope
+- M3 Recovery Decision Graph + EFRC
+- M4 break-even / ROBUST-FRAGILE / Decision Exposure
+- M5 Action Gate + Next Best Evidence
+- M6 Recovery Decision Certificate
+- M7 RecoveryBench infrastructure
 - Recovery Decision Certificate assembly
 - hand-calculated fixture tests
 
@@ -129,10 +129,12 @@ This is the highest-value local build lane.
 May begin after the deterministic output contract is stable enough.
 
 Tasks:
-- hero case screen
-- graph visualization
+- M8 single-screen hero shell
+- read-only graph visualization
 - Decision Certificate layout
+- feasibility/exclusion panel
 - baseline comparison
+- Proof drawer
 - AMD evidence area with clearly labeled mock/unavailable development state
 - human approval UI
 
@@ -193,6 +195,28 @@ Do not add a payment method without explicit cost authorization.
 ### If no safe AMD path exists by final integration phase
 Submission is at risk because AMD meaningful workload is mandatory.
 Escalate immediately; do not fake AMD proof.
+
+## FROZEN MILESTONE ORDER
+After G1 PASS, execute the verified milestone sequence from `24_IMPLEMENTATION_SEQUENCE_AND_RISK_REGISTER.md`:
+
+M0 scaffold
+-> M1 contracts
+-> M2 feasibility
+-> M3 economics
+-> M4 robustness/exposure
+-> M5 action gate
+-> M6 certificate
+-> M7 RecoveryBench
+-> M8 UI
+-> M9 AI gateway/mock
+-> M10 real AMD proof
+-> M11 grounded explainer
+-> M12 integration
+-> M13 Proof surface
+-> M14 security/release
+-> M15 judge/submission
+
+Do not skip a failed milestone to work on polish.
 
 ## PRACTICAL BUILD-FREEZE TARGET
 
