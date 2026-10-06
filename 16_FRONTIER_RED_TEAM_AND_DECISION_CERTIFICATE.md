@@ -270,10 +270,10 @@ Synthetic carrier/customer note
 - status: FRAGILE
 
 ## Decision Exposure
-Calculated over the declared interval.
+9.50 over the declared [45%, 80%] success-probability interval.
 
 ## Action Gate
-ASK FIRST if exposure exceeds the visible materiality threshold.
+ASK FIRST because Decision Exposure 9.50 exceeds the frozen synthetic merchant materiality threshold 5.00 and a bounded evidence request is available.
 
 ## Next Best Evidence
 Confirm customer availability for the next delivery window.
