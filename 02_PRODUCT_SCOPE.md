@@ -16,6 +16,25 @@ ReclaimGrid AI is an AMD-powered Recovery Decision Graph that maps the economica
 ## TAGLINE
 **Find the best recovery path — and prove why it wins.**
 
+## JUDGE-VISIBLE CORE OUTPUT
+The primary product artifact is the **Recovery Decision Certificate**.
+
+For the hero case it must combine:
+- accepted source evidence,
+- eligible/excluded recovery paths,
+- winner + runner-up,
+- EFRC values and value gap,
+- Decision Hinge,
+- break-even threshold,
+- ROBUST / FRAGILE,
+- Decision Exposure,
+- deterministic Action Gate: ACT NOW / ASK FIRST / HUMAN REVIEW,
+- Next Best Evidence when relevant,
+- AMD-grounded explanation/draft,
+- human approval state.
+
+This certificate is the compact proof that ReclaimGrid is a decision layer, not a generic workflow suite.
+
 ## CORE PROBLEM
 Ecommerce merchants lose money after failed deliveries, returns, open-box parcels, damaged returns, and aging returned inventory because decisions are often made one step at a time through static rules, siloed tools, or manual judgment.
 
@@ -155,8 +174,10 @@ If RETRY wins at 68% but flips below 55.6%, ReclaimGrid may advise confirming cu
 
 Rules:
 - the hinge and threshold come from deterministic math,
+- Decision Exposure is calculated over the declared one-dimensional plausible range,
+- the deterministic Action Gate chooses ACT NOW / ASK FIRST / HUMAN REVIEW,
 - AMD AI may draft the information-gathering message,
-- AMD AI may not invent the probability/value,
+- AMD AI may not invent the probability/value or choose the Action Gate,
 - formal EVPI/EVSI optimization is out of V1 scope.
 
 See `14_DECISION_HINGE_AND_NEXT_BEST_EVIDENCE.md`.
@@ -302,6 +323,8 @@ Show a fragile case where the best choice changes at a resale-value or refurbish
 - winning path + runner-up + value gap
 - break-even / robustness analysis
 - Decision Hinge + Next Best Evidence for the hero fragile case
+- Decision Exposure + deterministic Action Gate
+- Recovery Decision Certificate
 - visible formulas/assumptions
 - AMD AI evidence-grounded case extraction
 - AMD AI grounded explanation
@@ -376,7 +399,7 @@ Originality:
 - recovery graph + counterfactual path economics + break-even robustness.
 
 Presentation:
-- messy note -> AMD extraction -> path graph -> math -> threshold -> Next Best Evidence -> approval is visually clear.
+- messy note -> AMD extraction -> path graph -> math -> threshold -> Decision Exposure -> Action Gate -> Next Best Evidence -> Recovery Decision Certificate -> approval is visually clear.
 
 ## SCOPE KILL TEST
 Any proposed V1 feature must pass all three:
@@ -415,6 +438,7 @@ See:
 - `13_COMPETITOR_MATRIX_AND_WHITE_SPACE.md`
 - `14_DECISION_HINGE_AND_NEXT_BEST_EVIDENCE.md`
 - `15_AMD_MODEL_AND_SERVING_PLAN.md`
+- `16_FRONTIER_RED_TEAM_AND_DECISION_CERTIFICATE.md`
 
 ## NEXT SAFE ACTION
 Keep implementation blocked until kickoff/rules re-verification and AMD credit state permit progression. Use the research window only for further validation, math design, fixture design, and judge-story hardening.
