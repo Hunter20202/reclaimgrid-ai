@@ -210,6 +210,14 @@ Evidence required:
 - winner/runner-up/value-gap tests
 - visible math in product
 
+### Claim: "ReclaimGrid only optimizes among policy/service-feasible paths."
+Evidence required:
+- Policy & Service Feasibility Envelope
+- explicit exclusion reasons
+- fixture where higher raw EFRC path is excluded
+- fixture where evidence insufficiency blocks a path
+- no opaque CLTV/loyalty weighting
+
 ### Claim: "ReclaimGrid shows when a decision is robust."
 Evidence required:
 - break-even formula
@@ -333,6 +341,10 @@ Must not say:
 
 ## 14. RECOVERYBENCH / PROOF CLAIMS
 Before final submission, measured proof should include:
+- RecoveryBench version
+- fixture SHA
+- prompt-contract version
+- DEV vs locked HOLDOUT split/result
 - frozen eval-set size
 - schema-valid rate
 - evidence-grounding result
