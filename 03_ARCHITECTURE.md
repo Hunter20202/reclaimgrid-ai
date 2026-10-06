@@ -30,7 +30,7 @@ Synthetic Case + Free-text Note
 Input Validation              AMD Case Interpreter
             |                        |
             |                 bounded signals +
-            |                 confidence/evidence
+            |                 exact evidence spans
             |                        |
             +------------+-----------+
                          |
@@ -351,7 +351,7 @@ This must not become a G2/G4 blocker.
 Persist/display enough evidence to reconstruct a decision:
 - source case
 - accepted AI extraction
-- evidence span/confidence
+- exact evidence spans + deterministic Evidence Status
 - policy rules fired
 - formulas/assumptions
 - path ranking
@@ -416,7 +416,7 @@ Minimum judge proof:
 1. Real inference on AMD infrastructure.
 2. AMD/Instinct/ROCm serving evidence.
 3. Case Interpreter output used by the product.
-4. Judge-visible evidence span/confidence.
+4. Judge-visible exact evidence spans + deterministic Evidence Status.
 5. Grounded Decision Explainer output.
 6. Sanitized model/runtime metadata.
 7. Deterministic engine still works when AMD inference is unavailable.
