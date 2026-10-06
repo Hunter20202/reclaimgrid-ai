@@ -571,3 +571,52 @@ PASS
 
 ### Fresh official-page correction
 - `227d698e32d94b1be0917845a5d506320bd43945` — refreshed ACT III prize snapshot to the currently visible $11,000+ and marked partner-prize amounts as volatile.
+
+
+---
+
+## 2026-10-07 — Decision-quality and benchmark-integrity deep research
+
+### Research added
+- `22_DECISION_QUALITY_AND_BENCHMARK_INTEGRITY.md`
+
+### Key findings
+- Pure EFRC maximization is insufficient if policy, customer remedy, service commitments, evidence sufficiency, or operational availability are omitted.
+- NRF data reinforces that returns materially affect repeat-purchase behavior and retailer strategy, so service/customer constraints cannot be ignored.
+- V1 now uses a deterministic **Policy & Service Feasibility Envelope** before EFRC optimization.
+- V1 explicitly rejects fabricated CLTV/churn/loyalty-dollar scoring and opaque weighted multi-objective formulas.
+- RecoveryBench now uses **DEV 32 + locked HOLDOUT 16** for Case Interpreter evaluation.
+- Benchmark reports must record version, fixture SHA, prompt contract, model, serving stack, hardware, code SHA, and run date.
+- If prompt/schema changes after HOLDOUT scoring, benchmark version/rerun is required.
+- Efficiency metrics are measured as evidence, but ACT II token-efficiency scoring is not assumed to be an ACT III rule.
+
+### Canonical docs synchronized
+- `02_PRODUCT_SCOPE.md`
+- `03_ARCHITECTURE.md`
+- `05_TEST_EVIDENCE_PLAN.md`
+- `06_SUBMISSION_CHECKLIST.md`
+- `07_DECISION_LOG.md`
+- `10_RECOVERY_ECONOMICS_DESIGN.md`
+- `12_JUDGE_STRATEGY.md`
+- `19_RECOVERYBENCH_EVAL_PLAN.md`
+
+### Commits
+- `1d32a9f21c6cecc6c4efcb8d0da888b8a85ec56f` — deep decision-quality / benchmark-integrity research
+- `387f5628a72583e19aa183fd8eea7f3497cf06a4` — product-scope feasibility envelope
+- `bc3de1f5fd8f3dfa791e5fdc6084d6a7bc9bc8b7` — architecture feasibility envelope
+- `2750afbc0df16a9ae3d862b7a7a1101438fec392` — constraint-first economics
+- `5a15c0a681544890d6ef8d64add9220edb93c16a` — RecoveryBench holdout/versioning controls
+- `f5798d174e6f569e1412f3386e1579104b55a0df` — feasibility/benchmark-integrity tests
+- `d3c75e6b1d697b83fe6fb47432d726842e0eb237` — decisions D-046 through D-048
+- `a2b5941ecb59bd6c897115009a0c8c1b887b452b` — submission proof claims
+- `2659c8bbf730e6cf2dcd44bc31ac8d1dc882bb04` — judge defense
+
+### Gate effect
+- No implementation code created.
+- G0 remains PASS.
+- G1 remains waiting for kickoff.
+- G2 remains blocked by complimentary credit activation.
+- G3 remains blocked only by G1 pre-kickoff hold.
+
+### Verification
+PASS
