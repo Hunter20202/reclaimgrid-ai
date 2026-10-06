@@ -56,6 +56,9 @@ Input Validation              AMD Case Interpreter
         Decision Hinge / Next Best Evidence
                          |
                          v
+            Decision Exposure / Action Gate
+                         |
+                         v
                 Canonical Decision Package
                          |
               +----------+----------+
@@ -236,7 +239,44 @@ This layer must reuse existing robustness math rather than create a separate lea
 See:
 `14_DECISION_HINGE_AND_NEXT_BEST_EVIDENCE.md`
 
-## I. CANONICAL DECISION PACKAGE
+## I. DECISION EXPOSURE / ACTION GATE
+
+For the hero one-dimensional uncertainty case:
+
+- compute the maximum regret of the base-case winner across the declared plausible interval,
+- expose that value as Decision Exposure,
+- compare it to a visible synthetic merchant materiality threshold,
+- derive one deterministic action mode:
+  - ACT NOW
+  - ASK FIRST
+  - HUMAN REVIEW
+
+The Action Gate must remain application logic, not model judgment.
+
+AMD may draft an ASK FIRST message only after the deterministic gate selects that mode.
+
+See:
+`16_FRONTIER_RED_TEAM_AND_DECISION_CERTIFICATE.md`
+
+## J. RECOVERY DECISION CERTIFICATE
+
+Assemble one judge-facing artifact from canonical data:
+- source/accepted evidence,
+- policy/eligibility,
+- full path values,
+- winner/runner-up/value gap,
+- hinge/break-even,
+- robustness,
+- Decision Exposure,
+- Action Gate,
+- Next Best Evidence,
+- grounded AMD explanation/draft,
+- human approval,
+- baseline comparison.
+
+The certificate is a presentation/audit object, not an alternate decision engine.
+
+## K. CANONICAL DECISION PACKAGE
 Before AI explanation, generate a deterministic package containing:
 - validated case inputs
 - AI-extracted signals that were accepted
@@ -250,7 +290,7 @@ Before AI explanation, generate a deterministic package containing:
 
 This package is the single source of truth for the explanation UI.
 
-## J. AMD DECISION EXPLAINER
+## L. AMD DECISION EXPLAINER
 The AMD-hosted model receives the canonical decision package and may:
 - explain why the winner wins
 - explain the tradeoff against runner-up
@@ -267,7 +307,7 @@ It may NOT:
 
 If the explanation contradicts the canonical package, reject or visibly flag it.
 
-## K. OPTIONAL MULTIMODAL CONDITION SIGNAL
+## M. OPTIONAL MULTIMODAL CONDITION SIGNAL
 Stretch only if AMD credits/model/runtime are stable.
 
 Flow:
@@ -279,7 +319,7 @@ synthetic returned-item image
 
 This must not become a G2/G4 blocker.
 
-## L. DECISION LEDGER
+## N. DECISION LEDGER
 Persist/display enough evidence to reconstruct a decision:
 - source case
 - accepted AI extraction
@@ -294,7 +334,7 @@ Persist/display enough evidence to reconstruct a decision:
 
 No enterprise database is required; lightweight in-memory/local/demo persistence is sufficient unless implementation proves otherwise.
 
-## M. HUMAN APPROVAL LAYER
+## O. HUMAN APPROVAL LAYER
 Judge-facing UI should show:
 - case summary
 - source evidence
@@ -312,7 +352,7 @@ For V1, approval records only a demo outcome.
 
 No real refund, payment, courier, customer, or inventory mutation.
 
-## N. OPTIONAL VALUE LEAK MAP
+## P. OPTIONAL VALUE LEAK MAP
 Should-have/stretch after core stability.
 
 Aggregate synthetic cases by cause and show economic leakage, not just counts.
@@ -323,7 +363,7 @@ Example:
 
 This helps Track 3 judges see business-level insight from case decisions.
 
-## O. AMD AI GATEWAY
+## Q. AMD AI GATEWAY
 One narrow provider interface should isolate model-serving specifics.
 
 Candidate:
@@ -343,7 +383,7 @@ Responsibilities:
 
 The app should remain model-agnostic behind this interface.
 
-## P. AMD PROOF PATH
+## R. AMD PROOF PATH
 Minimum judge proof:
 1. Real inference on AMD infrastructure.
 2. AMD/Instinct/ROCm serving evidence.
@@ -355,7 +395,7 @@ Minimum judge proof:
 
 This makes AMD central but not financially authoritative.
 
-## Q. FALLBACK BEHAVIOR
+## S. FALLBACK BEHAVIOR
 
 ### Case Interpreter unavailable
 - allow synthetic pre-structured case input
@@ -386,7 +426,7 @@ This makes AMD central but not financially authoritative.
 - mock must never be presented as AMD proof
 - G2 cannot PASS without real AMD evidence
 
-## R. COST CONTAINMENT
+## T. COST CONTAINMENT
 - no training/fine-tuning
 - no always-on GPU by default
 - no background inference
@@ -397,7 +437,7 @@ This makes AMD central but not financially authoritative.
 - shut down/delete immediately after test
 - track runtime/credit burn
 
-## S. SECURITY MINIMUM
+## U. SECURITY MINIMUM
 Before G6 PASS:
 - secrets in environment variables only
 - `.env` ignored
@@ -411,7 +451,7 @@ Before G6 PASS:
 - no model-controlled shell/database/payment tools
 - no secrets in Git history/evidence
 
-## T. PROVISIONAL TECHNOLOGY SHAPE
+## V. PROVISIONAL TECHNOLOGY SHAPE
 Candidate minimal implementation:
 - one web app
 - TypeScript frontend/server
@@ -424,7 +464,7 @@ Candidate minimal implementation:
 
 Framework choice remains unfrozen until build authorization.
 
-## U. LOGICAL MODULE BOUNDARIES
+## W. LOGICAL MODULE BOUNDARIES
 
 ```text
 /data
@@ -438,6 +478,9 @@ Framework choice remains unfrozen until build authorization.
   economics
   robustness
   decision-hinge
+  decision-exposure
+  action-gate
+  decision-certificate
   decision-package
 
 /ai
@@ -462,7 +505,7 @@ Framework choice remains unfrozen until build authorization.
 
 Conceptual only; not implementation authorization.
 
-## V. FAILURE MODES TO TEST
+## X. FAILURE MODES TO TEST
 - malformed numeric input
 - unknown enum
 - missing assumption
@@ -480,9 +523,12 @@ Conceptual only; not implementation authorization.
 - AMD endpoint unavailable
 - fragile decision with wrong hinge variable
 - Next Best Evidence contradicts hinge variable
+- Decision Exposure calculation wrong
+- Action Gate mode inconsistent with deterministic rule
+- Recovery Decision Certificate disagrees with canonical package
 - duplicate case ID
 
-## W. ARCHITECTURE ACCEPTANCE TEST
+## Y. ARCHITECTURE ACCEPTANCE TEST
 Before implementation, all must be true:
 1. Deterministic path economics works with AI off.
 2. AI cannot overwrite financial truth.
@@ -490,15 +536,17 @@ Before implementation, all must be true:
 4. Winner and runner-up are transparent.
 5. Break-even/robustness is reproducible.
 6. Fragile hero decisions expose a deterministic Decision Hinge and bounded Next Best Evidence.
-7. AMD performs meaningful visible work.
-8. Human approval remains in loop.
-9. Demo can run on synthetic data.
-10. Core flow survives AI failure.
-11. GPU cost is tightly bounded.
-12. Architecture can be explained in under one minute.
-13. Every major component improves judging value.
+7. Decision Exposure and Action Gate are reproducible.
+8. Recovery Decision Certificate is fully reconstructable from canonical data.
+9. AMD performs meaningful visible work.
+10. Human approval remains in loop.
+11. Demo can run on synthetic data.
+12. Core flow survives AI failure.
+13. GPU cost is tightly bounded.
+14. Architecture can be explained in under one minute.
+15. Every major component improves judging value.
 
-## X. ARCHITECTURE NON-GOALS
+## Z. ARCHITECTURE NON-GOALS
 Do not add:
 - microservices
 - queues
@@ -519,6 +567,7 @@ See:
 - `13_COMPETITOR_MATRIX_AND_WHITE_SPACE.md`
 - `14_DECISION_HINGE_AND_NEXT_BEST_EVIDENCE.md`
 - `15_AMD_MODEL_AND_SERVING_PLAN.md`
+- `16_FRONTIER_RED_TEAM_AND_DECISION_CERTIFICATE.md`
 
 ## NEXT SAFE ACTION
 Keep implementation blocked until kickoff/rules re-verification. During the wait window, only continue research, formula design, synthetic fixture design, and judge-story hardening.
