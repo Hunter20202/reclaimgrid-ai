@@ -328,6 +328,45 @@ PASS
 ### Verification
 PASS
 
+
+---
+
+## 2026-10-06 — Competitive white-space, Decision Hinge, and AMD serving hardening
+
+### Commits
+- `a01f9c397fb6c060770dca9aa81a1ca89ae47940` — competitor matrix / white-space analysis
+- `21272194a8f66257cc0dd6c9a15f1c812bd0b2f7` — Decision Hinge / Next Best Evidence design
+- `99e22db4fc52cf4aaec5cd26dcfc86a786a1a223` — AMD model / serving plan
+- `c3cf37c4602b48da82d5337e22de0a8b320c37da` — V1 scope updated
+- `09ffbed4c0d65e5881bbbf5d4da085215afb23d2` — architecture updated
+- `e4ad7347f0ff0ce51fb78ee852e01b438593fe2c` — test plan updated
+- `0933859183463c8b85e8d5665a4efece97f6fad1` — judge story strengthened
+- `b954d893c7ec7daf719d917ce6557b6026631136` — decision log updated
+- `c28927e9bb38a9da6f13794deb1bce8250d49ea9` — submission claim mapping updated
+
+### Files added
+- `13_COMPETITOR_MATRIX_AND_WHITE_SPACE.md`
+- `14_DECISION_HINGE_AND_NEXT_BEST_EVIDENCE.md`
+- `15_AMD_MODEL_AND_SERVING_PLAN.md`
+
+### New product hardening
+- Public competitor materials were compared explicitly across Loop, Optoro, AfterShip, ClickPost, and ReverseLogix.
+- ReclaimGrid positioning was sharpened to a recovery-intelligence **decision layer**, not a workflow-suite replacement.
+- Decision Hinge became a hero-case MUST: show the uncertain variable and exact threshold where the winner flips.
+- Next Best Evidence added for fragile decisions, reusing existing break-even math rather than introducing a new ML system.
+- Formal EVPI/EVSI/Bayesian updating remains out of V1 scope.
+- AMD model plan now starts with Qwen3-8B + vLLM for low-cost proof; Qwen3-32B / Qwen3-30B-A3B are escalation candidates only if fixture quality requires them.
+- Structured JSON output plus semantic evidence-span validation is mandatory for the Case Interpreter.
+
+### Gate effect
+- G0 remains IN PROGRESS because complimentary AMD credit is not yet active.
+- No implementation code created.
+- No payment method added.
+- No GPU launched.
+
+### Verification
+PASS
+
 ## CURRENT CONTROL-DOC SET AFTER THIS FILE
 
 Expected canonical files:
@@ -346,6 +385,9 @@ Research/design extensions:
 - `10_RECOVERY_ECONOMICS_DESIGN.md`
 - `11_SYNTHETIC_FIXTURE_BLUEPRINT.md`
 - `12_JUDGE_STRATEGY.md`
+- `13_COMPETITOR_MATRIX_AND_WHITE_SPACE.md`
+- `14_DECISION_HINGE_AND_NEXT_BEST_EVIDENCE.md`
+- `15_AMD_MODEL_AND_SERVING_PLAN.md`
 
 Plus:
 - `README.md`
