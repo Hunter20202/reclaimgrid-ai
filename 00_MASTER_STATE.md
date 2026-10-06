@@ -8,7 +8,7 @@
 - CURRENT GATE: G1 — Rules & Scope Freeze (WAITING FOR KICKOFF)
 - STATUS: PRE-KICKOFF HOLD / G0 PASS
 - LAST VERIFIED: 2026-10-07
-- VERIFIED MAIN SHA BEFORE THIS STATE UPDATE: 4a2bfd1c3604c717731af2aab4c6e40489c3204c
+- VERIFIED MAIN SHA BEFORE THIS STATE UPDATE: 3db4d5bc1db5547c07b6423e6a9159301e94a5cd
 
 ## COMPLETED
 - AMD account access: PASS
@@ -25,7 +25,7 @@
 - Public GitHub repository created: Hunter20202/reclaimgrid-ai
 - Default branch: main
 - Canonical Control Room document set 00–08: COMPLETE / VERIFIED
-- Competitive/product hardening research 09–17: COMPLETE / VERIFIED
+- Competitive/product hardening research 09–21: COMPLETE / VERIFIED
 - README.md exists on main
 
 ## CANONICAL CONTROL FILE AUDIT
@@ -48,6 +48,10 @@ Verified present on `main`:
 - `15_AMD_MODEL_AND_SERVING_PLAN.md`
 - `16_FRONTIER_RED_TEAM_AND_DECISION_CERTIFICATE.md`
 - `17_HACKATHON_CRITICAL_PATH.md`
+- `18_DEEP_RESEARCH_WINNING_BAR.md`
+- `19_RECOVERYBENCH_EVAL_PLAN.md`
+- `20_AI_EVIDENCE_QUALITY_CONTRACT.md`
+- `21_TRACK_FIT_AND_PIVOT_AUDIT.md`
 - `README.md`
 
 CONTROL-DOC AUDIT RESULT: PASS
@@ -89,11 +93,16 @@ Until complimentary credit is visibly active:
 - Recovery Decision Certificate is the primary judge-visible artifact.
 - Decision Exposure is mandatory for the hero one-dimensional uncertainty case.
 - Deterministic Action Gate must choose ACT NOW / ASK FIRST / HUMAN REVIEW.
-- AMD-hosted Case Interpreter must return bounded signals with confidence/evidence span/unknowns.
+- AMD-hosted Case Interpreter must return bounded semantic signals with exact evidence spans, ambiguity flags, and missing fields.
+- Model-authored numerical confidence is NOT authoritative and is removed from the canonical Case Interpreter contract.
+- Deterministic Evidence Status = GROUNDED / AMBIGUOUS / INCOMPLETE / INVALID.
 - AMD-hosted Decision Explainer is grounded in the canonical deterministic package.
 - AMD first-proof model ladder: Qwen3-8B + vLLM first; larger Qwen3 model only if task-quality tests justify the extra runtime.
 - Structured Case Interpreter output + semantic evidence-span validation is mandatory.
 - Decision Ledger is mandatory V1.
+- RecoveryBench is mandatory proof infrastructure for AI quality, adversarial safety, deterministic economics, certificate integrity, and AMD runtime.
+- Final app should include a compact measured Proof surface; no fabricated or placeholder benchmark metrics.
+- Podium target is evidence-heavy: evals + adversarial proof + deterministic fixtures + GPU/runtime telemetry + measured latency.
 - LLM financial authority: ZERO.
 - Consequential actions require human approval.
 - Synthetic demo data is the default.
@@ -235,6 +244,10 @@ If memory/chat conflicts with the repository or a newly verified official state,
 - `15_AMD_MODEL_AND_SERVING_PLAN.md`: low-risk AMD model ladder, vLLM structured-output plan, credit containment
 - `16_FRONTIER_RED_TEAM_AND_DECISION_CERTIFICATE.md`: Narvar/SSADS frontier red-team, Decision Exposure, Action Gate, Recovery Decision Certificate
 - `17_HACKATHON_CRITICAL_PATH.md`: dependency-based parallel gate plan and credit-delay contingency
+- `18_DEEP_RESEARCH_WINNING_BAR.md`: prior AMD winner analysis and podium-level proof target
+- `19_RECOVERYBENCH_EVAL_PLAN.md`: frozen task/economics/adversarial/AMD evaluation plan
+- `20_AI_EVIDENCE_QUALITY_CONTRACT.md`: deterministic evidence-quality states replacing model self-confidence
+- `21_TRACK_FIT_AND_PIVOT_AUDIT.md`: Track 3 keep/pivot decision and partner-prize strategy
 
 ## G0 FINAL STATE
 G0 PASS as of 2026-10-07.
@@ -261,7 +274,11 @@ Latest read-only cloud/billing recheck:
 Credit activation is now formally a **G2 blocker**, not a G0 blocker.
 
 ## PRE-KICKOFF PRODUCT HARDENING STATUS
-Research red-team completed on 2026-10-06 against current returns/NDR/reverse-logistics products including Loop, Optoro, AfterShip, ClickPost, ReverseLogix, Narvar, and Happy Returns. A frontier research pass also audited September/October 2026 reverse-logistics decision-support work including SSADS and a new systematic review.
+Deep research now includes:
+- current returns/NDR/reverse-logistics products including Loop, Optoro, AfterShip, ClickPost, ReverseLogix, Narvar, and Happy Returns,
+- recent reverse-logistics decision-support research including SSADS, sensitivity-analysis work, value-of-information work, and a 2026 systematic review,
+- prior AMD ACT I / ACT II podium submissions and their evaluation/telemetry patterns,
+- current LLM calibration research relevant to model self-confidence.
 
 Result:
 - Generic AI returns/NDR automation is NOT sufficient differentiation.
@@ -271,7 +288,11 @@ Result:
 - Multimodal condition analysis is STRETCH only.
 - Product is positioned as a recovery-intelligence decision layer, not a workflow-suite replacement.
 - Generic agentic post-purchase decisioning, ask-for-more-information, and semantic extraction + optimizer are NOT treated as originality by themselves.
-- AMD serving plan is frozen provisionally: cheapest Qwen3-8B + vLLM smoke proof first, then escalate only if exact fixture quality demands it.
+- AMD serving plan is frozen provisionally: Qwen3-8B + vLLM first, then escalate only if the frozen RecoveryBench quality gates demand it.
+- RecoveryBench proof plan is frozen: 48 interpreter notes, 16 adversarial notes, 20 hand-calculated economics fixtures, 12 certificate-integrity cases, plus real AMD runtime measurements.
+- Model self-reported numerical confidence has been removed from authoritative product logic.
+- Track 3 remains the strongest current fit; no pivot recommended before G1 unless official rules/feasibility materially change.
+- Partner priority: main AMD/Track 3 first; Vibe naturally; Google only if requirements/model fit align; Evolus only after core PASS with adequate time.
 - No implementation code has been created.
 
 Canonical current tagline:
@@ -283,11 +304,12 @@ No user execution is required before kickoff unless AMD credit activation arrive
 At kickoff:
 1. perform G1 rules/track/deadline re-verification,
 2. authorize implementation if rules permit,
-3. begin G3 deterministic economics core immediately,
-4. run G2 AMD proof in parallel whenever safe credited compute becomes available.
+3. begin G3 deterministic economics + RecoveryBench contracts immediately,
+4. run G2 AMD proof in parallel whenever safe credited compute becomes available,
+5. choose the final model only from measured RecoveryBench results.
 
 Until kickoff:
-- continue only research/control hardening,
-- do not create paid GPU resources,
-- do not add a payment method,
-- do not start submission implementation code.
+- no implementation code,
+- no paid GPU/payment method,
+- continue only material research/control hardening,
+- avoid small cosmetic research iterations that do not change product strategy or evidence quality.
