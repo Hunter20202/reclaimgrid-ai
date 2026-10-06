@@ -79,8 +79,39 @@ EV_retry = 57.00 > 35.00
 Therefore:
 **FRAGILE**
 
+### Hinge distance
+|0.68 - 0.5556| = 0.1244
+= 12.44 percentage points
+
+### Decision Exposure for base winner RETRY
+At p = 0.45:
+Best action = STOP_AND_RTO = 35.00
+Chosen base winner RETRY = 25.50
+Regret = 9.50
+
+At p = 0.80:
+Best action = RETRY = 57.00
+Regret = 0
+
+Decision Exposure over [0.45, 0.80]:
+**9.50**
+
+### Synthetic merchant materiality threshold
+**5.00**
+
+Because:
+- decision is FRAGILE,
+- Decision Exposure 9.50 >= materiality threshold 5.00,
+- customer availability can be requested,
+
+Expected Action Gate:
+**ASK_FIRST**
+
+Expected Next Best Evidence:
+**Confirm the customer can receive during the next delivery window.**
+
 Judge message:
-Retry wins at the base assumption, but the recommendation flips if success probability falls below about 55.6%.
+Retry wins at the base assumption, but the recommendation flips if success probability falls below about 55.6%. The scenario range creates up to 9.50 of decision exposure, so ReclaimGrid asks for targeted evidence before committing.
 
 ## Baseline
 Static baseline:
