@@ -138,6 +138,29 @@ Examples:
 
 V1 should prefer one-dimensional sensitivity per case. Two-variable sensitivity is stretch only.
 
+## DECISION HINGE / NEXT BEST EVIDENCE
+For any FRAGILE hero decision, V1 must turn sensitivity into an operational next step.
+
+Show:
+- hinge variable,
+- current assumption,
+- plausible range,
+- break-even threshold,
+- hinge distance,
+- optional bounded Hinge Exposure,
+- one "Next Best Evidence" action.
+
+Example:
+If RETRY wins at 68% but flips below 55.6%, ReclaimGrid may advise confirming customer availability before committing.
+
+Rules:
+- the hinge and threshold come from deterministic math,
+- AMD AI may draft the information-gathering message,
+- AMD AI may not invent the probability/value,
+- formal EVPI/EVSI optimization is out of V1 scope.
+
+See `14_DECISION_HINGE_AND_NEXT_BEST_EVIDENCE.md`.
+
 ## AMD AI LAYER
 
 ### Mandatory meaningful workload 1 — Case Interpreter
@@ -278,6 +301,7 @@ Show a fragile case where the best choice changes at a resale-value or refurbish
 - policy/eligibility constraints
 - winning path + runner-up + value gap
 - break-even / robustness analysis
+- Decision Hinge + Next Best Evidence for the hero fragile case
 - visible formulas/assumptions
 - AMD AI evidence-grounded case extraction
 - AMD AI grounded explanation
@@ -352,7 +376,7 @@ Originality:
 - recovery graph + counterfactual path economics + break-even robustness.
 
 Presentation:
-- messy note -> AMD extraction -> path graph -> math -> threshold -> approval is visually clear.
+- messy note -> AMD extraction -> path graph -> math -> threshold -> Next Best Evidence -> approval is visually clear.
 
 ## SCOPE KILL TEST
 Any proposed V1 feature must pass all three:
@@ -387,7 +411,10 @@ Before implementation begins, G1 must confirm:
 
 ## RESEARCH BASIS
 See:
-`09_COMPETITIVE_RESEARCH_AND_PRODUCT_UPGRADE.md`
+- `09_COMPETITIVE_RESEARCH_AND_PRODUCT_UPGRADE.md`
+- `13_COMPETITOR_MATRIX_AND_WHITE_SPACE.md`
+- `14_DECISION_HINGE_AND_NEXT_BEST_EVIDENCE.md`
+- `15_AMD_MODEL_AND_SERVING_PLAN.md`
 
 ## NEXT SAFE ACTION
 Keep implementation blocked until kickoff/rules re-verification and AMD credit state permit progression. Use the research window only for further validation, math design, fixture design, and judge-story hardening.
