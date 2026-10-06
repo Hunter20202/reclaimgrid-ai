@@ -361,6 +361,38 @@ A decision may be:
 - IMPACTED GATES: G3-G7
 - REJECTED FOR V1: multi-dimensional robust optimization, formal EVPI/EVSI, Bayesian updating, large scenario trees, minimax-regret optimization over many variables.
 
+## D-038 — Credit activation is a G2 blocker, not a global build blocker
+- DATE: 2026-10-07
+- STATUS: FROZEN
+- PREVIOUS DECISION: D-013, D-015
+- DECISION: AMD complimentary credit activation does not block G0 completion or post-kickoff deterministic/local implementation. It blocks real AMD proof and therefore blocks G2 PASS.
+- REASON: Official ACT III rules require meaningful AMD usage in the working product, but do not require complimentary credit to be active before local deterministic product work begins.
+- IMPACTED GATES: G0, G1, G2, G3
+- COST IMPACT: No paid GPU authorization is added. Payment/card hard-stop remains unchanged.
+- DEMO/JUDGING IMPACT: Prevents wasting the short competition window while preserving genuine AMD proof requirements.
+- EVIDENCE: `17_HACKATHON_CRITICAL_PATH.md`.
+- REVIEW TRIGGER: Kickoff or official infrastructure guidance changes.
+
+## D-039 — Independent gates may proceed in parallel after G1
+- DATE: 2026-10-07
+- STATUS: FROZEN
+- PREVIOUS DECISION: D-002
+- DECISION: Replace strict "every prior gate must PASS" sequencing with dependency-based gate control after G1. AMD Proof and Economics Core may proceed as independent lanes once their own prerequisites are met.
+- REASON: G2 AMD credit availability is externally controlled, while G3 deterministic economics is local and independent. Strict serial sequencing would create avoidable schedule risk.
+- IMPACTED GATES: G2-G5
+- SECURITY IMPACT: No weakening of evidence, security, or payment controls.
+- DEMO/JUDGING IMPACT: Increases probability of finishing a working product on time.
+- EVIDENCE: `17_HACKATHON_CRITICAL_PATH.md`.
+
+## D-040 — Conservative internal build-freeze target
+- DATE: 2026-10-07
+- STATUS: PROVISIONAL
+- DECISION: Until kickoff resolves official-page inconsistencies, use 17 Oct 2026 as the internal build-freeze target and reserve 18 Oct for submission verification.
+- REASON: Live dashboard currently says online build 12–17 Oct while submission closes 18 Oct 15:00 UTC; main page says online phase 12–18 Oct.
+- IMPACTED GATES: G1, G7, G8, G9
+- DEMO/JUDGING IMPACT: Adds schedule buffer and reduces last-day integration risk.
+- REVIEW TRIGGER: Kickoff.
+
 ---
 
 ## FUTURE DECISION ENTRY TEMPLATE
