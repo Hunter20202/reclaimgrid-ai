@@ -8,7 +8,7 @@
 - CURRENT GATE: G0 — Registration & Environment
 - STATUS: IN PROGRESS
 - LAST VERIFIED: 2026-10-06
-- VERIFIED MAIN SHA BEFORE THIS STATE UPDATE: 4698e2ceebb7a357773bc7eda37e76509bd6f6f5
+- VERIFIED MAIN SHA BEFORE THIS STATE UPDATE: fb0abe8d0b4540f7667ac6e1c9a40ce0648e0347
 
 ## COMPLETED
 - AMD account access: PASS
@@ -25,7 +25,7 @@
 - Public GitHub repository created: Hunter20202/reclaimgrid-ai
 - Default branch: main
 - Canonical Control Room document set 00–08: COMPLETE / VERIFIED
-- Competitive/product hardening research 09–15: COMPLETE / VERIFIED
+- Competitive/product hardening research 09–16: COMPLETE / VERIFIED
 - README.md exists on main
 
 ## CANONICAL CONTROL FILE AUDIT
@@ -46,6 +46,7 @@ Verified present on `main`:
 - `13_COMPETITOR_MATRIX_AND_WHITE_SPACE.md`
 - `14_DECISION_HINGE_AND_NEXT_BEST_EVIDENCE.md`
 - `15_AMD_MODEL_AND_SERVING_PLAN.md`
+- `16_FRONTIER_RED_TEAM_AND_DECISION_CERTIFICATE.md`
 - `README.md`
 
 CONTROL-DOC AUDIT RESULT: PASS
@@ -70,11 +71,14 @@ Until complimentary credit is visibly active:
 - Product thesis: AMD-powered Recovery Decision Graph for post-purchase failures that compares economically valid multi-stage recovery paths, exposes break-even robustness, and keeps AI outside canonical financial authority.
 - Primary track: Track 3 — Reinvent Commerce, PROVISIONAL until kickoff/rules re-verification.
 - Core architecture:
-  Synthetic Case + Free-text Evidence -> Validation -> AMD Case Interpreter -> Accepted Structured Signals -> Merchant Policy / Eligibility -> Recovery Decision Graph -> Multi-stage Deterministic Path Economics -> Counterfactual Ranking -> Robustness / Break-even -> AMD Grounded Explanation -> Decision Ledger -> Human Approval
+  Synthetic Case + Free-text Evidence -> Validation -> AMD Case Interpreter -> Accepted Structured Signals -> Merchant Policy / Eligibility -> Recovery Decision Graph -> Multi-stage Deterministic Path Economics -> Counterfactual Ranking -> Robustness / Break-even -> Decision Exposure -> Action Gate -> Next Best Evidence -> Recovery Decision Certificate -> AMD Grounded Explanation -> Decision Ledger -> Human Approval
 - Financial/scoring calculations remain deterministic.
 - Multi-stage recovery-path expected value is the core deterministic differentiator.
 - Break-even / ROBUST-vs-FRAGILE sensitivity analysis is mandatory V1.
 - Hero FRAGILE case must show Decision Hinge + Next Best Evidence.
+- Recovery Decision Certificate is the primary judge-visible artifact.
+- Decision Exposure is mandatory for the hero one-dimensional uncertainty case.
+- Deterministic Action Gate must choose ACT NOW / ASK FIRST / HUMAN REVIEW.
 - AMD-hosted Case Interpreter must return bounded signals with confidence/evidence span/unknowns.
 - AMD-hosted Decision Explainer is grounded in the canonical deterministic package.
 - AMD first-proof model ladder: Qwen3-8B + vLLM first; larger Qwen3 model only if task-quality tests justify the extra runtime.
@@ -204,6 +208,7 @@ If memory/chat conflicts with the repository or a newly verified official state,
 - `13_COMPETITOR_MATRIX_AND_WHITE_SPACE.md`: explicit competitor capability matrix and safest white space
 - `14_DECISION_HINGE_AND_NEXT_BEST_EVIDENCE.md`: fragile-decision hinge and evidence-gathering design
 - `15_AMD_MODEL_AND_SERVING_PLAN.md`: low-risk AMD model ladder, vLLM structured-output plan, credit containment
+- `16_FRONTIER_RED_TEAM_AND_DECISION_CERTIFICATE.md`: Narvar/SSADS frontier red-team, Decision Exposure, Action Gate, Recovery Decision Certificate
 
 ## CURRENT G0 EXIT BLOCKER
 The control-document requirement is COMPLETE.
@@ -221,15 +226,16 @@ Remaining primary G0 blocker:
 **AMD complimentary Developer Cloud credit approval/activation must be verified before any GPU use or before G0 can be considered for PASS.**
 
 ## PRE-KICKOFF PRODUCT HARDENING STATUS
-Research red-team completed on 2026-10-06 against current returns/NDR/reverse-logistics products including Loop, Optoro, AfterShip, ClickPost, and ReverseLogix. A second white-space pass was completed with an explicit competitor matrix and reverse-logistics decision-support research.
+Research red-team completed on 2026-10-06 against current returns/NDR/reverse-logistics products including Loop, Optoro, AfterShip, ClickPost, ReverseLogix, Narvar, and Happy Returns. A frontier research pass also audited September/October 2026 reverse-logistics decision-support work including SSADS and a new systematic review.
 
 Result:
 - Generic AI returns/NDR automation is NOT sufficient differentiation.
 - ReclaimGrid upgraded to Recovery Decision Graph.
-- Required differentiators now include multi-stage counterfactual path economics, explicit break-even robustness, Decision Hinge / Next Best Evidence, evidence-grounded AMD AI, and Decision Ledger.
+- Required differentiators now include multi-stage counterfactual path economics, explicit break-even robustness, Decision Hinge, Decision Exposure, deterministic Action Gate, Next Best Evidence, Recovery Decision Certificate, evidence-grounded AMD AI, and Decision Ledger.
 - Portfolio Value Leak Map is SHOULD/STRETCH.
 - Multimodal condition analysis is STRETCH only.
 - Product is positioned as a recovery-intelligence decision layer, not a workflow-suite replacement.
+- Generic agentic post-purchase decisioning, ask-for-more-information, and semantic extraction + optimizer are NOT treated as originality by themselves.
 - AMD serving plan is frozen provisionally: cheapest Qwen3-8B + vLLM smoke proof first, then escalate only if exact fixture quality demands it.
 - No implementation code has been created.
 
@@ -245,7 +251,9 @@ Wait for either:
 
 Until then:
 - continue only research/math/judge-story hardening if new evidence materially improves the product,
-- preserve the new Decision Hinge / Next Best Evidence scope restraint,
+- preserve the Decision Hinge / Decision Exposure / Action Gate / Next Best Evidence scope restraint,
+- preserve Recovery Decision Certificate as the primary judge artifact,
+- preserve one-dimensional uncertainty per case as a hard V1 limit,
 - preserve the Qwen3-8B-first AMD proof strategy,
 - do not create paid GPU resources,
 - do not add a payment method,
