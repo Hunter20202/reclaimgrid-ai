@@ -4,9 +4,9 @@
 - PROJECT: ReclaimGrid AI
 - CONTROL CODE: RG-ACT3
 - FILE: 02_PRODUCT_SCOPE.md
-- SNAPSHOT DATE: 2026-10-06
+- SNAPSHOT DATE: 2026-10-07
 - STATUS: PROVISIONAL V1 SCOPE FREEZE — RESEARCH UPGRADED
-- CURRENT GATE: G0 — Registration & Environment
+- CURRENT GATE: G1 — Rules & Scope Freeze (WAITING FOR KICKOFF)
 - IMPLEMENTATION STATUS: NOT STARTED
 - PURPOSE: Freeze the strongest judge-ready V1 scope before kickoff without writing submission implementation code.
 
@@ -103,10 +103,36 @@ Candidate bounded synthetic schema:
 - condition
 - customer/carrier free-text note
 - merchant policy constraints
+- customer remedy / service constraints
+- operational availability constraints
 - route/action eligibility flags
 - explicit uncertain assumptions such as redelivery_success_probability or resale_probability
 
 No AI-generated financial number becomes canonical input without explicit human confirmation.
+
+## POLICY & SERVICE FEASIBILITY ENVELOPE
+
+ReclaimGrid must not maximize recovery value across every mechanically possible action.
+
+First compute:
+
+`FeasibleActions = PolicyAllowed ∩ ServiceAllowed ∩ EvidenceSupported ∩ OperationallyAvailable`
+
+Candidate hard constraints:
+- merchant reattempt limit
+- approved customer remedy / promised SLA
+- confirmed refusal or delivery-window requirement
+- condition-grade restrictions
+- evidence required for condition/address-dependent actions
+- route/provider/capacity availability
+
+Paths outside the envelope are excluded with explicit reasons.
+
+V1 must NOT invent customer lifetime value, churn probability, loyalty dollars, or hidden multi-objective weights.
+
+Among feasible paths only, deterministic EFRC chooses the best recovery path.
+
+See `22_DECISION_QUALITY_AND_BENCHMARK_INTEGRITY.md`.
 
 ## DETERMINISTIC RECOVERY PATH OPTIMIZER
 
@@ -125,7 +151,7 @@ using only explicit, validated assumptions and costs.
 - evaluate all eligible paths,
 - include downstream recovery consequences,
 - apply explicit costs,
-- enforce merchant-policy constraints,
+- enforce the Policy & Service Feasibility Envelope,
 - rank feasible paths,
 - expose the math,
 - show the winning path and runner-up,
@@ -333,7 +359,8 @@ Show a fragile case where the best choice changes at a resale-value or refurbish
 - synthetic case dataset
 - Recovery Decision Graph
 - deterministic multi-stage path expected value
-- policy/eligibility constraints
+- Policy & Service Feasibility Envelope
+- explicit exclusion reasons for infeasible paths
 - winning path + runner-up + value gap
 - break-even / robustness analysis
 - Decision Hinge + Next Best Evidence for the hero fragile case
@@ -341,7 +368,8 @@ Show a fragile case where the best choice changes at a resale-value or refurbish
 - Recovery Decision Certificate
 - visible formulas/assumptions
 - AMD AI evidence-grounded case extraction with deterministic Evidence Status
-- RecoveryBench frozen evaluation suite
+- RecoveryBench frozen evaluation suite with DEV / locked HOLDOUT split
+- benchmark version + fixture/prompt/code SHA
 - judge-visible Proof surface with measured AMD/eval evidence
 - AMD AI grounded explanation
 - human approval
@@ -477,6 +505,7 @@ See:
 - `19_RECOVERYBENCH_EVAL_PLAN.md`
 - `20_AI_EVIDENCE_QUALITY_CONTRACT.md`
 - `21_TRACK_FIT_AND_PIVOT_AUDIT.md`
+- `22_DECISION_QUALITY_AND_BENCHMARK_INTEGRITY.md`
 
 ## NEXT SAFE ACTION
 Keep implementation blocked until kickoff/rules re-verification and AMD credit state permit progression. Use the research window only for further validation, math design, fixture design, and judge-story hardening.
