@@ -689,10 +689,28 @@ The Recovery Decision Graph upgrade adds mandatory tests before G3/G4/G5 can PAS
 - missing fields remain explicit
 - model cannot inject financial values into the deterministic core
 
+### Decision Hinge / Next Best Evidence
+- FRAGILE case identifies the correct hinge variable
+- break-even threshold is unchanged from deterministic robustness output
+- hinge distance is calculated correctly
+- Hinge Exposure, if shown, matches the bounded scenario calculation
+- ROBUST case does not manufacture an unnecessary evidence request
+- Next Best Evidence maps to the hinge variable
+- AMD-drafted evidence request cannot alter canonical economics
+- formal EVPI/EVSI is not silently approximated or mislabeled
+
 ### Decision Ledger
-- ledger records accepted extraction, policy result, path values, winner/runner-up, break-even result, and approval state
+- ledger records accepted extraction, policy result, path values, winner/runner-up, break-even result, Decision Hinge, and approval state
 - ledger never stores secrets/real PII
 - ledger output is sufficient to reconstruct the judge-facing decision
+
+### AMD model-serving acceptance
+- Qwen3-8B smoke inference succeeds on real AMD infrastructure first
+- structured JSON output passes schema validation
+- evidence spans are semantically validated against source text
+- non-thinking mode is tested first for extraction
+- 32B/30B-A3B is tested only if 8B quality is insufficient and credit/cost remain safe
+- final model choice is supported by fixture results, not generic benchmark prestige
 
 ### Hero demo acceptance
 The hero failed-delivery case cannot pass G5 unless it visibly proves:
@@ -701,8 +719,9 @@ The hero failed-delivery case cannot pass G5 unless it visibly proves:
 3. deterministic multi-stage path values,
 4. winner + runner-up + value gap,
 5. break-even threshold,
-6. grounded AMD explanation,
-7. human approval.
+6. Decision Hinge + Next Best Evidence,
+7. grounded AMD explanation,
+8. human approval.
 
 ## NEXT SAFE ACTION
 Keep implementation blocked pre-kickoff. Continue only research, formula/fixture design, and judge-story hardening until G1 authorizes build.
