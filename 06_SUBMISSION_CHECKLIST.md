@@ -218,6 +218,14 @@ Evidence required:
 - ROBUST/FRAGILE rule
 - hero-case UI
 
+### Claim: "ReclaimGrid tells the operator what evidence matters next."
+Evidence required:
+- deterministic hinge variable
+- break-even threshold
+- mapping from hinge variable to evidence type
+- AMD-drafted message constrained by the hinge
+- test proving AI cannot alter the economics
+
 ### Claim: "AMD powers meaningful AI work."
 Evidence required:
 - AMD Developer Cloud / AMD Instinct / ROCm runtime proof
@@ -281,7 +289,7 @@ Final submission should clearly distinguish ReclaimGrid from:
 - generic LLM decision assistants
 
 Canonical differentiation:
-**Transparent multi-stage counterfactual recovery-path economics + break-even/robustness analysis + evidence-grounded AMD AI + explicit human approval.**
+**Transparent multi-stage counterfactual recovery-path economics + explicit Decision Hinge / break-even robustness + Next Best Evidence + evidence-grounded AMD AI + explicit human approval.**
 
 Do not claim no competitor exists.
 Do not claim first-in-world unless independently proven.
