@@ -620,3 +620,99 @@ PASS
 
 ### Verification
 PASS
+
+
+---
+
+## 2026-10-07 — Technical feasibility, build blueprint, and implementation-risk freeze
+
+### Research / design added
+- `23_TECHNICAL_FEASIBILITY_AND_BUILD_BLUEPRINT.md`
+- `24_IMPLEMENTATION_SEQUENCE_AND_RISK_REGISTER.md`
+
+### Technical findings
+- V1 does not need SSR, a database, auth, an ORM, queues, a vector DB, or an agent framework.
+- Default stack is Node 22.12+ + Vite/React/TypeScript + Zod + read-only React Flow + Vitest + Playwright.
+- Netlify static hosting + TypeScript Functions provides a low-risk same-origin secret boundary for AMD inference.
+- Netlify synchronous functions currently have a 60-second hard limit; ReclaimGrid uses a much lower 25-second application timeout.
+- Netlify function rate limiting can protect external AI spend; initial target is 4 AI calls / 60s / IP+domain.
+- Public browser requests must not carry arbitrary prompts/model names/token limits.
+- AMD live inference gets a hard `AMD_LIVE_ENABLED` kill switch.
+- DEV_MOCK / LIVE_AMD / VERIFIED_RECORDED modes are explicitly separated.
+- React Flow remains read-only; hardcoded deterministic layout avoids graph-editor/autolayout complexity.
+
+### AMD model-plan correction
+Fresh AMD Enterprise AI support research shows:
+- Qwen3-32B: optimized MI300X path
+- Llama-3.1-8B-Instruct: optimized MI300X path
+- current support data does not justify assuming Qwen3-8B is the lowest-friction Instinct path
+
+Therefore:
+- inspect actual cloud image first
+- test at most Qwen3-32B and Llama-3.1-8B-Instruct
+- RecoveryBench chooses final model
+- do not build a model zoo
+
+### Exact milestone sequence
+Frozen M0–M15:
+- M0 scaffold
+- M1 contracts
+- M2 Policy & Service Feasibility
+- M3 graph/economics
+- M4 robustness/exposure
+- M5 Action Gate
+- M6 certificate
+- M7 RecoveryBench
+- M8 judge UI
+- M9 AI gateway/mock
+- M10 real AMD proof
+- M11 grounded explainer
+- M12 integration
+- M13 Proof surface
+- M14 security/release
+- M15 judge/submission
+
+### Risk controls
+A formal risk register now covers:
+- credit delay
+- model setup
+- schema quality
+- public GPU abuse
+- function timeout
+- financial math
+- graph cycle/double counting
+- AI authority escape
+- benchmark overfit
+- UI scope
+- React Flow complexity
+- Netlify deploy
+- live AMD outage
+- partner-prize scope creep
+
+### Canonical docs synchronized
+- `03_ARCHITECTURE.md`
+- `04_SECURITY_COST_GUARDRAILS.md`
+- `05_TEST_EVIDENCE_PLAN.md`
+- `07_DECISION_LOG.md`
+- `15_AMD_MODEL_AND_SERVING_PLAN.md`
+- `17_HACKATHON_CRITICAL_PATH.md`
+
+### Commits
+- `096c04ae4f6f74b8fb323d5a1707f49aff92678d` — exact technical build blueprint
+- `b302ec268220532265ebc792e861fdb27785ac56` — M0–M15 implementation sequence and risk register
+- `c8b04bc13325bda24986f4045268974db1a09d15` — architecture stack freeze
+- `3e583e7408e20d9856d7c4f3a560c5329167f401` — public AI proxy/cost controls
+- `8abb950a14935e6a3246e5b02b1d319a6189634c` — blueprint tests
+- `5dd3e8d93834bc8d4ea8f2a245db04b95e32b0d8` — MI300X model ladder correction
+- `43da532c287be764f49ad3361f071c31d6d5ea79` — critical path bound to milestones
+- `26d5f4759f22144f2100e55df26587f6777c9679` — decisions D-049 through D-053
+
+### Gate effect
+- No implementation code created.
+- G0 PASS.
+- G1 waiting for kickoff.
+- G2 blocked by safe AMD compute/credit.
+- G3 blocked only by G1 pre-kickoff hold.
+
+### Verification
+PASS
