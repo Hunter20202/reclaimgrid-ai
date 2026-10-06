@@ -226,6 +226,27 @@ Evidence required:
 - AMD-drafted message constrained by the hinge
 - test proving AI cannot alter the economics
 
+### Claim: "ReclaimGrid knows when to act, ask, or escalate."
+Evidence required:
+- Decision Exposure formula and fixture
+- visible merchant materiality threshold
+- deterministic Action Gate rule
+- ACT NOW fixture
+- ASK FIRST fixture
+- HUMAN REVIEW fixture
+- test proving model output cannot override Action Gate
+
+### Claim: "ReclaimGrid produces an auditable Recovery Decision Certificate."
+Evidence required:
+- certificate generated from canonical package
+- source evidence spans
+- path math
+- hinge/break-even
+- Decision Exposure
+- Action Gate
+- human approval
+- reconstruction test
+
 ### Claim: "AMD powers meaningful AI work."
 Evidence required:
 - AMD Developer Cloud / AMD Instinct / ROCm runtime proof
@@ -289,7 +310,7 @@ Final submission should clearly distinguish ReclaimGrid from:
 - generic LLM decision assistants
 
 Canonical differentiation:
-**Transparent multi-stage counterfactual recovery-path economics + explicit Decision Hinge / break-even robustness + Next Best Evidence + evidence-grounded AMD AI + explicit human approval.**
+**A judge-visible Recovery Decision Certificate combining multi-stage counterfactual path economics, exact Decision Hinge / break-even robustness, bounded Decision Exposure, deterministic act/ask/review gating, Next Best Evidence, evidence-grounded AMD AI, and explicit human approval.**
 
 Do not claim no competitor exists.
 Do not claim first-in-world unless independently proven.
