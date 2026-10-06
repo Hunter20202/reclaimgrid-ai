@@ -8,7 +8,7 @@
 - CURRENT GATE: G1 — Rules & Scope Freeze (WAITING FOR KICKOFF)
 - STATUS: PRE-KICKOFF HOLD / G0 PASS
 - LAST VERIFIED: 2026-10-07
-- VERIFIED MAIN SHA BEFORE THIS STATE UPDATE: 4884be6a7a33ba3bcb17e4629f47876eaddd5481
+- VERIFIED MAIN SHA BEFORE THIS STATE UPDATE: 548038c6fb6e8b67aca1830cbfa56b13fdeb7f7d
 
 ## COMPLETED
 - AMD account access: PASS
@@ -25,7 +25,7 @@
 - Public GitHub repository created: Hunter20202/reclaimgrid-ai
 - Default branch: main
 - Canonical Control Room document set 00–08: COMPLETE / VERIFIED
-- Competitive/product hardening research 09–24: COMPLETE / VERIFIED
+- Competitive/product hardening research 09–25: COMPLETE / VERIFIED
 - README.md exists on main
 
 ## CANONICAL CONTROL FILE AUDIT
@@ -55,6 +55,7 @@ Verified present on `main`:
 - `22_DECISION_QUALITY_AND_BENCHMARK_INTEGRITY.md`
 - `23_TECHNICAL_FEASIBILITY_AND_BUILD_BLUEPRINT.md`
 - `24_IMPLEMENTATION_SEQUENCE_AND_RISK_REGISTER.md`
+- `25_JUDGE_ATTACK_FAILURE_SIMULATION_PREMORTEM.md`
 - `README.md`
 
 CONTROL-DOC AUDIT RESULT: PASS
@@ -93,6 +94,9 @@ Until complimentary credit is visibly active:
 - Policy & Service Feasibility Envelope is applied before EFRC optimization.
 - Higher raw EFRC can never override hard merchant-policy, customer-remedy/service, evidence, or operational constraints.
 - V1 forbids fabricated CLTV/churn/loyalty-dollar scoring and opaque weighted multi-objective formulas.
+- Every material uncertain canonical input must expose base/range/provenance; synthetic assumptions must never be presented as empirical forecasts.
+- Final evaluation uses two fair baselines: Static Policy and Myopic Greedy, with identical inputs/constraints.
+- Multiple unresolved material winner-changing uncertainties cannot be labeled ROBUST; V1 fails safe to HUMAN REVIEW.
 - Multi-stage recovery-path expected value is the core deterministic differentiator.
 - Break-even / ROBUST-vs-FRAGILE sensitivity analysis is mandatory V1.
 - Hero FRAGILE case must show Decision Hinge + Next Best Evidence.
@@ -112,6 +116,8 @@ Until complimentary credit is visibly active:
 - Browser-to-AMD direct access is forbidden; use a bounded same-origin server-side proxy with rate limit, timeout, allowlist, fixed model, and live-inference kill switch.
 - Exact implementation order is frozen as M0–M15; core correctness and proof precede polish.
 - Podium target is evidence-heavy: evals + adversarial proof + deterministic fixtures + GPU/runtime telemetry + measured latency.
+- Judge-facing UI language is intentionally plain: Expected Recovery Value, Flip Point, Value at Risk, Act/Ask/Review, Decision Certificate.
+- AMD claims are limited to measured meaningful integration; no unbenchmarked hardware-superiority claim.
 - LLM financial authority: ZERO.
 - Consequential actions require human approval.
 - Synthetic demo data is the default.
@@ -260,6 +266,7 @@ If memory/chat conflicts with the repository or a newly verified official state,
 - `22_DECISION_QUALITY_AND_BENCHMARK_INTEGRITY.md`: policy/service feasibility envelope, no-fake-CLTV rule, RecoveryBench holdout/versioning
 - `23_TECHNICAL_FEASIBILITY_AND_BUILD_BLUEPRINT.md`: exact stack, module tree, deployment, AI proxy, live/recorded AMD modes
 - `24_IMPLEMENTATION_SEQUENCE_AND_RISK_REGISTER.md`: M0–M15 build order, PASS criteria, risk register, feature-kill order
+- `25_JUDGE_ATTACK_FAILURE_SIMULATION_PREMORTEM.md`: skeptical judge attacks, demo failure simulation, assumption/baseline hardening, presentation simplicity
 
 ## G0 FINAL STATE
 G0 PASS as of 2026-10-07.
@@ -291,7 +298,7 @@ Deep research now includes:
 - recent reverse-logistics decision-support research including SSADS, sensitivity-analysis work, value-of-information work, and a 2026 systematic review,
 - prior AMD ACT I / ACT II podium submissions and their evaluation/telemetry patterns,
 - current LLM calibration research relevant to model self-confidence,
-- fresh official ACT III page rechecks; prize amounts are treated as volatile and currently parse as $11,000+.
+- fresh official ACT III page rechecks; prize amounts remain volatile and the current main page shows $12,000+ total, including $5,000 AMD and $5,000 Google.
 
 Result:
 - Generic AI returns/NDR automation is NOT sufficient differentiation.
@@ -326,5 +333,6 @@ Until kickoff:
 - no implementation code,
 - no paid GPU/payment method,
 - do not change the frozen M0–M15 build architecture without a verified blocker,
+- do not add new pre-kickoff features unless a new rule or material competitive finding requires it,
 - continue only material research/control hardening,
 - avoid small cosmetic research iterations that do not change product strategy or evidence quality.
