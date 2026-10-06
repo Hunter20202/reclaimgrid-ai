@@ -186,7 +186,7 @@ Recommended explicit deterministic rule:
 `REVIEW_ADVISED = decision_is_fragile AND HingeExposure >= merchant_materiality_threshold`
 
 Where:
-- `merchant_materiality_threshold` is a visible synthetic setting, e.g. $10 for demo.
+- `merchant_materiality_threshold` is a visible synthetic setting. The frozen RG-001 hero fixture uses 5.00 so its 9.50 Decision Exposure deterministically gates to ASK FIRST.
 
 If fragile but exposure is tiny:
 - show fragile,
