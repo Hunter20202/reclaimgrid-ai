@@ -510,6 +510,41 @@ A decision may be:
 - DECISION: Build milestones and feature-kill order are fixed in `24_IMPLEMENTATION_SEQUENCE_AND_RISK_REGISTER.md`. Core correctness/proof precedes visual polish.
 - REASON: Removes architectural decision-making from the short build window and prevents scope creep.
 - IMPACTED GATES: G1-G9
+## D-054 — Material assumptions require provenance
+- DATE: 2026-10-07
+- STATUS: FROZEN
+- DECISION: Every uncertain canonical input used by recovery economics must record base/range/unit/provenance; material assumptions are visible in the Decision Certificate.
+- REASON: Synthetic assumptions are acceptable only when explicit and not presented as learned forecasts.
+- IMPACTED GATES: G3, G5, G7-G9
+- EVIDENCE: `25_JUDGE_ATTACK_FAILURE_SIMULATION_PREMORTEM.md`.
+
+## D-055 — Dual fair baselines
+- DATE: 2026-10-07
+- STATUS: FROZEN
+- DECISION: Final evaluation compares ReclaimGrid against both a Static Policy baseline and a Myopic Greedy immediate-step baseline using identical inputs and feasibility constraints.
+- REASON: Avoid a strawman comparison and isolate the value of downstream path reasoning.
+- IMPACTED GATES: G3, G6-G8
+
+## D-056 — Multi-factor uncertainty fails safe
+- DATE: 2026-10-07
+- STATUS: FROZEN
+- DECISION: If multiple unresolved material uncertain variables can change the winner, V1 must not label the case ROBUST; it marks multi-factor uncertainty and defaults to HUMAN REVIEW unless a bounded rule resolves it.
+- REASON: One-dimensional sensitivity is a scope limit, not permission to create false certainty.
+- IMPACTED GATES: G3, G5-G7
+
+## D-057 — Judge-facing language is plain
+- DATE: 2026-10-07
+- STATUS: FROZEN
+- DECISION: First-view UI/pitch uses plain labels such as Expected Recovery Value, Flip Point, Value at Risk, Act/Ask/Review, and Decision Certificate. Internal terms remain in Proof/README.
+- REASON: Prior AMD submission feedback shows technically strong projects can lose clarity through presentation density.
+- IMPACTED GATES: G5, G7-G9
+
+## D-058 — No AMD hardware-superiority overclaim
+- DATE: 2026-10-07
+- STATUS: FROZEN
+- DECISION: Claim only measured AMD usage/performance. Do not claim AMD is uniquely required or faster than another hardware vendor without a direct benchmark.
+- REASON: Official requirement is meaningful AMD integration, not unsupported hardware superiority.
+- IMPACTED GATES: G2, G7-G9
 
 ---
 
