@@ -527,3 +527,37 @@ This document does not claim these mathematical ideas are novel by themselves. R
 
 ## NEXT SAFE ACTION
 Keep the V1 uncertainty model one-dimensional per case. Implement Decision Exposure and Action Gate only after G1 authorizes build; do not expand into full stochastic/robust optimization during the hackathon.
+
+
+---
+
+## JUDGE-HARDENING ECONOMICS ADDENDUM — 2026-10-07
+
+### Assumption provenance
+Every uncertain canonical input used by break-even or Decision Exposure must carry provenance and a declared plausible range.
+
+Allowed V1 sources:
+- synthetic fixture
+- merchant provided
+- policy defined
+- deterministic derivation
+
+The model may not silently create canonical financial or probability assumptions.
+
+### Two-baseline ablation
+Business-value evaluation compares:
+1. Static Policy
+2. Myopic Greedy immediate-step optimization
+3. ReclaimGrid full-path optimization
+
+All three share identical canonical inputs and hard feasibility constraints.
+
+### Multi-factor uncertainty fail-safe
+One-dimensional sensitivity remains the V1 method.
+
+If multiple unresolved material uncertain variables can each change the winning path:
+- do not claim ROBUST,
+- mark multi-factor uncertainty,
+- default to HUMAN REVIEW unless an explicit bounded rule resolves the case.
+
+This avoids false precision without adding multidimensional stochastic optimization.
