@@ -468,6 +468,48 @@ A decision may be:
 - IMPACTED GATES: G2, G4, G6, G7
 - DEMO/JUDGING IMPACT: Makes the Proof surface materially more credible.
 - EVIDENCE: `19_RECOVERYBENCH_EVAL_PLAN.md`, `22_DECISION_QUALITY_AND_BENCHMARK_INTEGRITY.md`.
+## D-049 — Low-risk web stack freeze
+- DATE: 2026-10-07
+- STATUS: PROVISIONAL UNTIL G1
+- DECISION: Default V1 implementation stack is Node 22.12+, Vite + React + TypeScript, Zod 4, @xyflow/react, Vitest, Playwright, Netlify static deploy + TypeScript Functions, no database/auth/agent framework.
+- REASON: The product does not require SSR, persistence, or complex infrastructure; minimizing framework surface increases the probability of a reliable hackathon build.
+- IMPACTED GATES: G1, G3-G7
+- EVIDENCE: `23_TECHNICAL_FEASIBILITY_AND_BUILD_BLUEPRINT.md`.
+- REVIEW TRIGGER: G1 or a verified build blocker.
+
+## D-050 — Public AMD inference must use a bounded same-origin proxy
+- DATE: 2026-10-07
+- STATUS: FROZEN
+- DECISION: Browser may not call AMD directly. Public AI requests go through a server-side Netlify Function accepting only allowlisted case/task identifiers with rate limiting, timeout, token bounds, fixed model selection, and a live-inference kill switch.
+- REASON: Prevent secret exposure, prompt abuse, model switching, and GPU-credit exhaustion.
+- IMPACTED GATES: G4-G6
+- SECURITY/COST IMPACT: High positive impact.
+- EVIDENCE: `23_TECHNICAL_FEASIBILITY_AND_BUILD_BLUEPRINT.md`, `04_SECURITY_COST_GUARDRAILS.md`.
+
+## D-051 — Read-only graph visualization
+- DATE: 2026-10-07
+- STATUS: FROZEN
+- DECISION: React Flow is used only as a small read-only visualization layer with deterministic positions. No graph editing, persistence, auto-layout dependency, or user-created graph state in V1.
+- REASON: Judge value comes from seeing the recovery paths, not editing them.
+- IMPACTED GATES: G5, G7
+- COST/RISK IMPACT: Reduces UI/debugging risk.
+
+## D-052 — AMD model ladder follows current MI300X support
+- DATE: 2026-10-07
+- STATUS: PROVISIONAL
+- PREVIOUS DECISION: D-031, D-043
+- DECISION: Do not assume Qwen3-8B is the first MI300X model. Current AMD support tables show Qwen3-32B and Llama-3.1-8B-Instruct as optimized MI300X paths. Inspect the actual cloud image, run the lowest-friction documented candidate, compare at most those two through RecoveryBench, then freeze one.
+- REASON: Deployment reliability is more important than speculative parameter-count optimization.
+- IMPACTED GATES: G2, G4
+- COST IMPACT: Limits model testing to two candidates.
+- REVIEW TRIGGER: Actual Developer Cloud runtime.
+
+## D-053 — Exact M0–M15 implementation sequence
+- DATE: 2026-10-07
+- STATUS: FROZEN
+- DECISION: Build milestones and feature-kill order are fixed in `24_IMPLEMENTATION_SEQUENCE_AND_RISK_REGISTER.md`. Core correctness/proof precedes visual polish.
+- REASON: Removes architectural decision-making from the short build window and prevents scope creep.
+- IMPACTED GATES: G1-G9
 
 ---
 
