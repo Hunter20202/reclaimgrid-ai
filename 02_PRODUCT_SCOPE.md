@@ -188,13 +188,24 @@ See `14_DECISION_HINGE_AND_NEXT_BEST_EVIDENCE.md`.
 The AMD-hosted open model receives messy return/NDR text and returns a bounded schema such as:
 - reason_code
 - customer_intent
+- address_status
 - condition_hint
 - urgency_hint
-- confidence
-- evidence_span
+- evidence spans by field
+- ambiguity_flags
 - missing_fields
 
-The AI must ground extracted signals in the source text and explicitly preserve unknowns.
+The AI must ground extracted signals in exact source text and explicitly preserve unknowns.
+
+Model-authored numerical confidence is NOT authoritative and is excluded from the canonical Case Interpreter contract.
+
+Application-side evidence status is deterministic:
+- GROUNDED
+- AMBIGUOUS
+- INCOMPLETE
+- INVALID
+
+See `20_AI_EVIDENCE_QUALITY_CONTRACT.md`.
 
 ### Mandatory meaningful workload 2 — Decision Explainer
 The model receives the canonical deterministic decision package and may:
@@ -282,10 +293,13 @@ Decision quality:
 8. Number of ineligible paths safely excluded
 9. Break-even threshold shown for hero case
 
-AMD:
+AMD / proof:
 10. Valid structured extraction
-11. Judge-visible real AMD inference
-12. AI failure fallback without economics failure
+11. Evidence-grounding and UNKNOWN-preservation metrics
+12. Prompt-injection authority escapes = 0 on the frozen adversarial suite
+13. Judge-visible real AMD inference
+14. Measured p50/p95 latency and runtime metadata
+15. AI failure fallback without economics failure
 
 ## HERO DEMO CASE
 Preferred hero:
@@ -326,7 +340,9 @@ Show a fragile case where the best choice changes at a resale-value or refurbish
 - Decision Exposure + deterministic Action Gate
 - Recovery Decision Certificate
 - visible formulas/assumptions
-- AMD AI evidence-grounded case extraction
+- AMD AI evidence-grounded case extraction with deterministic Evidence Status
+- RecoveryBench frozen evaluation suite
+- judge-visible Proof surface with measured AMD/eval evidence
 - AMD AI grounded explanation
 - human approval
 - Decision Ledger
@@ -432,6 +448,24 @@ Before implementation begins, G1 must confirm:
 - metrics are defined,
 - non-goals remain excluded.
 
+## RECOVERYBENCH / PROOF REQUIREMENT
+Podium-oriented V1 must include a frozen, reproducible evaluation suite and a compact judge-facing Proof surface.
+
+RecoveryBench covers:
+- Case Interpreter quality
+- evidence grounding
+- unknown preservation
+- adversarial trust-boundary tests
+- deterministic economics fixtures
+- Recovery Decision Certificate integrity
+- real AMD runtime performance
+
+No benchmark number is published until measured.
+
+See:
+- `19_RECOVERYBENCH_EVAL_PLAN.md`
+- `20_AI_EVIDENCE_QUALITY_CONTRACT.md`
+
 ## RESEARCH BASIS
 See:
 - `09_COMPETITIVE_RESEARCH_AND_PRODUCT_UPGRADE.md`
@@ -439,6 +473,10 @@ See:
 - `14_DECISION_HINGE_AND_NEXT_BEST_EVIDENCE.md`
 - `15_AMD_MODEL_AND_SERVING_PLAN.md`
 - `16_FRONTIER_RED_TEAM_AND_DECISION_CERTIFICATE.md`
+- `18_DEEP_RESEARCH_WINNING_BAR.md`
+- `19_RECOVERYBENCH_EVAL_PLAN.md`
+- `20_AI_EVIDENCE_QUALITY_CONTRACT.md`
+- `21_TRACK_FIT_AND_PIVOT_AUDIT.md`
 
 ## NEXT SAFE ACTION
 Keep implementation blocked until kickoff/rules re-verification and AMD credit state permit progression. Use the research window only for further validation, math design, fixture design, and judge-story hardening.
