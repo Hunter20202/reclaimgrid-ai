@@ -35,6 +35,14 @@ The project should make a judge understand this in under 30 seconds:
 
 Then prove it live.
 
+A podium-level submission should also make the judge see **proof, not promise**:
+- RecoveryBench measured results
+- adversarial authority-boundary result
+- deterministic fixture pass count
+- real AMD runtime telemetry
+- p50/p95 latency
+- sanitized cost/runtime evidence when measured
+
 ---
 
 # 2. APPLICATION OF TECHNOLOGY
@@ -63,8 +71,11 @@ Judge proof:
 - AMD Developer Cloud / Instinct / ROCm runtime evidence
 - live/sanitized inference
 - app-visible structured extraction
+- exact evidence spans + GROUNDED / AMBIGUOUS / INCOMPLETE status
 - application-visible explanation
 - deterministic fallback if AI fails
+- RecoveryBench quality result
+- measured latency/runtime evidence
 
 Target judge reaction:
 "AMD is central to handling unstructured evidence, but the team designed safe boundaries."
@@ -179,6 +190,16 @@ Bottom:
 
 Keep one hero screen if possible.
 
+Add a compact **Proof** tab/drawer:
+- RecoveryBench
+- deterministic core tests
+- adversarial escape count
+- AMD GPU / ROCm / model / vLLM
+- p50/p95 latency
+- last audited SHA
+
+The Proof surface should use measured values only.
+
 ---
 
 # 6. 90-SECOND DEMO SCRIPT
@@ -283,6 +304,7 @@ The product shows the exact formulas and the break-even threshold. It labels a r
 | Decision Hinge / Next Best Evidence | 3 | 5 | 5 | 5 | MUST (hero) |
 | Decision Exposure / Action Gate | 3 | 5 | 5 | 5 | MUST (hero) |
 | Recovery Decision Certificate | 3 | 5 | 5 | 5 | MUST |
+| RecoveryBench + Proof surface | 5 | 4 | 4 | 5 | MUST |
 | Decision Ledger | 3 | 4 | 4 | 4 | MUST |
 | Baseline portfolio evaluation | 2 | 5 | 3 | 4 | MUST |
 | Value Leak Map | 2 | 4 | 3 | 4 | SHOULD |
