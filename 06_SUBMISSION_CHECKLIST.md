@@ -538,5 +538,14 @@ All must PASS:
 - final regression tests
 - final main SHA
 
+## JUDGE ATTACK REFERENCE
+Before G8, apply `25_JUDGE_ATTACK_FAILURE_SIMULATION_PREMORTEM.md`:
+- phrase business impact as synthetic scenario economics unless real evidence exists,
+- compare Static Policy + Myopic Greedy + ReclaimGrid using identical inputs/constraints,
+- disclose material assumption provenance,
+- use measured AMD claims only,
+- never present mock/recorded inference as live,
+- keep first-view language plain.
+
 ## NEXT SAFE ACTION
 Keep submission content unfrozen until the product is implemented and G7/G8 evidence exists. During pre-kickoff, use this file only to harden claim/evidence mapping.
