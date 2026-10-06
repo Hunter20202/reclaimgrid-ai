@@ -31,7 +31,7 @@ Track 3 specifically rewards:
 
 The project should make a judge understand this in under 30 seconds:
 
-> A failed delivery or return creates several possible recovery paths. Most tools automate a step. ReclaimGrid computes the full economic consequence of each allowed path, shows the break-even point where the best choice changes, and uses AMD-hosted AI to safely convert messy operational evidence into structured decision signals.
+> A failed delivery or return creates several possible recovery paths. Most tools automate a step. ReclaimGrid computes the full economic consequence of each allowed path, shows the exact Decision Hinge where the best choice changes, and tells the operator what evidence matters before committing. AMD-hosted AI safely converts messy operational evidence into structured decision signals.
 
 Then prove it live.
 
@@ -122,7 +122,10 @@ Demonstrate originality through the combined product behavior:
 4. **Evidence-grounded AMD AI**
    AI extracts evidence; it does not own financial truth.
 
-5. **Decision Ledger**
+5. **Decision Hinge / Next Best Evidence**
+   A fragile decision reveals the threshold and the specific evidence worth collecting before action.
+
+6. **Decision Ledger**
    Every recommendation is reconstructable and human-governed.
 
 Target judge reaction:
@@ -142,6 +145,7 @@ messy note
 -> winner
 -> break-even line
 -> ROBUST/FRAGILE
+-> Next Best Evidence
 -> human approval
 
 This is better than a dashboard full of cards.
@@ -161,6 +165,8 @@ Right:
 
 Bottom:
 - break-even / sensitivity visual
+- Decision Hinge card
+- Next Best Evidence action
 - baseline comparison
 - explanation
 - approval
@@ -190,22 +196,23 @@ Show:
 - downstream recovery
 - deterministic EFRC calculation
 
-## 50–65 sec — Robustness
+## 50–68 sec — Robustness + Decision Hinge
 Show:
 - retry = 46.20
 - stop = 35.00
 - break-even = 55.6%
 - plausible success range crosses threshold
 - decision = FRAGILE
+- Next Best Evidence = confirm customer availability
 
 Line:
-"ReclaimGrid doesn't just say retry. It tells the operator exactly when retry stops being the right decision."
+"ReclaimGrid doesn't just say retry. It tells the operator exactly when retry stops being the right decision — and what to verify before spending on it."
 
-## 65–78 sec — AMD explanation + approval
-Show grounded explanation based on canonical math.
-Human approves.
+## 68–80 sec — AMD explanation + approval
+Show grounded explanation and AMD-drafted confirmation message based on the deterministic hinge.
+Human approves the demo decision.
 
-## 78–90 sec — Business proof
+## 80–90 sec — Business proof
 Show frozen synthetic portfolio:
 - baseline vs ReclaimGrid
 - changed decisions
@@ -265,6 +272,7 @@ The product shows the exact formulas and the break-even threshold. It labels a r
 | Break-even robustness | 2 | 5 | 5 | 5 | MUST |
 | AMD Case Interpreter | 5 | 4 | 4 | 5 | MUST |
 | Decision Explainer | 4 | 3 | 2 | 4 | MUST |
+| Decision Hinge / Next Best Evidence | 3 | 5 | 5 | 5 | MUST (hero) |
 | Decision Ledger | 3 | 4 | 4 | 4 | MUST |
 | Baseline portfolio evaluation | 2 | 5 | 3 | 4 | MUST |
 | Value Leak Map | 2 | 4 | 3 | 4 | SHOULD |
@@ -282,12 +290,13 @@ When time becomes tight, preserve in this order:
 1. deterministic graph/economics
 2. hero fixture
 3. robustness/break-even
-4. AMD Case Interpreter
-5. grounded explanation
-6. human approval
-7. synthetic baseline evaluation
-8. Decision Ledger
-9. polish
+4. Decision Hinge / Next Best Evidence
+5. AMD Case Interpreter
+6. grounded explanation
+7. human approval
+8. synthetic baseline evaluation
+9. Decision Ledger
+10. polish
 
 Kill first:
 - portfolio Value Leak Map
@@ -304,7 +313,7 @@ Kill first:
 **Find the best recovery path — and prove why it wins.**
 
 ## 20-second pitch
-ReclaimGrid AI helps ecommerce teams recover more value from failed deliveries and returns. It maps every allowed recovery path, calculates the downstream economics, and shows the break-even point where the best choice changes. AMD-hosted AI turns messy carrier and return notes into evidence-grounded decision signals, while deterministic math and human approval keep the financial decision auditable.
+ReclaimGrid AI helps ecommerce teams recover more value from failed deliveries and returns. It maps every allowed recovery path, calculates the downstream economics, shows the break-even point where the best choice changes, and identifies the next evidence worth collecting when the decision is fragile. AMD-hosted AI turns messy carrier and return notes into evidence-grounded decision signals, while deterministic math and human approval keep the financial decision auditable.
 
 ## What we are not
 - returns portal
