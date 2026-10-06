@@ -113,20 +113,22 @@ Candidate Case Interpreter schema:
   "address_status": "CONFIRMED",
   "condition_hint": "UNKNOWN",
   "urgency_hint": "NORMAL",
-  "confidence": 0.88,
-  "evidence_spans": [
-    "Customer was unavailable",
-    "can receive tomorrow evening",
-    "address is correct"
-  ],
+  "evidence": {
+    "reason_code": ["Customer was unavailable"],
+    "customer_intent": ["can receive tomorrow evening"],
+    "address_status": ["address is correct"]
+  },
+  "ambiguity_flags": [],
   "missing_fields": []
 }
 ```
 
 Important:
+- no model-authored numerical confidence is authoritative,
 - schema validity does not prove semantic truth,
-- application must verify evidence spans exist in source text,
-- financial fields must not exist in this schema.
+- application must verify evidence spans exist in source text and semantically support the field,
+- financial/probability/winner/Action-Gate fields must not exist in this schema,
+- application derives Evidence Status: GROUNDED / AMBIGUOUS / INCOMPLETE / INVALID.
 
 ## THINKING MODE STRATEGY
 
@@ -246,15 +248,19 @@ Do not:
 
 ## MODEL SELECTION SCORECARD
 
-Evaluate candidates on the exact frozen fixtures.
+Evaluate candidates using the exact frozen **RecoveryBench** suite in `19_RECOVERYBENCH_EVAL_PLAN.md`.
+
+Do not choose a model by generic benchmark prestige.
 
 Score:
 - schema validity
 - evidence-span correctness
+- semantic grounding
 - unknown preservation
-- prompt-injection resistance
+- ambiguity/contradiction handling
+- prompt-injection authority escapes
 - explanation fidelity
-- latency
+- p50/p95 latency
 - GPU startup/runtime friction
 - credit consumption
 
