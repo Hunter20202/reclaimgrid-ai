@@ -4,9 +4,9 @@
 - PROJECT: ReclaimGrid AI
 - CONTROL CODE: RG-ACT3
 - FILE: 03_ARCHITECTURE.md
-- SNAPSHOT DATE: 2026-10-06
+- SNAPSHOT DATE: 2026-10-07
 - STATUS: PROVISIONAL PRE-KICKOFF ARCHITECTURE FREEZE — RESEARCH UPGRADED
-- CURRENT GATE: G0 — Registration & Environment
+- CURRENT GATE: G1 — Rules & Scope Freeze (WAITING FOR KICKOFF)
 - IMPLEMENTATION STATUS: NOT STARTED
 - PURPOSE: Define the smallest auditable architecture for the Recovery Decision Graph while keeping deterministic economics authoritative and AMD AI bounded.
 
@@ -38,7 +38,7 @@ Input Validation              AMD Case Interpreter
                Human/Schema Validation
                          |
                          v
-             Merchant Policy / Eligibility
+       Policy & Service Feasibility Envelope
                          |
                          v
                Recovery Decision Graph
@@ -150,18 +150,30 @@ AMBIGUOUS / INCOMPLETE states feed the deterministic Action Gate.
 
 See `20_AI_EVIDENCE_QUALITY_CONTRACT.md`.
 
-## E. MERCHANT POLICY / ELIGIBILITY LAYER
+## E. POLICY & SERVICE FEASIBILITY ENVELOPE
 Responsibilities:
-- define allowed states/actions
-- exclude prohibited actions
-- encode small deterministic merchant constraints
-- prevent AI from directly enabling a forbidden path
+- define allowed states/actions,
+- enforce merchant policy,
+- preserve approved customer remedy / service commitments,
+- require decision-relevant evidence,
+- require operational route availability,
+- exclude prohibited or unsupported actions,
+- prevent AI from directly enabling a forbidden path.
+
+Formally:
+`FeasibleActions = PolicyAllowed ∩ ServiceAllowed ∩ EvidenceSupported ∩ OperationallyAvailable`
 
 Examples:
-- reattempt count limit
-- restock blocked for damage state
-- liquidation unavailable for certain items
-- refurbishment only when repair cost/value conditions are met
+- reattempt count limit,
+- confirmed refusal blocks forced redelivery,
+- promised refund/exchange SLA cannot be silently violated,
+- restock blocked for incompatible damage state,
+- condition-dependent route blocked when condition evidence is AMBIGUOUS/INCOMPLETE,
+- liquidation unavailable when no channel exists,
+- refurbishment requires route availability and required evidence.
+
+V1 does not monetize speculative CLTV/loyalty or use an opaque weighted multi-objective score.
+Economics optimizes EFRC only after hard feasibility filtering.
 
 ## F. RECOVERY DECISION GRAPH
 
@@ -592,7 +604,8 @@ Do not add:
 
 ## PROOF / EVALUATION SURFACE
 Final app should expose a compact Proof surface backed only by measured data:
-- RecoveryBench summary
+- RecoveryBench version / fixture SHA / prompt-contract version
+- DEV vs locked HOLDOUT result separation
 - deterministic fixture pass count
 - adversarial authority escapes
 - AMD GPU / ROCm / serving stack / model
@@ -615,6 +628,7 @@ See:
 - `18_DEEP_RESEARCH_WINNING_BAR.md`
 - `19_RECOVERYBENCH_EVAL_PLAN.md`
 - `20_AI_EVIDENCE_QUALITY_CONTRACT.md`
+- `22_DECISION_QUALITY_AND_BENCHMARK_INTEGRITY.md`
 
 ## NEXT SAFE ACTION
 Keep implementation blocked until kickoff/rules re-verification. During the wait window, only continue research, formula design, synthetic fixture design, and judge-story hardening.
