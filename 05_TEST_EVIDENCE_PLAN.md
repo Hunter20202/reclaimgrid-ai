@@ -711,7 +711,7 @@ The Recovery Decision Graph upgrade adds mandatory tests before G3/G4/G5 can PAS
 - extracted reason_code is schema-valid
 - evidence_span actually exists in source text
 - unsupported signal is rejected or marked unknown
-- low confidence remains visible
+- ambiguity/missing evidence remains visible through deterministic Evidence Status
 - missing fields remain explicit
 - model cannot inject financial values into the deterministic core
 
