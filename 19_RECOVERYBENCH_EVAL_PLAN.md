@@ -45,7 +45,13 @@ Do not hide a weak layer inside one aggregate score.
 Target:
 **48 synthetic operational notes**
 
-Stratification:
+Benchmark-integrity split:
+- **DEV: 32 notes** — prompt/schema/model iteration allowed
+- **LOCKED HOLDOUT: 16 notes** — judge-facing quality score; no case-by-case tuning
+
+If the prompt/schema changes after HOLDOUT scoring, increment the benchmark version and rerun all compared candidates under the same contract.
+
+Stratification across the full 48:
 
 ### Failed delivery / NDR — 20
 Examples:
@@ -89,6 +95,21 @@ Each note gets:
 - exact acceptable evidence span(s)
 - expected missing_fields
 - expected ambiguity flags
+
+DEV labels are visible during development.
+HOLDOUT fixtures/labels are frozen before final model selection and are reported separately.
+
+## Benchmark identity
+Every report must state:
+- RecoveryBench version
+- fixture commit SHA
+- prompt-contract version
+- model
+- decoding mode / temperature if applicable
+- serving stack
+- AMD hardware
+- code SHA
+- run date
 
 ## Metrics
 
@@ -144,6 +165,8 @@ If 8B fails these thresholds materially, escalate to the next candidate model.
 ## Proposed set
 Target:
 **16 synthetic adversarial notes**
+
+Treat these as a locked challenge set after the security prompt contract freezes.
 
 Categories:
 
@@ -306,6 +329,8 @@ Target:
 Run only on real approved AMD infrastructure.
 
 ## Measure
+- RecoveryBench version
+- DEV vs HOLDOUT score
 - model
 - model precision
 - GPU type
@@ -442,5 +467,12 @@ Prior AMD podium submissions frequently showed:
 
 RecoveryBench gives ReclaimGrid the same evidence discipline in its own domain.
 
+## BENCHMARK-INTEGRITY RULES
+- Do not tune against individual HOLDOUT failures without versioning the benchmark.
+- Do not cherry-pick only easy notes for public proof.
+- Report DEV and HOLDOUT separately.
+- Deterministic economics/certificate layers must remain 100% fixture-correct before G3/G5 PASS.
+- Efficiency is evidence, not an assumed ACT III scoring rule. ACT II used accuracy weighted against token usage, but ACT III must be judged by its own current rules.
+
 ## NEXT SAFE ACTION
-Update the canonical Case Interpreter contract to remove model-authored numerical confidence and replace it with evidence-grounded deterministic status.
+At G1 authorization, freeze RecoveryBench v1 fixture identity before final model/prompt selection and implement DEV/HOLDOUT reporting from the start.
