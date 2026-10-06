@@ -56,9 +56,9 @@ This risks looking decorative.
 AMD-hosted open model performs the **Case Interpreter**:
 - messy operational note in
 - bounded structured signals out
-- confidence
-- evidence span
-- explicit unknowns
+- exact evidence spans
+- deterministic Evidence Status
+- explicit unknowns / ambiguity flags
 
 Those accepted signals visibly affect:
 - case normalization
@@ -213,8 +213,8 @@ Show AMD extracting:
 - customer unavailable
 - wants redelivery
 - address confirmed
-- evidence span
-- confidence
+- exact evidence spans
+- Evidence Status = GROUNDED / AMBIGUOUS / INCOMPLETE
 
 ## 28–50 sec — Recovery Decision Graph
 Show:
