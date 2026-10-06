@@ -268,3 +268,60 @@ Mandatory future tests:
 
 ## NEXT SAFE ACTION
 Adopt Decision Hinge + Next Best Evidence into the V1 judge story while keeping formal value-of-information optimization out of scope.
+
+
+---
+
+# THIRD HARDENING ADDENDUM — ACTION GATE
+
+Recent competitor research shows that "ask for more information" is itself not distinctive. Contemporary returns/agentic systems can already request more information or hand cases to humans.
+
+ReclaimGrid's stronger behavior is the deterministic rule that decides **why and when** to ask.
+
+## Action Gate
+
+### ACT NOW
+Use when:
+- the decision is ROBUST, OR
+- it is FRAGILE but Decision Exposure is below the visible merchant materiality threshold.
+
+### ASK FIRST
+Use when:
+- the decision is FRAGILE,
+- Decision Exposure is material,
+- a bounded evidence request maps directly to the hinge variable,
+- no policy rule requires human escalation.
+
+### HUMAN REVIEW
+Use when:
+- required evidence is unavailable,
+- policy/eligibility is ambiguous,
+- AI evidence is invalid/conflicting,
+- no safe valid path remains,
+- or a rule explicitly requires a person.
+
+The Action Gate is deterministic.
+
+AMD AI may:
+- draft the ASK FIRST message,
+- explain why that evidence matters,
+- parse a synthetic response.
+
+AMD AI may not:
+- choose the materiality threshold,
+- change Decision Exposure,
+- alter the break-even point,
+- silently choose ACT NOW / ASK FIRST / HUMAN REVIEW.
+
+## Recovery Decision Certificate link
+The judge-facing certificate should display:
+- hinge variable,
+- break-even threshold,
+- Decision Exposure,
+- Action Gate,
+- Next Best Evidence.
+
+This makes Next Best Evidence part of a transparent decision-control system rather than a generic conversational-agent feature.
+
+See:
+`16_FRONTIER_RED_TEAM_AND_DECISION_CERTIFICATE.md`
