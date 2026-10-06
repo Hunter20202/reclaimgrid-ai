@@ -831,3 +831,66 @@ See:
 
 ## NEXT SAFE ACTION
 Keep implementation blocked pre-kickoff. At G1 authorization, execute M0 -> M15 from the frozen implementation sequence one verified milestone at a time.
+
+
+---
+
+## JUDGE-ATTACK TEST ADDENDUM — 2026-10-07
+
+### Assumption provenance
+- every uncertain canonical input has visible provenance
+- no silent/default probability enters the economics engine
+- synthetic assumptions are labeled synthetic
+- changing a plausible range changes robustness transparently
+- Decision Certificate exposes material assumptions
+- deterministic derived values trace to source inputs
+
+### Fair baseline ablation
+For the same case/constraints/assumptions, verify:
+- Static Policy baseline
+- Myopic Greedy baseline
+- ReclaimGrid full-path result
+
+Required:
+- same canonical inputs
+- same feasible-action constraints
+- no AI in either baseline
+- at least one fixture where a baseline ties/wins
+- no forced positive uplift
+- aggregate comparison reproducible
+
+### Multi-factor uncertainty
+- one material uncertainty -> normal one-dimensional hinge flow
+- multiple non-material uncertainties -> normal flow allowed
+- multiple material winner-changing uncertainties -> multi-factor uncertainty state
+- multi-factor uncertainty cannot be labeled ROBUST
+- default Action Gate is HUMAN REVIEW unless an explicit bounded rule resolves the case
+
+### Judge/demo failure simulation
+- AMD endpoint unavailable
+- invalid structured output
+- semantic evidence mismatch
+- serverless timeout
+- rate-limit trigger
+- graph visualization failure
+- Proof report load failure
+
+For every failure:
+- deterministic core remains correct where possible
+- mock/recorded/live provenance stays explicit
+- no fake AMD success state
+- no automatic retry storm
+
+### Judge red-team scorecard before G8
+Score 0–2 for each official criterion:
+- Application of Technology
+- Presentation
+- Business Value
+- Originality
+
+Target: 8/8.
+Any zero blocks G8.
+Any one requires remediation or explicit accepted rationale.
+
+Research basis:
+`25_JUDGE_ATTACK_FAILURE_SIMULATION_PREMORTEM.md`
