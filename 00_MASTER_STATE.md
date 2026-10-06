@@ -25,7 +25,7 @@
 - Public GitHub repository created: Hunter20202/reclaimgrid-ai
 - Default branch: main
 - Canonical Control Room document set 00–08: COMPLETE / VERIFIED
-- Competitive/product hardening research 09–12: COMPLETE / VERIFIED
+- Competitive/product hardening research 09–15: COMPLETE / VERIFIED
 - README.md exists on main
 
 ## CANONICAL CONTROL FILE AUDIT
@@ -43,6 +43,9 @@ Verified present on `main`:
 - `10_RECOVERY_ECONOMICS_DESIGN.md`
 - `11_SYNTHETIC_FIXTURE_BLUEPRINT.md`
 - `12_JUDGE_STRATEGY.md`
+- `13_COMPETITOR_MATRIX_AND_WHITE_SPACE.md`
+- `14_DECISION_HINGE_AND_NEXT_BEST_EVIDENCE.md`
+- `15_AMD_MODEL_AND_SERVING_PLAN.md`
 - `README.md`
 
 CONTROL-DOC AUDIT RESULT: PASS
@@ -71,8 +74,11 @@ Until complimentary credit is visibly active:
 - Financial/scoring calculations remain deterministic.
 - Multi-stage recovery-path expected value is the core deterministic differentiator.
 - Break-even / ROBUST-vs-FRAGILE sensitivity analysis is mandatory V1.
+- Hero FRAGILE case must show Decision Hinge + Next Best Evidence.
 - AMD-hosted Case Interpreter must return bounded signals with confidence/evidence span/unknowns.
 - AMD-hosted Decision Explainer is grounded in the canonical deterministic package.
+- AMD first-proof model ladder: Qwen3-8B + vLLM first; larger Qwen3 model only if task-quality tests justify the extra runtime.
+- Structured Case Interpreter output + semantic evidence-span validation is mandatory.
 - Decision Ledger is mandatory V1.
 - LLM financial authority: ZERO.
 - Consequential actions require human approval.
@@ -195,6 +201,9 @@ If memory/chat conflicts with the repository or a newly verified official state,
 - `10_RECOVERY_ECONOMICS_DESIGN.md`: state-relative EFRC equations, sunk-cost fence, break-even logic
 - `11_SYNTHETIC_FIXTURE_BLUEPRINT.md`: frozen hero/edge/adversarial synthetic cases
 - `12_JUDGE_STRATEGY.md`: official-criteria mapping and demo/pitch strategy
+- `13_COMPETITOR_MATRIX_AND_WHITE_SPACE.md`: explicit competitor capability matrix and safest white space
+- `14_DECISION_HINGE_AND_NEXT_BEST_EVIDENCE.md`: fragile-decision hinge and evidence-gathering design
+- `15_AMD_MODEL_AND_SERVING_PLAN.md`: low-risk AMD model ladder, vLLM structured-output plan, credit containment
 
 ## CURRENT G0 EXIT BLOCKER
 The control-document requirement is COMPLETE.
@@ -212,14 +221,16 @@ Remaining primary G0 blocker:
 **AMD complimentary Developer Cloud credit approval/activation must be verified before any GPU use or before G0 can be considered for PASS.**
 
 ## PRE-KICKOFF PRODUCT HARDENING STATUS
-Research red-team completed on 2026-10-06 against current returns/NDR/reverse-logistics products including Loop, Optoro, AfterShip, ClickPost, and ReverseLogix.
+Research red-team completed on 2026-10-06 against current returns/NDR/reverse-logistics products including Loop, Optoro, AfterShip, ClickPost, and ReverseLogix. A second white-space pass was completed with an explicit competitor matrix and reverse-logistics decision-support research.
 
 Result:
 - Generic AI returns/NDR automation is NOT sufficient differentiation.
 - ReclaimGrid upgraded to Recovery Decision Graph.
-- Required differentiators now include multi-stage counterfactual path economics, explicit break-even robustness, evidence-grounded AMD AI, and Decision Ledger.
+- Required differentiators now include multi-stage counterfactual path economics, explicit break-even robustness, Decision Hinge / Next Best Evidence, evidence-grounded AMD AI, and Decision Ledger.
 - Portfolio Value Leak Map is SHOULD/STRETCH.
 - Multimodal condition analysis is STRETCH only.
+- Product is positioned as a recovery-intelligence decision layer, not a workflow-suite replacement.
+- AMD serving plan is frozen provisionally: cheapest Qwen3-8B + vLLM smoke proof first, then escalate only if exact fixture quality demands it.
 - No implementation code has been created.
 
 Canonical current tagline:
@@ -234,6 +245,8 @@ Wait for either:
 
 Until then:
 - continue only research/math/judge-story hardening if new evidence materially improves the product,
+- preserve the new Decision Hinge / Next Best Evidence scope restraint,
+- preserve the Qwen3-8B-first AMD proof strategy,
 - do not create paid GPU resources,
 - do not add a payment method,
 - do not start submission implementation code.
