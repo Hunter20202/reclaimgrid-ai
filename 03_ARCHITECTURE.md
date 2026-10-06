@@ -492,17 +492,32 @@ Before G6 PASS:
 - no secrets in Git history/evidence
 
 ## W. PROVISIONAL TECHNOLOGY SHAPE
-Candidate minimal implementation:
-- one web app
-- TypeScript frontend/server
-- local synthetic fixtures
-- domain modules for graph/economics/robustness
-- one AMD inference API boundary
-- no database unless necessary
-- no auth unless deployment requires it
-- simple deployable architecture
+Pre-kickoff technical feasibility research now freezes the default V1 build shape, subject only to G1 rule changes or a verified implementation blocker:
 
-Framework choice remains unfrozen until build authorization.
+- Node.js 22.12+
+- Vite + React + TypeScript
+- strict TypeScript
+- Zod 4
+- @xyflow/react as a read-only graph renderer
+- Vitest
+- Playwright
+- Netlify static deploy + TypeScript Netlify Functions
+- one same-origin server-side AMD AI proxy
+- local synthetic fixtures
+- no database
+- no auth
+- no ORM
+- no vector database
+- no queue
+- no agent framework
+
+The browser must never call the AMD endpoint directly or receive AMD credentials.
+
+The public AI function accepts only a bounded case/task contract, not arbitrary prompts/model names/token limits.
+
+See:
+- `23_TECHNICAL_FEASIBILITY_AND_BUILD_BLUEPRINT.md`
+- `24_IMPLEMENTATION_SEQUENCE_AND_RISK_REGISTER.md`
 
 ## X. LOGICAL MODULE BOUNDARIES
 
