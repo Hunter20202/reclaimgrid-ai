@@ -8,7 +8,7 @@
 - CURRENT GATE: G1 — Rules & Scope Freeze (WAITING FOR KICKOFF)
 - STATUS: PRE-KICKOFF HOLD / G0 PASS
 - LAST VERIFIED: 2026-10-07
-- VERIFIED MAIN SHA BEFORE THIS STATE UPDATE: 5cb5fb686f8f6553992ca84945eab94a266cbe6a
+- VERIFIED MAIN SHA BEFORE THIS STATE UPDATE: 4884be6a7a33ba3bcb17e4629f47876eaddd5481
 
 ## COMPLETED
 - AMD account access: PASS
@@ -25,7 +25,7 @@
 - Public GitHub repository created: Hunter20202/reclaimgrid-ai
 - Default branch: main
 - Canonical Control Room document set 00–08: COMPLETE / VERIFIED
-- Competitive/product hardening research 09–22: COMPLETE / VERIFIED
+- Competitive/product hardening research 09–24: COMPLETE / VERIFIED
 - README.md exists on main
 
 ## CANONICAL CONTROL FILE AUDIT
@@ -53,6 +53,8 @@ Verified present on `main`:
 - `20_AI_EVIDENCE_QUALITY_CONTRACT.md`
 - `21_TRACK_FIT_AND_PIVOT_AUDIT.md`
 - `22_DECISION_QUALITY_AND_BENCHMARK_INTEGRITY.md`
+- `23_TECHNICAL_FEASIBILITY_AND_BUILD_BLUEPRINT.md`
+- `24_IMPLEMENTATION_SEQUENCE_AND_RISK_REGISTER.md`
 - `README.md`
 
 CONTROL-DOC AUDIT RESULT: PASS
@@ -101,11 +103,14 @@ Until complimentary credit is visibly active:
 - Model-authored numerical confidence is NOT authoritative and is removed from the canonical Case Interpreter contract.
 - Deterministic Evidence Status = GROUNDED / AMBIGUOUS / INCOMPLETE / INVALID.
 - AMD-hosted Decision Explainer is grounded in the canonical deterministic package.
-- AMD first-proof model ladder: Qwen3-8B + vLLM first; larger Qwen3 model only if task-quality tests justify the extra runtime.
+- AMD model ladder is runtime-driven: inspect the actual MI300X image first; current documented optimized candidates are Qwen3-32B and Llama-3.1-8B-Instruct; compare at most those two through RecoveryBench.
 - Structured Case Interpreter output + semantic evidence-span validation is mandatory.
 - Decision Ledger is mandatory V1.
 - RecoveryBench is mandatory proof infrastructure for AI quality, adversarial safety, deterministic economics, certificate integrity, and AMD runtime.
 - Final app should include a compact measured Proof surface; no fabricated or placeholder benchmark metrics.
+- Default V1 stack: Node 22.12+ / Vite / React / TypeScript / Zod / read-only React Flow / Vitest / Playwright / Netlify Functions; no database/auth/agent framework.
+- Browser-to-AMD direct access is forbidden; use a bounded same-origin server-side proxy with rate limit, timeout, allowlist, fixed model, and live-inference kill switch.
+- Exact implementation order is frozen as M0–M15; core correctness and proof precede polish.
 - Podium target is evidence-heavy: evals + adversarial proof + deterministic fixtures + GPU/runtime telemetry + measured latency.
 - LLM financial authority: ZERO.
 - Consequential actions require human approval.
@@ -253,6 +258,8 @@ If memory/chat conflicts with the repository or a newly verified official state,
 - `20_AI_EVIDENCE_QUALITY_CONTRACT.md`: deterministic evidence-quality states replacing model self-confidence
 - `21_TRACK_FIT_AND_PIVOT_AUDIT.md`: Track 3 keep/pivot decision and partner-prize strategy
 - `22_DECISION_QUALITY_AND_BENCHMARK_INTEGRITY.md`: policy/service feasibility envelope, no-fake-CLTV rule, RecoveryBench holdout/versioning
+- `23_TECHNICAL_FEASIBILITY_AND_BUILD_BLUEPRINT.md`: exact stack, module tree, deployment, AI proxy, live/recorded AMD modes
+- `24_IMPLEMENTATION_SEQUENCE_AND_RISK_REGISTER.md`: M0–M15 build order, PASS criteria, risk register, feature-kill order
 
 ## G0 FINAL STATE
 G0 PASS as of 2026-10-07.
@@ -294,7 +301,7 @@ Result:
 - Multimodal condition analysis is STRETCH only.
 - Product is positioned as a recovery-intelligence decision layer, not a workflow-suite replacement.
 - Generic agentic post-purchase decisioning, ask-for-more-information, and semantic extraction + optimizer are NOT treated as originality by themselves.
-- AMD serving plan is frozen provisionally: Qwen3-8B + vLLM first, then escalate only if the frozen RecoveryBench quality gates demand it.
+- AMD serving plan is frozen provisionally around currently documented MI300X-compatible optimized paths; actual cloud image + RecoveryBench decide between at most Qwen3-32B and Llama-3.1-8B-Instruct.
 - RecoveryBench proof plan is frozen: 48 interpreter notes split DEV 32 + locked HOLDOUT 16, 16 adversarial notes, 20 hand-calculated economics fixtures, 12 certificate-integrity cases, plus real AMD runtime measurements.
 - RecoveryBench public results must be versioned and tied to fixture/prompt/model/code identity; post-HOLDOUT prompt/schema changes require benchmark version/rerun.
 - Model self-reported numerical confidence has been removed from authoritative product logic.
@@ -318,5 +325,6 @@ At kickoff:
 Until kickoff:
 - no implementation code,
 - no paid GPU/payment method,
+- do not change the frozen M0–M15 build architecture without a verified blocker,
 - continue only material research/control hardening,
 - avoid small cosmetic research iterations that do not change product strategy or evidence quality.
