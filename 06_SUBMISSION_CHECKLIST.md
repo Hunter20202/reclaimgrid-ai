@@ -252,8 +252,10 @@ Evidence required:
 - AMD Developer Cloud / AMD Instinct / ROCm runtime proof
 - real Case Interpreter inference
 - schema-valid extraction
-- evidence span/confidence shown in app
+- exact evidence spans + deterministic Evidence Status shown in app
 - grounded Decision Explainer output
+- measured p50/p95 latency
+- model/runtime/version metadata
 - G2 evidence
 
 ### Claim: "The LLM is not the sole financial decision maker."
@@ -329,7 +331,25 @@ Must not say:
 - "built on AMD" if only a trivial test used AMD
 - "AMD-powered" without judge-visible proof
 
-## 14. SECURITY / TRUST SECTION
+## 14. RECOVERYBENCH / PROOF CLAIMS
+Before final submission, measured proof should include:
+- frozen eval-set size
+- schema-valid rate
+- evidence-grounding result
+- unknown-preservation result
+- adversarial authority escapes
+- deterministic economics fixture pass count
+- certificate-integrity pass count
+- AMD model / GPU / ROCm / serving stack
+- p50/p95 latency
+- throughput/cost only if actually measured
+
+Do not publish:
+- invented benchmark values,
+- placeholder 100% metrics,
+- self-reported AI confidence as reliability proof.
+
+## 16. SECURITY / TRUST SECTION
 
 Optional in final copy but required in build:
 - synthetic demo data
@@ -354,7 +374,7 @@ Potential tags may include:
 
 Do not add a technology tag unless it is present in the final working project.
 
-## 16. APPLICATION / REPOSITORY CONSISTENCY
+## 17. APPLICATION / REPOSITORY CONSISTENCY
 
 Before submission:
 - product name matches everywhere
@@ -368,7 +388,7 @@ Before submission:
 - README matches live build
 - demo video matches final or clearly equivalent build
 
-## 17. FINAL README REQUIREMENTS
+## 18. FINAL README REQUIREMENTS
 
 README should eventually include:
 - what ReclaimGrid is
@@ -387,7 +407,7 @@ README should eventually include:
 
 Do not create implementation instructions before the implementation exists.
 
-## 18. LINK VALIDATION
+## 19. LINK VALIDATION
 
 Before G8 PASS test every final link:
 - GitHub repo
@@ -404,7 +424,7 @@ Test:
 - no broken redirect
 - no expired link
 
-## 19. SUBMISSION-FORM AUDIT
+## 20. SUBMISSION-FORM AUDIT
 
 Before entering final content:
 1. Inspect all required fields.
@@ -420,7 +440,7 @@ Before entering final content:
 
 Do not rely on an older rules snapshot for form-specific constraints.
 
-## 20. PRE-SUBMIT VALIDATION
+## 21. PRE-SUBMIT VALIDATION
 
 Immediately before submission verify:
 - correct team: ReclaimGrid AI
@@ -441,7 +461,7 @@ Immediately before submission verify:
 - final tests PASS
 - no paid GPU unnecessarily running
 
-## 21. FINAL FREEZE RULE
+## 22. FINAL FREEZE RULE
 
 Once G8 PASS is declared:
 - stop feature work
@@ -451,7 +471,7 @@ Once G8 PASS is declared:
 - re-run impacted tests after any change
 - update final main SHA after every accepted fix
 
-## 22. SUBMISSION CONFIRMATION EVIDENCE
+## 23. SUBMISSION CONFIRMATION EVIDENCE
 
 After final submit capture:
 - success/confirmation state
@@ -463,7 +483,7 @@ After final submit capture:
 
 Avoid capturing private account data.
 
-## 23. POST-SUBMIT RULE
+## 24. POST-SUBMIT RULE
 
 After submission:
 - do not alter frozen evidence unless necessary
@@ -471,7 +491,7 @@ After submission:
 - monitor only if required
 - if a critical issue appears, verify whether the platform allows an update before changing anything
 
-## 24. CLAIM RED-TEAM
+## 25. CLAIM RED-TEAM
 
 Before final submission, challenge every major claim:
 - Can a judge verify it?
@@ -485,7 +505,7 @@ Before final submission, challenge every major claim:
 
 Any weak claim must be rewritten or removed.
 
-## 25. G8 SUBMISSION ASSET PASS CONDITIONS
+## 26. G8 SUBMISSION ASSET PASS CONDITIONS
 
 All must PASS:
 - title
@@ -498,6 +518,7 @@ All must PASS:
 - demo video
 - slide deck
 - AMD proof
+- RecoveryBench / Proof evidence
 - business-value evidence
 - originality statement
 - link audit
