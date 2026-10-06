@@ -33,51 +33,53 @@ AMD also published a Qwen3-8B + vLLM example reproducible on a single MI300X in 
 Source:
 https://rocm.blogs.amd.com/artificial-intelligence/benchmark-reasoning-models/README.html
 
-## PRIMARY MODEL STRATEGY
+## PRIMARY MODEL STRATEGY — UPDATED 2026-10-07
 
-### Phase A — cheapest/fastest smoke proof
-**Qwen3-8B**
+Current AMD Enterprise AI support data materially improves the model plan.
 
-Use for:
-- first AMD runtime proof,
-- endpoint connectivity,
-- JSON-schema output test,
-- latency/cost measurement,
-- prompt-contract debugging.
+AMD's current supported-accelerator table lists:
+- Qwen/Qwen3-32B as **optimized** on MI300X,
+- Meta Llama 3.1 8B Instruct as **optimized** on MI300X,
+- Qwen3-8B appears in the current AIM catalog but not as an Instinct-optimized entry in the reviewed accelerator table.
 
-Reason:
-- smaller/faster,
-- officially demonstrated by AMD on a single MI300X,
-- enough to validate the serving stack before spending more credit.
+Therefore do not assume Qwen3-8B is the lowest-friction MI300X path merely because it is smaller.
 
-### Phase B — quality candidate
+### Candidate A — primary documented MI300X path
 **Qwen3-32B**
 
-Use only if:
-- credits are visible,
-- 8B quality is not sufficient,
-- latency/runtime remain acceptable,
-- one MI300X can be used safely within the budget.
+Why:
+- AMD currently exposes an optimized MI300X profile,
+- one MI300X is documented for Qwen3-32B,
+- high probability of sufficient extraction quality,
+- existing ReclaimGrid prompt plan already supports Qwen3 thinking/non-thinking control.
 
-Reason:
-AMD explicitly documents Qwen3-32B BF16 on one MI300X.
+### Candidate B — lower-latency fallback / comparator
+**Llama-3.1-8B-Instruct**
 
-Model:
-https://huggingface.co/Qwen/Qwen3-32B
+Why:
+- AMD currently lists it as optimized on MI300X,
+- much smaller,
+- suitable for a narrow structured-extraction task,
+- useful if Qwen3-32B startup/latency is too high.
 
-License:
-Apache-2.0 according to the model card.
+### Selection rule
+Do not pick the smaller or larger model by assumption.
 
-### Alternative candidate
-**Qwen3-30B-A3B**
+Use:
+1. actual Developer Cloud image/runtime compatibility,
+2. first successful serving path,
+3. RecoveryBench DEV,
+4. latency/runtime/cost,
+5. locked HOLDOUT,
+6. freeze one model.
 
-Potential advantages:
-- sparse MoE with low activated parameter count,
-- AMD support documented,
-- may provide good quality/throughput.
+Do not test more than these two unless both fail a material requirement.
 
-Do not pick it merely because it is newer/different.
-Benchmark against the exact ReclaimGrid extraction fixtures first.
+Current AMD accelerator source:
+https://enterprise-ai.docs.amd.com/en/v2.4.1/aims/accelerator_support.html
+
+Qwen3-32B profile source:
+https://enterprise-ai.docs.amd.com/en/latest/aims/docs-aim/instinct/Qwen/Qwen3-32B/README.html
 
 ## SERVING STACK
 
@@ -232,12 +234,13 @@ No giant benchmark is required.
 ## COST CONTAINMENT
 
 Default sequence:
-1. Qwen3-8B smoke test
-2. stop GPU
-3. inspect quality/cost
-4. only then test 32B if needed
-5. select one final model
-6. avoid idle runtime
+1. inspect the actual AMD Developer Cloud image/runtime
+2. use the lowest-friction currently documented MI300X candidate
+3. run smoke + RecoveryBench DEV
+4. stop/inspect if setup or quality is poor
+5. test at most one alternate candidate
+6. freeze one final model
+7. avoid idle runtime
 
 Do not:
 - leave endpoint running overnight,
@@ -275,7 +278,7 @@ If 32B:
 
 use 8B if it passes fixture acceptance.
 
-A reliable 8B product is better than an unstable 32B demo.
+A reliable smaller model is better than an unstable larger demo; a documented optimized 32B path is better than forcing an unsupported smaller path.
 
 ## FINAL MODEL FREEZE RULE
 
@@ -287,4 +290,4 @@ Do not freeze the model name until:
 - at least RG-001, RG-008, RG-009 fixtures are tested.
 
 ## NEXT SAFE ACTION
-When AMD credit becomes active, execute the lowest-cost Qwen3-8B + vLLM proof first. Do not jump directly to a larger model.
+When AMD credit becomes active, inspect the actual MI300X image/runtime first. Prefer the documented optimized path that is available there, run one smoke inference, then let RecoveryBench choose between at most Qwen3-32B and Llama-3.1-8B-Instruct.
