@@ -393,6 +393,54 @@ A decision may be:
 - DEMO/JUDGING IMPACT: Adds schedule buffer and reduces last-day integration risk.
 - REVIEW TRIGGER: Kickoff.
 
+## D-041 — Podium bar becomes proof-heavy
+- DATE: 2026-10-07
+- STATUS: FROZEN
+- DECISION: ReclaimGrid must ship not only the working product but also a judge-visible evaluation/proof surface: RecoveryBench, deterministic fixture results, adversarial proof, AMD runtime telemetry, and measured latency.
+- REASON: Prior AMD podium submissions repeatedly showed measurable evaluation, adversarial/failure evidence, GPU telemetry, latency/throughput/cost, and reproducible tests rather than relying only on product claims.
+- IMPACTED GATES: G2-G8
+- DEMO/JUDGING IMPACT: Raises credibility across Application of Technology, Presentation, Business Value, and Originality.
+- EVIDENCE: `18_DEEP_RESEARCH_WINNING_BAR.md`, `19_RECOVERYBENCH_EVAL_PLAN.md`.
+
+## D-042 — Remove model-authored numerical confidence
+- DATE: 2026-10-07
+- STATUS: FROZEN
+- PREVIOUS DECISION: D-024, D-032
+- DECISION: Model-authored numerical confidence is removed from the authoritative Case Interpreter contract.
+- REASON: Current calibration research shows verbalized/self-reported LLM confidence can be miscalibrated and task-dependent. Exact evidence, explicit unknowns, ambiguity flags, and application validation are more auditable.
+- IMPACTED GATES: G2, G4-G7
+- SECURITY IMPACT: Reduces false-authority risk from fluent but uncalibrated model outputs.
+- REPLACEMENT: deterministic Evidence Status = GROUNDED / AMBIGUOUS / INCOMPLETE / INVALID.
+- EVIDENCE: `20_AI_EVIDENCE_QUALITY_CONTRACT.md`.
+
+## D-043 — RecoveryBench is the model-selection and proof gate
+- DATE: 2026-10-07
+- STATUS: PROVISIONAL
+- DECISION: Model selection and final AI-quality claims must be based on the frozen RecoveryBench suite, not generic model reputation or benchmark prestige.
+- REASON: ReclaimGrid's narrow tasks require task-specific evidence-grounding, unknown preservation, injection resistance, and latency testing.
+- IMPACTED GATES: G2, G4, G6, G7
+- COST IMPACT: Start with Qwen3-8B; test a larger model only if frozen quality thresholds are missed.
+- EVIDENCE: `19_RECOVERYBENCH_EVAL_PLAN.md`.
+
+## D-044 — No pivot; Track 3 remains the primary strategy
+- DATE: 2026-10-07
+- STATUS: PROVISIONAL UNTIL G1
+- PREVIOUS DECISION: D-003
+- DECISION: Keep ReclaimGrid as the Track 3 — Reinvent Commerce default. Do not pivot to generic NDR automation, disposition AI, fraud classification, demand forecasting, or a generic returns agent.
+- REASON: Deep comparison found ReclaimGrid's current certificate/economics/evidence design has the best balance of Track fit, business value, originality, synthetic-data feasibility, AMD meaningfulness, and solo-build reliability.
+- IMPACTED GATES: G1-G9
+- REVIEW TRIGGER: Kickoff track/rule changes or verified technical infeasibility.
+- EVIDENCE: `21_TRACK_FIT_AND_PIVOT_AUDIT.md`.
+
+## D-045 — Partner prizes are subordinate to the core
+- DATE: 2026-10-07
+- STATUS: FROZEN
+- DECISION: Priority order is: main AMD/Track 3 quality first; Vibe special through the same core; Google only if kickoff requirements/model fit align naturally; Evolus only as a late-stage extension after core integration PASS and adequate time remains.
+- REASON: Partner integrations can create prize optionality but can also damage the main submission through scope and integration risk.
+- IMPACTED GATES: G1, G5-G9
+- COST IMPACT: No new paid dependency authorized.
+- EVIDENCE: `21_TRACK_FIT_AND_PIVOT_AUDIT.md`.
+
 ---
 
 ## FUTURE DECISION ENTRY TEMPLATE
