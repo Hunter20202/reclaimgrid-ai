@@ -8,7 +8,7 @@
 - CURRENT GATE: G0 — Registration & Environment
 - STATUS: IN PROGRESS
 - LAST VERIFIED: 2026-10-06
-- VERIFIED MAIN SHA BEFORE THIS STATE UPDATE: 26d3301d5eb1e17b67e4ac60b87c5c456f40c615
+- VERIFIED MAIN SHA BEFORE THIS STATE UPDATE: 4698e2ceebb7a357773bc7eda37e76509bd6f6f5
 
 ## COMPLETED
 - AMD account access: PASS
@@ -25,6 +25,7 @@
 - Public GitHub repository created: Hunter20202/reclaimgrid-ai
 - Default branch: main
 - Canonical Control Room document set 00–08: COMPLETE / VERIFIED
+- Competitive/product hardening research 09–12: COMPLETE / VERIFIED
 - README.md exists on main
 
 ## CANONICAL CONTROL FILE AUDIT
@@ -38,6 +39,10 @@ Verified present on `main`:
 - `06_SUBMISSION_CHECKLIST.md`
 - `07_DECISION_LOG.md`
 - `08_CHANGELOG.md`
+- `09_COMPETITIVE_RESEARCH_AND_PRODUCT_UPGRADE.md`
+- `10_RECOVERY_ECONOMICS_DESIGN.md`
+- `11_SYNTHETIC_FIXTURE_BLUEPRINT.md`
+- `12_JUDGE_STRATEGY.md`
 - `README.md`
 
 CONTROL-DOC AUDIT RESULT: PASS
@@ -59,11 +64,16 @@ Until complimentary credit is visibly active:
 
 ## FROZEN / ACTIVE DECISIONS
 - Product: ReclaimGrid AI
-- Product thesis: AMD-powered post-purchase recovery decision engine for ecommerce failed deliveries and returns.
+- Product thesis: AMD-powered Recovery Decision Graph for post-purchase failures that compares economically valid multi-stage recovery paths, exposes break-even robustness, and keeps AI outside canonical financial authority.
 - Primary track: Track 3 — Reinvent Commerce, PROVISIONAL until kickoff/rules re-verification.
 - Core architecture:
-  Business Data -> Validation -> Merchant Policy / Eligibility -> Deterministic Recovery Economics Engine -> Recovery Route Ranking -> AMD-hosted AI interpretation/explanation -> Policy Guardrails -> Human Approval -> Suggested Recovery Action
+  Synthetic Case + Free-text Evidence -> Validation -> AMD Case Interpreter -> Accepted Structured Signals -> Merchant Policy / Eligibility -> Recovery Decision Graph -> Multi-stage Deterministic Path Economics -> Counterfactual Ranking -> Robustness / Break-even -> AMD Grounded Explanation -> Decision Ledger -> Human Approval
 - Financial/scoring calculations remain deterministic.
+- Multi-stage recovery-path expected value is the core deterministic differentiator.
+- Break-even / ROBUST-vs-FRAGILE sensitivity analysis is mandatory V1.
+- AMD-hosted Case Interpreter must return bounded signals with confidence/evidence span/unknowns.
+- AMD-hosted Decision Explainer is grounded in the canonical deterministic package.
+- Decision Ledger is mandatory V1.
 - LLM financial authority: ZERO.
 - Consequential actions require human approval.
 - Synthetic demo data is the default.
@@ -120,7 +130,7 @@ No gate advances unless the prior gate is verified PASS.
 ## TEST STATUS
 - Product implementation tests: NOT STARTED
 - Gate-by-gate test/evidence plan: COMPLETE / DOCUMENTED
-- Synthetic fixture categories: PLANNED
+- Synthetic fixture blueprint: COMPLETE / DOCUMENTED
 - Security test matrix: PLANNED
 - AMD proof test plan: PLANNED
 - No product implementation code exists yet.
@@ -181,6 +191,10 @@ If memory/chat conflicts with the repository or a newly verified official state,
 - `06_SUBMISSION_CHECKLIST.md`: final submission asset/control plan
 - `07_DECISION_LOG.md`: append-only material decisions
 - `08_CHANGELOG.md`: chronological repository/control changes
+- `09_COMPETITIVE_RESEARCH_AND_PRODUCT_UPGRADE.md`: market red-team and differentiation research
+- `10_RECOVERY_ECONOMICS_DESIGN.md`: state-relative EFRC equations, sunk-cost fence, break-even logic
+- `11_SYNTHETIC_FIXTURE_BLUEPRINT.md`: frozen hero/edge/adversarial synthetic cases
+- `12_JUDGE_STRATEGY.md`: official-criteria mapping and demo/pitch strategy
 
 ## CURRENT G0 EXIT BLOCKER
 The control-document requirement is COMPLETE.
@@ -197,5 +211,29 @@ Latest read-only cloud/billing recheck on 2026-10-06:
 Remaining primary G0 blocker:
 **AMD complimentary Developer Cloud credit approval/activation must be verified before any GPU use or before G0 can be considered for PASS.**
 
+## PRE-KICKOFF PRODUCT HARDENING STATUS
+Research red-team completed on 2026-10-06 against current returns/NDR/reverse-logistics products including Loop, Optoro, AfterShip, ClickPost, and ReverseLogix.
+
+Result:
+- Generic AI returns/NDR automation is NOT sufficient differentiation.
+- ReclaimGrid upgraded to Recovery Decision Graph.
+- Required differentiators now include multi-stage counterfactual path economics, explicit break-even robustness, evidence-grounded AMD AI, and Decision Ledger.
+- Portfolio Value Leak Map is SHOULD/STRETCH.
+- Multimodal condition analysis is STRETCH only.
+- No implementation code has been created.
+
+Canonical current tagline:
+**Find the best recovery path — and prove why it wins.**
+
 ## NEXT SAFE ACTION
-WAIT for AMD credit approval/activation email or visible credit activation. Do not take paid actions. Recheck only later; if no approval arrives within AMD's stated support window, use the official support path referenced by the confirmation page.
+No user execution is required now.
+
+Wait for either:
+1. AMD credit approval/activation, or
+2. ACT III kickoff/G1 rules re-verification.
+
+Until then:
+- continue only research/math/judge-story hardening if new evidence materially improves the product,
+- do not create paid GPU resources,
+- do not add a payment method,
+- do not start submission implementation code.
