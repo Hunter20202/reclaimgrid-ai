@@ -106,11 +106,14 @@ Turn messy operational text into a bounded schema that the application can revie
 Candidate output:
 - reason_code
 - customer_intent
+- address_status
 - condition_hint
 - urgency_hint
-- confidence
-- evidence_span
+- evidence spans by semantic field
+- ambiguity_flags
 - missing_fields
+
+No model-authored numerical confidence is part of the authoritative contract.
 
 ### Rules
 - source text is untrusted data
@@ -118,11 +121,36 @@ Candidate output:
 - no financial values may be invented
 - evidence span must support the extracted signal
 - output must pass schema validation
-- low-confidence/ambiguous fields may require human confirmation
+- exact evidence spans must exist in the source note
+- unresolved contradiction becomes AMBIGUOUS
+- required missing information becomes INCOMPLETE
+- contract failure becomes INVALID and is discarded
 
 This is a meaningful AMD workload because it converts unstructured business evidence into structured decision inputs.
 
-## D. MERCHANT POLICY / ELIGIBILITY LAYER
+## D. EVIDENCE VALIDATOR / STATUS
+Application-side logic validates every accepted semantic field.
+
+Deterministic states:
+- GROUNDED
+- AMBIGUOUS
+- INCOMPLETE
+- INVALID
+
+Checks:
+- allowed enum
+- exact source-span containment
+- semantic support
+- contradiction flags
+- missing required fields
+- no financial-authority fields
+
+INVALID AI output is discarded.
+AMBIGUOUS / INCOMPLETE states feed the deterministic Action Gate.
+
+See `20_AI_EVIDENCE_QUALITY_CONTRACT.md`.
+
+## E. MERCHANT POLICY / ELIGIBILITY LAYER
 Responsibilities:
 - define allowed states/actions
 - exclude prohibited actions
@@ -135,7 +163,7 @@ Examples:
 - liquidation unavailable for certain items
 - refurbishment only when repair cost/value conditions are met
 
-## E. RECOVERY DECISION GRAPH
+## F. RECOVERY DECISION GRAPH
 
 ### Concept
 A small directed acyclic graph of recovery states and actions.
@@ -160,7 +188,7 @@ Reattempt delivery can lead to:
 
 The downstream value must be included in the reattempt path economics.
 
-## F. DETERMINISTIC PATH ECONOMICS ENGINE
+## G. DETERMINISTIC PATH ECONOMICS ENGINE
 
 ### Financial authority
 All canonical route/path economics are deterministic.
@@ -198,7 +226,7 @@ Candidate output:
 - uplift_absolute
 - uplift_percent
 
-## G. ROBUSTNESS / BREAK-EVEN ENGINE
+## H. ROBUSTNESS / BREAK-EVEN ENGINE
 
 ### Purpose
 Prevent false precision when the winner depends on uncertain assumptions.
@@ -221,7 +249,7 @@ Stretch:
 
 No large stochastic simulation is required.
 
-## H. DECISION HINGE / NEXT BEST EVIDENCE
+## I. DECISION HINGE / NEXT BEST EVIDENCE
 
 For FRAGILE cases, the deterministic layer derives:
 - hinge variable,
@@ -239,7 +267,7 @@ This layer must reuse existing robustness math rather than create a separate lea
 See:
 `14_DECISION_HINGE_AND_NEXT_BEST_EVIDENCE.md`
 
-## I. DECISION EXPOSURE / ACTION GATE
+## J. DECISION EXPOSURE / ACTION GATE
 
 For the hero one-dimensional uncertainty case:
 
@@ -258,7 +286,7 @@ AMD may draft an ASK FIRST message only after the deterministic gate selects tha
 See:
 `16_FRONTIER_RED_TEAM_AND_DECISION_CERTIFICATE.md`
 
-## J. RECOVERY DECISION CERTIFICATE
+## K. RECOVERY DECISION CERTIFICATE
 
 Assemble one judge-facing artifact from canonical data:
 - source/accepted evidence,
@@ -276,7 +304,7 @@ Assemble one judge-facing artifact from canonical data:
 
 The certificate is a presentation/audit object, not an alternate decision engine.
 
-## K. CANONICAL DECISION PACKAGE
+## L. CANONICAL DECISION PACKAGE
 Before AI explanation, generate a deterministic package containing:
 - validated case inputs
 - AI-extracted signals that were accepted
@@ -290,7 +318,7 @@ Before AI explanation, generate a deterministic package containing:
 
 This package is the single source of truth for the explanation UI.
 
-## L. AMD DECISION EXPLAINER
+## M. AMD DECISION EXPLAINER
 The AMD-hosted model receives the canonical decision package and may:
 - explain why the winner wins
 - explain the tradeoff against runner-up
@@ -307,7 +335,7 @@ It may NOT:
 
 If the explanation contradicts the canonical package, reject or visibly flag it.
 
-## M. OPTIONAL MULTIMODAL CONDITION SIGNAL
+## N. OPTIONAL MULTIMODAL CONDITION SIGNAL
 Stretch only if AMD credits/model/runtime are stable.
 
 Flow:
@@ -319,7 +347,7 @@ synthetic returned-item image
 
 This must not become a G2/G4 blocker.
 
-## N. DECISION LEDGER
+## O. DECISION LEDGER
 Persist/display enough evidence to reconstruct a decision:
 - source case
 - accepted AI extraction
@@ -334,7 +362,7 @@ Persist/display enough evidence to reconstruct a decision:
 
 No enterprise database is required; lightweight in-memory/local/demo persistence is sufficient unless implementation proves otherwise.
 
-## O. HUMAN APPROVAL LAYER
+## P. HUMAN APPROVAL LAYER
 Judge-facing UI should show:
 - case summary
 - source evidence
@@ -352,7 +380,7 @@ For V1, approval records only a demo outcome.
 
 No real refund, payment, courier, customer, or inventory mutation.
 
-## P. OPTIONAL VALUE LEAK MAP
+## Q. OPTIONAL VALUE LEAK MAP
 Should-have/stretch after core stability.
 
 Aggregate synthetic cases by cause and show economic leakage, not just counts.
@@ -363,7 +391,7 @@ Example:
 
 This helps Track 3 judges see business-level insight from case decisions.
 
-## Q. AMD AI GATEWAY
+## R. AMD AI GATEWAY
 One narrow provider interface should isolate model-serving specifics.
 
 Candidate:
@@ -383,7 +411,7 @@ Responsibilities:
 
 The app should remain model-agnostic behind this interface.
 
-## R. AMD PROOF PATH
+## S. AMD PROOF PATH
 Minimum judge proof:
 1. Real inference on AMD infrastructure.
 2. AMD/Instinct/ROCm serving evidence.
@@ -395,7 +423,7 @@ Minimum judge proof:
 
 This makes AMD central but not financially authoritative.
 
-## S. FALLBACK BEHAVIOR
+## T. FALLBACK BEHAVIOR
 
 ### Case Interpreter unavailable
 - allow synthetic pre-structured case input
@@ -426,7 +454,7 @@ This makes AMD central but not financially authoritative.
 - mock must never be presented as AMD proof
 - G2 cannot PASS without real AMD evidence
 
-## T. COST CONTAINMENT
+## U. COST CONTAINMENT
 - no training/fine-tuning
 - no always-on GPU by default
 - no background inference
@@ -437,7 +465,7 @@ This makes AMD central but not financially authoritative.
 - shut down/delete immediately after test
 - track runtime/credit burn
 
-## U. SECURITY MINIMUM
+## V. SECURITY MINIMUM
 Before G6 PASS:
 - secrets in environment variables only
 - `.env` ignored
@@ -451,7 +479,7 @@ Before G6 PASS:
 - no model-controlled shell/database/payment tools
 - no secrets in Git history/evidence
 
-## V. PROVISIONAL TECHNOLOGY SHAPE
+## W. PROVISIONAL TECHNOLOGY SHAPE
 Candidate minimal implementation:
 - one web app
 - TypeScript frontend/server
@@ -464,7 +492,7 @@ Candidate minimal implementation:
 
 Framework choice remains unfrozen until build authorization.
 
-## W. LOGICAL MODULE BOUNDARIES
+## X. LOGICAL MODULE BOUNDARIES
 
 ```text
 /data
@@ -499,13 +527,14 @@ Framework choice remains unfrozen until build authorization.
 
 /evidence
   decision ledger
+  RecoveryBench reports
   AMD proof
   test outputs
 ```
 
 Conceptual only; not implementation authorization.
 
-## X. FAILURE MODES TO TEST
+## Y. FAILURE MODES TO TEST
 - malformed numeric input
 - unknown enum
 - missing assumption
@@ -528,7 +557,7 @@ Conceptual only; not implementation authorization.
 - Recovery Decision Certificate disagrees with canonical package
 - duplicate case ID
 
-## Y. ARCHITECTURE ACCEPTANCE TEST
+## Z. ARCHITECTURE ACCEPTANCE TEST
 Before implementation, all must be true:
 1. Deterministic path economics works with AI off.
 2. AI cannot overwrite financial truth.
@@ -546,7 +575,7 @@ Before implementation, all must be true:
 14. Architecture can be explained in under one minute.
 15. Every major component improves judging value.
 
-## Z. ARCHITECTURE NON-GOALS
+## AA. ARCHITECTURE NON-GOALS
 Do not add:
 - microservices
 - queues
@@ -561,6 +590,21 @@ Do not add:
 - RL optimizer
 - model training
 
+## PROOF / EVALUATION SURFACE
+Final app should expose a compact Proof surface backed only by measured data:
+- RecoveryBench summary
+- deterministic fixture pass count
+- adversarial authority escapes
+- AMD GPU / ROCm / serving stack / model
+- p50 / p95 inference latency
+- throughput if measured
+- sanitized runtime/cost evidence
+- last audited commit SHA
+
+No placeholder performance metric may appear in final submission.
+
+See `19_RECOVERYBENCH_EVAL_PLAN.md`.
+
 ## RESEARCH BASIS
 See:
 - `09_COMPETITIVE_RESEARCH_AND_PRODUCT_UPGRADE.md`
@@ -568,6 +612,9 @@ See:
 - `14_DECISION_HINGE_AND_NEXT_BEST_EVIDENCE.md`
 - `15_AMD_MODEL_AND_SERVING_PLAN.md`
 - `16_FRONTIER_RED_TEAM_AND_DECISION_CERTIFICATE.md`
+- `18_DEEP_RESEARCH_WINNING_BAR.md`
+- `19_RECOVERYBENCH_EVAL_PLAN.md`
+- `20_AI_EVIDENCE_QUALITY_CONTRACT.md`
 
 ## NEXT SAFE ACTION
 Keep implementation blocked until kickoff/rules re-verification. During the wait window, only continue research, formula design, synthetic fixture design, and judge-story hardening.
