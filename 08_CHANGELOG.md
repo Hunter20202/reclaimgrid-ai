@@ -268,6 +268,66 @@ PASS
 
 ---
 
+
+---
+
+## 2026-10-06 — Competitive research and product hardening
+
+### Commits
+- `ba518f363f222c6b81882d797480955908e71715` — added competitive research
+- `52f9347bc04591aeed59c6b76a64917ac7e77a68` — upgraded V1 scope
+- `06cce072b3f7dc44c53dcc650943e258fc83c78b` — upgraded architecture
+- `6c0842a16ee6f4917c105bf2ddd95b7edb7f242a` — recorded new decisions
+- `d4ca863eb5b7581064f3867a47921ccd7e1ab90f` — extended test plan
+- `27a2e1925555b4f7132faf8053b594422050409b` — aligned submission story
+- `f97c4679a0d61577422f9ab404e0ea6bd797ae79` — added economics design
+- `d7c90610ac7e1ac60abe0d6a08df649f8219ac76` — added fixture blueprint
+- `5ced65f9ad20c1188b148544445181eb37945a8a` — added judge strategy
+
+### Files added
+- `09_COMPETITIVE_RESEARCH_AND_PRODUCT_UPGRADE.md`
+- `10_RECOVERY_ECONOMICS_DESIGN.md`
+- `11_SYNTHETIC_FIXTURE_BLUEPRINT.md`
+- `12_JUDGE_STRATEGY.md`
+
+### Files materially upgraded
+- `02_PRODUCT_SCOPE.md`
+- `03_ARCHITECTURE.md`
+- `05_TEST_EVIDENCE_PLAN.md`
+- `06_SUBMISSION_CHECKLIST.md`
+- `07_DECISION_LOG.md`
+
+### Research findings
+- Generic AI returns/NDR automation is too crowded to be sufficient differentiation.
+- Competitor overlap was verified across Loop, Optoro, AfterShip, ClickPost, and ReverseLogix.
+- Product core upgraded to a bounded Recovery Decision Graph.
+- Multi-stage counterfactual recovery-path economics became the primary deterministic differentiator.
+- Break-even/sensitivity analysis became mandatory V1.
+- AMD AI role strengthened to evidence-grounded Case Interpreter plus grounded Decision Explainer.
+- Decision Ledger added as a core trust/audit feature.
+- Portfolio Value Leak Map and multimodal condition analysis were explicitly demoted to SHOULD/STRETCH.
+
+### Formula/fixture hardening
+- Defined Expected Future Recovery Contribution (EFRC).
+- Defined sunk-cost fence.
+- Defined bounded DAG/backward-induction model.
+- Defined hero NDR break-even equation.
+- Defined ROBUST vs FRAGILE based on plausible assumption ranges.
+- Frozen synthetic fixture concepts including hero, policy exclusion, prompt injection, AI timeout, tie, and zero-baseline cases.
+
+### Judge strategy
+- Mapped core features to the four official ACT III judging criteria.
+- Frozen a judge-first hero flow:
+  messy note -> AMD evidence extraction -> recovery graph -> path economics -> break-even -> explanation -> human approval -> portfolio value proof.
+
+### Gate effect
+- G0 remains IN PROGRESS because AMD complimentary cloud credit is still pending.
+- No implementation code was created.
+- Pre-kickoff research/documentation authorization was respected.
+
+### Verification
+PASS
+
 ## CURRENT CONTROL-DOC SET AFTER THIS FILE
 
 Expected canonical files:
@@ -281,6 +341,12 @@ Expected canonical files:
 - `07_DECISION_LOG.md`
 - `08_CHANGELOG.md`
 
+Research/design extensions:
+- `09_COMPETITIVE_RESEARCH_AND_PRODUCT_UPGRADE.md`
+- `10_RECOVERY_ECONOMICS_DESIGN.md`
+- `11_SYNTHETIC_FIXTURE_BLUEPRINT.md`
+- `12_JUDGE_STRATEGY.md`
+
 Plus:
 - `README.md`
 
@@ -292,4 +358,4 @@ Plus:
 - No implementation code authorized yet.
 
 ## NEXT SAFE ACTION
-Audit the full canonical control-doc set on `main`, verify every expected file exists, verify the live latest main SHA, and then update `00_MASTER_STATE.md` so it reflects control-document completion and the current G0 blocker.
+Sync `00_MASTER_STATE.md` to the research-upgraded product state and keep implementation blocked until kickoff/G1 and AMD credit re-verification.
