@@ -312,6 +312,55 @@ A decision may be:
 - SECURITY IMPACT: Reduces malformed/unsafe model-output risk.
 - EVIDENCE: `15_AMD_MODEL_AND_SERVING_PLAN.md`.
 
+## D-033 — Frontier red-team narrows originality
+- DATE: 2026-10-06
+- STATUS: FROZEN
+- DECISION: Do not claim originality from agentic post-purchase decisioning, semantic return-note extraction, AI evidence review, dynamic return journeys, or ask-for-more-information workflows individually.
+- REASON: Narvar's 2026 agentic post-purchase positioning and September 2026 SSADS research materially overlap those patterns; Happy Returns and ReverseLogix further reduce uniqueness of generic agentic returns/evidence workflows.
+- IMPACTED GATES: G1, G4, G7, G8
+- DEMO/JUDGING IMPACT: Forces a narrower, more defensible combined behavior.
+- EVIDENCE: `16_FRONTIER_RED_TEAM_AND_DECISION_CERTIFICATE.md`.
+
+## D-034 — Recovery Decision Certificate becomes primary judge artifact
+- DATE: 2026-10-06
+- STATUS: PROVISIONAL
+- PREVIOUS DECISION: D-025, D-029
+- DECISION: The hero experience must produce one Recovery Decision Certificate combining source evidence, path economics, winner/challenger, Decision Hinge, break-even, robustness, Decision Exposure, Action Gate, Next Best Evidence, AMD grounded output, and human approval.
+- REASON: A single concrete certificate is easier to understand, demo, audit, and distinguish than a collection of dashboard features.
+- IMPACTED GATES: G3-G8
+- COST IMPACT: Low; assembly layer reuses existing canonical outputs.
+- DEMO/JUDGING IMPACT: Stronger presentation, originality, and trust.
+- REVIEW TRIGGER: G5 judge-flow implementation.
+
+## D-035 — Decision Exposure
+- DATE: 2026-10-06
+- STATUS: PROVISIONAL
+- PREVIOUS DECISION: D-023, D-029
+- DECISION: V1 calculates maximum regret of the base-case winner across the single declared plausible interval and exposes it as Decision Exposure.
+- REASON: A fragile label alone does not quantify whether uncertainty is economically material.
+- IMPACTED GATES: G3, G5, G7
+- COST IMPACT: Low for one-dimensional linear cases.
+- CLAIM LIMIT: Decision Exposure is scenario-bounded opportunity cost, not guaranteed loss or failure probability.
+- REVIEW TRIGGER: G3 hand-calculation validation.
+
+## D-036 — Deterministic Action Gate
+- DATE: 2026-10-06
+- STATUS: PROVISIONAL
+- DECISION: V1 derives ACT NOW / ASK FIRST / HUMAN REVIEW deterministically from robustness, Decision Exposure, a visible synthetic materiality threshold, evidence availability, and policy state.
+- REASON: "Ask for more information" is common; the differentiator is the explicit economic rule controlling when to ask versus act or hand off.
+- IMPACTED GATES: G3-G7
+- SECURITY IMPACT: LLM cannot choose or override action mode.
+- DEMO/JUDGING IMPACT: Converts uncertainty analysis into a useful commercial action.
+- REVIEW TRIGGER: G3/G5 rule freeze.
+
+## D-037 — One-dimensional uncertainty remains hard scope boundary
+- DATE: 2026-10-06
+- STATUS: FROZEN
+- DECISION: V1 limits Decision Exposure and break-even analysis to one dominant uncertain variable per case.
+- REASON: Preserves explainability and build reliability; avoids full stochastic/robust optimization complexity.
+- IMPACTED GATES: G3-G7
+- REJECTED FOR V1: multi-dimensional robust optimization, formal EVPI/EVSI, Bayesian updating, large scenario trees, minimax-regret optimization over many variables.
+
 ---
 
 ## FUTURE DECISION ENTRY TEMPLATE
