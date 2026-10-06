@@ -567,3 +567,7 @@ PASS
 - `1d3fe04433fc7d8c2c00af3d032e792686769ab5` — replaced stale confidence test with deterministic Evidence Status
 - `74c21493969ab9850c2de5eb826f62573c7aa854` — aligned judge story to Evidence Status
 - `55564ec3433a5ba69460d042c5bb66c30684421f` — fixed submission-checklist numbering
+
+
+### Fresh official-page correction
+- `227d698e32d94b1be0917845a5d506320bd43945` — refreshed ACT III prize snapshot to the currently visible $11,000+ and marked partner-prize amounts as volatile.
