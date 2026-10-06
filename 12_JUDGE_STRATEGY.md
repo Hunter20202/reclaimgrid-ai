@@ -288,7 +288,13 @@ No. The evaluation is explicitly synthetic. The business claim is expected value
 The deterministic recovery graph still works. AI interpretation/explanation enters a visible unavailable/manual-review state.
 
 ## "How do you know the recommendation is reliable?"
-The product shows the exact formulas and the break-even threshold. It labels a recommendation fragile if the winner changes within the stated plausible assumption range.
+The product shows the exact formulas and the break-even threshold. It labels a recommendation fragile if the winner changes within the stated plausible assumption range. RecoveryBench reports DEV and locked HOLDOUT quality separately.
+
+## "What if the highest-value path is bad for the customer?"
+It never reaches the optimizer if it violates the Policy & Service Feasibility Envelope. Merchant policy, approved customer remedy/SLA, evidence sufficiency, and operational availability are hard constraints before EFRC optimization.
+
+## "Why not put customer lifetime value into the score?"
+Because V1 has no defensible CLTV data. We prefer explicit service/customer constraints to fabricated loyalty dollars or hidden weights.
 
 ---
 
@@ -297,6 +303,7 @@ The product shows the exact formulas and the break-even threshold. It labels a r
 | Feature | Technology | Business Value | Originality | Presentation | Priority |
 |---|---:|---:|---:|---:|---|
 | Recovery Decision Graph | 3 | 5 | 5 | 5 | MUST |
+| Policy & Service Feasibility Envelope | 2 | 5 | 4 | 5 | MUST |
 | Deterministic EFRC | 3 | 5 | 4 | 4 | MUST |
 | Break-even robustness | 2 | 5 | 5 | 5 | MUST |
 | AMD Case Interpreter | 5 | 4 | 4 | 5 | MUST |
