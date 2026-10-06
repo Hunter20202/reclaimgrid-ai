@@ -440,6 +440,34 @@ A decision may be:
 - IMPACTED GATES: G1, G5-G9
 - COST IMPACT: No new paid dependency authorized.
 - EVIDENCE: `21_TRACK_FIT_AND_PIVOT_AUDIT.md`.
+## D-046 — Constraint-first optimization
+- DATE: 2026-10-07
+- STATUS: FROZEN
+- PREVIOUS DECISION: D-005
+- DECISION: ReclaimGrid must maximize EFRC only inside a deterministic Policy & Service Feasibility Envelope.
+- REASON: A purely economic objective can produce commercially wrong decisions if policy, customer remedy, evidence sufficiency, or route availability is omitted. Recent reverse-logistics research and retail data reinforce the need to balance economic recovery with service/customer constraints.
+- IMPACTED GATES: G3, G5-G7
+- SECURITY/SAFETY IMPACT: Higher raw EFRC can never override a hard feasibility constraint.
+- EVIDENCE: `22_DECISION_QUALITY_AND_BENCHMARK_INTEGRITY.md`.
+
+## D-047 — No opaque CLTV / loyalty weighting in V1
+- DATE: 2026-10-07
+- STATUS: FROZEN
+- DECISION: V1 must not invent customer lifetime value, churn probability, loyalty dollars, or hidden weighted multi-objective scores.
+- REASON: Synthetic V1 lacks defensible behavioral data for those quantities. Service/customer value is represented through explicit constraints and visible tie-break rules.
+- IMPACTED GATES: G3, G5, G7-G9
+- DEMO/JUDGING IMPACT: More honest, auditable commercial reasoning.
+- EVIDENCE: `22_DECISION_QUALITY_AND_BENCHMARK_INTEGRITY.md`.
+
+## D-048 — RecoveryBench locked holdout and versioning
+- DATE: 2026-10-07
+- STATUS: PROVISIONAL
+- PREVIOUS DECISION: D-043
+- DECISION: RecoveryBench's 48 interpreter notes are split into DEV 32 + locked HOLDOUT 16. Public quality claims must separate DEV and HOLDOUT, record fixture/prompt/model/code identity, and version/rerun the benchmark if the contract changes after holdout scoring.
+- REASON: Prevent prompt overfitting, fixture leakage, and cherry-picked public benchmark claims.
+- IMPACTED GATES: G2, G4, G6, G7
+- DEMO/JUDGING IMPACT: Makes the Proof surface materially more credible.
+- EVIDENCE: `19_RECOVERYBENCH_EVAL_PLAN.md`, `22_DECISION_QUALITY_AND_BENCHMARK_INTEGRITY.md`.
 
 ---
 
