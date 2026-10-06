@@ -183,16 +183,19 @@ If memory/chat conflicts with the repository or a newly verified official state,
 - `08_CHANGELOG.md`: chronological repository/control changes
 
 ## CURRENT G0 EXIT BLOCKER
-The control-document requirement is now COMPLETE.
+The control-document requirement is COMPLETE.
+
+Latest read-only cloud/billing recheck on 2026-10-06:
+- AMD complimentary Developer Cloud credit: NOT VISIBLE / NOT ACTIVE
+- Credits applied: $0.00
+- Total usage: $0.00
+- Estimated balance owed: $0.00
+- Saved payment method: NONE
+- Billing status: ACTION NEEDED
+- Approval/activation email check: NOT RECEIVED (user-confirmed)
 
 Remaining primary G0 blocker:
-**AMD complimentary Developer Cloud credit approval/activation must be safely rechecked and verified before any GPU use or before G0 can be considered for PASS.**
+**AMD complimentary Developer Cloud credit approval/activation must be verified before any GPU use or before G0 can be considered for PASS.**
 
 ## NEXT SAFE ACTION
-Perform a READ-ONLY recheck of the AMD Developer Cloud credit/activation state.
-
-Rules for that check:
-- do not add a payment method,
-- do not create a GPU,
-- do not click paid quota/upgrade actions,
-- if complimentary credit is not visibly active, STOP and leave G0 IN PROGRESS.
+WAIT for AMD credit approval/activation email or visible credit activation. Do not take paid actions. Recheck only later; if no approval arrives within AMD's stated support window, use the official support path referenced by the confirmation page.
