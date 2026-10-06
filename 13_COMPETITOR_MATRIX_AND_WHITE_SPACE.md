@@ -197,3 +197,59 @@ Unsafe:
 
 ## NEXT SAFE ACTION
 Add a lightweight Decision Hinge / Next Best Evidence layer that reuses the existing break-even math instead of creating a new ML subsystem.
+
+
+---
+
+# THIRD RED-TEAM ADDENDUM — 2026-10-06
+
+## Narvar raises the agentic bar
+Narvar's 2026 public positioning describes post-purchase as an agentic decision layer across delivery, claims, returns, and exchanges. Its materials emphasize dynamic decision engines, proactive exception management, contextual claims, outcome-driven returns, and protecting margin/trust.
+
+Implication:
+- "context-aware post-purchase decision engine" is not sufficient differentiation.
+- "dynamic return journey" is not sufficient differentiation.
+- "agentic exception management" is not sufficient differentiation.
+
+Sources:
+- https://corp.narvar.com/blog/from-reactive-to-agentic-narvars-post-purchase-predictions-for-2026
+- https://corp.narvar.com/iris
+
+## Happy Returns makes agentic return flow less distinctive
+Happy Returns exposes an Agentic Returns Integration through MCP so third-party agents can look up orders, present return options, and submit returns.
+
+Implication:
+"AI agent drives a return flow" is not distinctive.
+
+Source:
+https://developer.happyreturns.com/guides/agentic-returns/
+
+## Recent SSADS research overlaps semantic extraction + optimization
+A September 2026 paper, Semantic Signal-Assisted Inspection and Recovery Allocation in Reverse Logistics, converts narrative return notes into semantic condition/signal-quality factors and feeds them into a separate recovery optimizer that chooses inspection depth and recovery allocation.
+
+Implication:
+"AI reads return notes and a deterministic recovery optimizer decides" must not be claimed as novel architecture by itself.
+
+Source:
+https://arxiv.org/abs/2609.02116
+
+## Revised safest white space
+The strongest current V1 differentiation is the combined judge-visible behavior:
+
+1. Cross-stage delivery-to-recovery path economics.
+2. Counterfactual full-path expected value.
+3. Exact Decision Hinge / break-even threshold.
+4. ROBUST vs FRAGILE state based on winner flip.
+5. Decision Exposure across the declared scenario range.
+6. Deterministic Action Gate:
+   - ACT NOW
+   - ASK FIRST
+   - HUMAN REVIEW
+7. Next Best Evidence tied specifically to the hinge variable.
+8. Recovery Decision Certificate combining source evidence, policy, math, uncertainty, action gate, and approval.
+9. Evidence-grounded AMD AI as a meaningful technology layer, without claiming the extractor/optimizer split itself is unique.
+
+Safe positioning:
+**A recovery-intelligence decision layer that issues auditable Recovery Decision Certificates at economically consequential post-purchase decision points.**
+
+Do not broaden into a generic agentic-commerce or returns-workflow platform.
