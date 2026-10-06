@@ -27,10 +27,10 @@ No unsupported claim is allowed.
 ReclaimGrid AI
 
 ### Canonical one-liner
-AMD-powered post-purchase recovery decision engine for ecommerce failed deliveries and returns.
+AMD-powered Recovery Decision Graph that compares economically valid recovery paths after ecommerce delivery failures and returns, then shows which path wins and whether the decision is robust under uncertainty.
 
 ### Canonical tagline
-Recover the best possible value from every failed delivery and return.
+Find the best recovery path — and prove why it wins.
 
 ### Primary provisional track
 Track 3 — Reinvent Commerce
@@ -118,18 +118,18 @@ Create only after product UI/brand direction is stable.
 Concise judge-first demo.
 
 ### Planned sequence
-1. Problem: value is lost after failed delivery/return.
-2. Load a synthetic case.
-3. Show baseline route.
-4. Show eligible recovery routes.
-5. Show deterministic recovery-value math.
-6. Show ReclaimGrid ranking.
-7. Show measurable uplift.
-8. Trigger/display AMD-hosted AI interpretation/explanation.
-9. Show human approval.
-10. Show dataset-level result.
-11. Show AMD proof and architecture.
-12. Close with business value and differentiation.
+1. Problem: value is lost because recovery decisions are made one step at a time.
+2. Show a messy synthetic failed-delivery note.
+3. Run AMD-hosted Case Interpreter and show bounded evidence-grounded extraction.
+4. Show the Recovery Decision Graph.
+5. Show eligible/excluded paths.
+6. Show deterministic multi-stage path economics.
+7. Show winner, runner-up, and value gap.
+8. Show break-even threshold / ROBUST or FRAGILE result.
+9. Show grounded AMD explanation.
+10. Show explicit human approval.
+11. Show baseline-vs-ReclaimGrid aggregate result.
+12. Close with AMD proof, business value, and differentiation.
 
 ### Video rules
 - no passwords/tokens
@@ -202,18 +202,29 @@ Every quantitative claim must link mentally or explicitly to evidence.
 
 ## 10. EVIDENCE-TO-CLAIM MAP
 
-### Claim: "ReclaimGrid ranks recovery options economically."
+### Claim: "ReclaimGrid compares recovery paths economically."
 Evidence required:
-- deterministic equations
-- fixture outputs
-- ranking tests
+- deterministic multi-stage path equations
+- graph fixtures
+- hand-calculated path tests
+- winner/runner-up/value-gap tests
 - visible math in product
+
+### Claim: "ReclaimGrid shows when a decision is robust."
+Evidence required:
+- break-even formula
+- sensitivity fixture
+- threshold hand-check
+- ROBUST/FRAGILE rule
+- hero-case UI
 
 ### Claim: "AMD powers meaningful AI work."
 Evidence required:
 - AMD Developer Cloud / AMD Instinct / ROCm runtime proof
-- real inference
-- application-visible output
+- real Case Interpreter inference
+- schema-valid extraction
+- evidence span/confidence shown in app
+- grounded Decision Explainer output
 - G2 evidence
 
 ### Claim: "The LLM is not the sole financial decision maker."
@@ -270,7 +281,7 @@ Final submission should clearly distinguish ReclaimGrid from:
 - generic LLM decision assistants
 
 Canonical differentiation:
-**Deterministic recovery-economics route ranking + AMD-hosted AI interpretation/explanation + explicit human approval.**
+**Transparent multi-stage counterfactual recovery-path economics + break-even/robustness analysis + evidence-grounded AMD AI + explicit human approval.**
 
 Do not claim no competitor exists.
 Do not claim first-in-world unless independently proven.
@@ -466,4 +477,4 @@ All must PASS:
 - final main SHA
 
 ## NEXT SAFE ACTION
-Create `07_DECISION_LOG.md` as the authoritative append-only record for future scope, architecture, rules, cost, security, model, and submission decisions. Seed it with the major decisions already made.
+Keep submission content unfrozen until the product is implemented and G7/G8 evidence exists. During pre-kickoff, use this file only to harden claim/evidence mapping.
