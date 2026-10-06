@@ -461,3 +461,44 @@ PASS
 
 ### Frontier follow-up
 - `6a1d7978d7e9076758689a6d2df2d1a99d9d28b7` — aligned Recovery Decision Certificate hero values with RG-001 (Decision Exposure 9.50, materiality threshold 5.00, Action Gate ASK_FIRST).
+
+
+---
+
+## 2026-10-07 — Critical-path execution hardening
+
+### Commits
+- `6d6a3949411af97952cb07d6fb8516b96c707a57` — added dependency-based hackathon critical path
+- `1ebfea5937865f6e8dd7f18e4de9823acc13706a` — refreshed official-page schedule/track inconsistency
+- `ad7dfcf20c89a66aad218b696aacd9b492198985` — recorded parallel-gate and credit-blocker decisions
+- `4a2bfd1c3604c717731af2aab4c6e40489c3204c` — moved credit activation blocker from G0 to G2
+- `e0f79c3f2927dfe1a0051b8cf6f3e24a624ef1e6` — G0 PASS + master-state critical-path sync
+
+### Execution finding
+Complimentary AMD credit activation is not an official prerequisite for beginning local deterministic product work after kickoff.
+
+### Control change
+- G0 now covers registration and safe account/environment access and is PASS.
+- Credit activation is a G2 AMD Proof blocker.
+- After G1, G2 AMD Proof and G3 Economics Core may proceed as independent lanes.
+- Strict serial gate sequencing is replaced by dependency-based gate control after G1.
+- No paid GPU/card authorization was added.
+
+### Schedule risk
+Current official pages still conflict:
+- main page: online phase 12–18 Oct
+- live dashboard: online build 12–17 Oct
+- live dashboard: submission closes 18 Oct 15:00 UTC
+- main page publishes Track 3
+- live dashboard currently says Tracks: TBA
+
+Internal build-freeze target remains 17 Oct until kickoff clarifies this.
+
+### Gate effect
+- G0: PASS
+- G1: WAITING FOR KICKOFF
+- G2: BLOCKED BY CREDIT ACTIVATION
+- G3: BLOCKED ONLY BY PRE-KICKOFF G1 HOLD
+
+### Verification
+PASS
