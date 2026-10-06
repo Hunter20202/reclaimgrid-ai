@@ -502,3 +502,60 @@ Internal build-freeze target remains 17 Oct until kickoff clarifies this.
 
 ### Verification
 PASS
+
+
+---
+
+## 2026-10-07 — Consolidated deep-research / podium-bar hardening
+
+### Research added
+- `18_DEEP_RESEARCH_WINNING_BAR.md` — prior AMD winner patterns, market/research synthesis, podium-level proof bar
+- `19_RECOVERYBENCH_EVAL_PLAN.md` — frozen product/AI/economics/adversarial/runtime evaluation plan
+- `20_AI_EVIDENCE_QUALITY_CONTRACT.md` — deterministic evidence status replacing model self-confidence
+- `21_TRACK_FIT_AND_PIVOT_AUDIT.md` — Track 3, pivot alternatives, and partner-prize strategy
+
+### Key research conclusions
+- Prior AMD podium projects consistently strengthen their story with measurable evals, adversarial/failure proof, GPU telemetry, tests, and latency/throughput/cost evidence.
+- A working UI alone is not the target bar.
+- ReclaimGrid remains the strongest current concept; no pivot is recommended before G1.
+- Generic NDR, disposition AI, fraud classification, forecasting, and generic returns-agent pivots were rejected for overlap/data/execution risk.
+- Model-authored numerical confidence is removed from the authoritative Case Interpreter contract.
+- Deterministic Evidence Status is now GROUNDED / AMBIGUOUS / INCOMPLETE / INVALID.
+- RecoveryBench becomes the task-specific model-selection and proof framework.
+- Final app should include a compact measured Proof surface.
+- Partner prizes remain subordinate to the main Track 3 product.
+
+### Canonical docs synchronized
+- `02_PRODUCT_SCOPE.md`
+- `03_ARCHITECTURE.md`
+- `05_TEST_EVIDENCE_PLAN.md`
+- `06_SUBMISSION_CHECKLIST.md`
+- `07_DECISION_LOG.md`
+- `11_SYNTHETIC_FIXTURE_BLUEPRINT.md`
+- `12_JUDGE_STRATEGY.md`
+- `15_AMD_MODEL_AND_SERVING_PLAN.md`
+
+### Commits in this consolidated pass
+- `bc09bdb0f5ea0b4cd82ca8475d376da728ec1919` — deep winning-bar research
+- `fa9377239cceeb1edbbb7dc18296857b0b626628` — RecoveryBench eval plan
+- `52b1fa4ba5efadfc82a09d061a6daaed346141bb` — evidence-quality contract
+- `82e86f7d8a241f1a00b9716d6430538b018768b5` — track/pivot/partner audit
+- `16f052428ae9deb23da15b75a8c0b5faf6e66e30` — product scope sync
+- `db27bee020f356f76208190b8dc093e7cfd136ea` — architecture sync
+- `06b12fbbc413379a542ce69b90d2ad5059a835a6` — test-plan sync
+- `765e987358742e16e0c755d4753783e2f54aa699` — submission-proof sync
+- `37bdb90e88f98839596ec66e79c546cb019bb75e` — fixture evidence-status sync
+- `bf16cd6ac345aa05bd058d6d5bbe17770eb57ff4` — judge proof-bar sync
+- `9f9959c0b529fff50dc49f96c719ce2663ec3be4` — AMD model-plan sync
+- `21544f18092163351691d568a78927c32a453f5a` — deep-research decisions D-041 through D-045
+
+### Implementation state
+- No submission implementation code was created.
+- No paid GPU action occurred.
+- G0 remains PASS.
+- G1 remains waiting for kickoff.
+- G2 remains blocked by complimentary credit activation.
+- G3 remains blocked only by pre-kickoff G1 hold.
+
+### Verification
+PASS
