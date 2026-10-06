@@ -5,244 +5,301 @@
 - CONTROL CODE: RG-ACT3
 - FILE: 02_PRODUCT_SCOPE.md
 - SNAPSHOT DATE: 2026-10-06
-- STATUS: PROVISIONAL V1 SCOPE FREEZE
+- STATUS: PROVISIONAL V1 SCOPE FREEZE — RESEARCH UPGRADED
 - CURRENT GATE: G0 — Registration & Environment
 - IMPLEMENTATION STATUS: NOT STARTED
-- PURPOSE: Freeze the smallest judge-ready V1 scope before kickoff without writing submission implementation code.
+- PURPOSE: Freeze the strongest judge-ready V1 scope before kickoff without writing submission implementation code.
 
 ## PRODUCT ONE-LINER
-ReclaimGrid AI is an AMD-powered post-purchase recovery decision engine that helps ecommerce merchants choose the highest-value recovery action for failed deliveries and returns.
+ReclaimGrid AI is an AMD-powered Recovery Decision Graph that maps the economically valid recovery paths after ecommerce delivery failures and returns, calculates which path preserves the most value, and shows whether that decision is robust or fragile under uncertainty.
+
+## TAGLINE
+**Find the best recovery path — and prove why it wins.**
 
 ## CORE PROBLEM
-Ecommerce merchants lose money after failed deliveries, returns, open-box parcels, damaged returns, and aging returned inventory because the next action is often selected through static rules, fragmented workflows, or manual judgment.
+Ecommerce merchants lose money after failed deliveries, returns, open-box parcels, damaged returns, and aging returned inventory because decisions are often made one step at a time through static rules, siloed tools, or manual judgment.
 
-The decision is not simply:
-- refund vs redeliver
-- keep vs discard
-- chatbot vs human
+The stronger question is not:
+"What should we do next?"
 
-The real problem is:
-**Which permitted recovery route produces the best bounded economic outcome for this specific case, under merchant policy and operational constraints?**
+It is:
+**Which permitted recovery path produces the best bounded economic outcome from this point forward, including downstream outcomes if the first action succeeds or fails?**
 
 ## PRIMARY USER
 ### V1 user
 Small-to-mid-size ecommerce operations / post-purchase / returns team.
 
 ### User job-to-be-done
-Given a failed-delivery or return case, quickly decide what to do next while protecting recoverable value and avoiding an opaque AI-only financial decision.
+Given a failed-delivery or return case, choose a recovery path quickly while:
+- protecting recoverable value,
+- understanding the economic consequence of alternatives,
+- seeing when the decision is sensitive to uncertain assumptions,
+- avoiding opaque AI-only financial decisions.
 
 ## V1 CASE TYPES
-V1 may accept synthetic examples from:
-1. Failed delivery / NDR case
-2. Customer return
-3. Open-box / damaged returned parcel
-4. Aging returned inventory
+V1 should support a deliberately small set of synthetic cases:
+1. Failed delivery / NDR
+2. Returned/open-box item
+3. Aging returned inventory
 
-Not every case type must receive a unique workflow. They can share one normalized decision pipeline.
+Additional case types are deferred unless the core engine is already stable.
+
+## RECOVERY DECISION GRAPH
+ReclaimGrid models a case as a small state graph rather than one isolated recommendation.
+
+Candidate states:
+- DELIVERY_EXCEPTION
+- CUSTOMER_RESPONSE
+- RETURN_TO_ORIGIN
+- RETURN_RECEIVED
+- RECOVERY_INVENTORY
+- CLOSED
+
+Candidate actions depend on state and may include:
+- redelivery / reattempt
+- request correction / reschedule
+- return to origin
+- exchange / store credit
+- refund / close
+- restock / relist
+- refurbish then relist
+- liquidation
+
+Exact state/action set is frozen in G3 and must remain small enough for a reliable hackathon demo.
 
 ## V1 INPUTS
-The demo should use a bounded, synthetic case schema containing only fields needed for recovery economics.
-
-Candidate input fields:
+Candidate bounded synthetic schema:
 - case_id
+- current_state
 - case_type
 - item_value
 - product_cost
 - shipping_cost
 - reverse_shipping_cost
 - redelivery_cost
+- refurbishment_cost
 - expected_resale_value
 - expected_liquidation_value
-- expected_refurbishment_cost
 - inventory_age_days
-- damage/open-box condition
-- customer reason or free-text note
+- condition
+- customer/carrier free-text note
 - merchant policy constraints
-- route eligibility flags
-- selected risk/operational assumptions
+- route/action eligibility flags
+- explicit uncertain assumptions such as redelivery_success_probability or resale_probability
 
-Exact schema is frozen later in G3.
+No AI-generated financial number becomes canonical input without explicit human confirmation.
 
-## AUTHORIZED RECOVERY ROUTES
-V1 should rank a small, explainable set of recovery options.
-
-Candidate routes:
-1. Redelivery
-2. Exchange / Store Credit
-3. Restock / Relist
-4. Liquidation
-5. Refund / Close Case
-
-A route must be excluded when merchant policy or case state makes it ineligible.
-
-## DETERMINISTIC RECOVERY ECONOMICS ENGINE
+## DETERMINISTIC RECOVERY PATH OPTIMIZER
 
 ### Role
-The deterministic engine is the financial authority for V1.
+This is the financial authority for V1.
 
-It must:
-- calculate bounded recovery value for each eligible route
-- apply explicit costs
-- apply explicit recovery assumptions
-- rank routes
-- expose the math
-- return the winning route and alternatives
-- remain reproducible for the same inputs
+For a bounded acyclic recovery graph:
 
-### Example decision concept
-For each route:
+**Expected Value(state, action)**
+= Immediate Net Contribution
++ sum over outcomes [ Probability(outcome) × Expected Value(next_state) ]
 
-Expected Recovery Value
-= Expected Recoverable Revenue
-- Incremental Fulfillment / Handling Cost
-- Reverse Logistics Cost
-- Refurbishment / Discount Cost
-- Route-Specific Loss Allowance
+using only explicit, validated assumptions and costs.
 
-The exact formula set is NOT yet frozen and must be finalized in G3.
+### It must
+- evaluate all eligible paths,
+- include downstream recovery consequences,
+- apply explicit costs,
+- enforce merchant-policy constraints,
+- rank feasible paths,
+- expose the math,
+- show the winning path and runner-up,
+- show the value gap,
+- preserve identical results for identical inputs.
 
 ### Non-negotiable rule
 The language model must NOT:
-- invent financial inputs
-- silently change costs
-- become the sole forecaster
-- decide hidden financial weights
-- override deterministic eligibility rules
-- directly execute a consequential merchant action
+- invent financial inputs,
+- silently change costs/probabilities,
+- become the sole forecaster,
+- decide hidden financial weights,
+- override deterministic policy eligibility,
+- directly execute consequential business actions.
+
+## ROBUSTNESS / BREAK-EVEN ENGINE
+A single expected-value number is not enough.
+
+For the top competing paths, V1 must analyze the dominant uncertain variable and show:
+- current assumption,
+- break-even threshold,
+- winner-to-runner-up value gap,
+- ROBUST or FRAGILE decision label.
+
+Examples:
+- redelivery wins only if success probability stays above X%
+- refurbish wins only if resale value remains above $Y
+- liquidation becomes better after inventory age/markdown crosses threshold Z
+
+V1 should prefer one-dimensional sensitivity per case. Two-variable sensitivity is stretch only.
 
 ## AMD AI LAYER
 
-### Meaningful AMD workload
-A meaningful AI workload must run on AMD infrastructure/hardware in the final judge demo.
+### Mandatory meaningful workload 1 — Case Interpreter
+The AMD-hosted open model receives messy return/NDR text and returns a bounded schema such as:
+- reason_code
+- customer_intent
+- condition_hint
+- urgency_hint
+- confidence
+- evidence_span
+- missing_fields
 
-### V1 AI responsibilities
-The AMD-hosted model may:
-- interpret an unstructured return/NDR reason
-- convert free text into bounded structured attributes
-- explain why the deterministic engine ranked a route first
-- summarize tradeoffs between top routes
-- draft a merchant-facing next-action note
-- draft a customer-facing message
-- surface missing information or uncertainty
+The AI must ground extracted signals in the source text and explicitly preserve unknowns.
 
-### V1 AI boundary
-The AMD model is an interpretation/explanation/action-drafting layer, not the source of financial truth.
+### Mandatory meaningful workload 2 — Decision Explainer
+The model receives the canonical deterministic decision package and may:
+- explain why the winning path wins,
+- summarize the tradeoff versus the runner-up,
+- describe the break-even/sensitivity result,
+- draft a merchant next-action note,
+- optionally draft a customer-facing message.
 
-### Candidate serving direction
-Open model served through AMD Developer Cloud using an AMD Instinct GPU with ROCm-compatible serving such as vLLM or SGLang.
+It may not alter canonical economics.
 
-Final model choice is intentionally NOT frozen pre-kickoff.
+### Optional stretch — Multimodal condition signal
+Only if AMD runtime/credits/model support are stable:
+- analyze a synthetic returned-item image,
+- produce bounded condition evidence,
+- require human confirmation before deterministic use.
 
-## DECISION PIPELINE
-Business / Case Data
--> Input Validation
--> Deterministic Recovery Economics Engine
--> Eligibility Filter
--> Recovery Route Ranking
--> AMD-hosted AI Interpretation / Explanation
--> Policy Guardrails
--> Human Approval
--> Suggested Recovery Action
+This is not a V1 blocker.
+
+## DECISION LEDGER
+Every judge-visible decision should preserve:
+- source inputs,
+- AI-extracted signals,
+- evidence span/confidence,
+- policy rules fired,
+- eligible/excluded paths,
+- deterministic calculations,
+- winning path,
+- runner-up,
+- break-even/robustness result,
+- human approval/rejection.
+
+This is both an explainability feature and a trust artifact.
 
 ## HUMAN APPROVAL
 V1 is decision support, not unrestricted autonomous execution.
 
 Before any consequential action:
-- show recommended route
-- show expected recovery value
-- show alternatives
-- show key assumptions
-- show AI explanation
-- require explicit human approval
+- show winning path,
+- show expected recovery value,
+- show runner-up and value gap,
+- show assumptions,
+- show robustness/break-even,
+- show AI explanation,
+- require explicit human approval.
 
-No real refund, payment, shipment, customer account change, inventory mutation, or external merchant action is required for the hackathon V1.
+For the hackathon V1, approval records a demo decision only. It must not trigger a real refund, payment, shipment, inventory mutation, or customer account change.
 
 ## SYNTHETIC DEMO DATA
-Default V1 data source: synthetic ecommerce recovery cases.
+Default data source: reproducible synthetic ecommerce recovery cases.
 
-Reasons:
-- reproducible demo
-- no customer PII
-- no external merchant integration dependency
-- deterministic test coverage
-- easier evidence generation
-- lower security and operational risk
-
-Synthetic dataset should include:
-- clear-win cases
-- close-call cases
-- invalid/ineligible route cases
-- missing-information cases
-- at least one free-text reason requiring AMD AI interpretation
-
-## DEMO SUCCESS METRICS
-The V1 demo must prove value with measurable before/after or baseline comparison.
-
-Minimum metrics:
-1. Total baseline recovered value
-2. Total ReclaimGrid recommended recovered value
-3. Absolute recovered-value uplift
-4. Percentage recovered-value uplift
-5. Number / percentage of cases where ReclaimGrid changes the baseline route
-6. Explanation trace showing why a route won
-7. AMD AI proof for at least one meaningful case
-
-Optional if time permits:
-- recovered margin
-- avoided loss
-- route confidence / uncertainty flag
-- processing time per case
-- human approval rate in synthetic walkthrough
+Required fixture types:
+- clear-win case
+- close-call case
+- policy-excluded path
+- missing-information case
+- free-text AMD AI interpretation case
+- fragile decision case
+- robust decision case
+- AI unavailable/fallback case
 
 ## BASELINE
-V1 needs a simple, defensible comparison baseline.
+Use a defensible stage-specific static policy baseline with the same canonical inputs.
 
-Candidate baseline:
-Static merchant rule set such as:
-- failed delivery -> redeliver once
-- clean return -> restock
-- damaged/open-box -> liquidation
-- otherwise -> refund
+Example:
+- first NDR -> reattempt once
+- clean received return -> restock
+- damaged/open-box -> liquidate
+- otherwise -> refund/close
 
-The exact baseline must be frozen in G3 and applied consistently across the synthetic dataset.
+The baseline must not be intentionally weak, must not use worse inputs, and must not call AI.
 
-## JUDGE STORY
-The judge experience should answer, in order:
+## DEMO SUCCESS METRICS
 
-1. What money is being lost?
-2. Why is the current rule/manual decision weak?
-3. What data does this case contain?
-4. Which recovery routes are actually eligible?
-5. What does the deterministic engine calculate?
-6. Which route ranks highest and by how much?
-7. What does AMD-hosted AI contribute that deterministic math cannot?
-8. What human approves?
-9. Across the dataset, how much additional value is recovered?
+Primary:
+1. Total baseline expected recovered value
+2. Total ReclaimGrid expected recovered value
+3. Absolute uplift
+4. Percentage uplift
+5. Cases where the chosen path changes
+6. Average opportunity-cost avoided
+
+Decision quality:
+7. Robust vs fragile recommendation count
+8. Number of ineligible paths safely excluded
+9. Break-even threshold shown for hero case
+
+AMD:
+10. Valid structured extraction
+11. Judge-visible real AMD inference
+12. AI failure fallback without economics failure
+
+## HERO DEMO CASE
+Preferred hero:
+**Failed delivery where the obvious next action is not automatically optimal.**
+
+Show:
+1. messy carrier/customer note,
+2. AMD AI evidence-grounded extraction,
+3. eligible recovery graph,
+4. reattempt path including downstream RTO recovery if failure occurs,
+5. immediate-RTO alternative,
+6. deterministic path values,
+7. winning path,
+8. break-even redelivery-success threshold,
+9. AMD AI explanation,
+10. human approval.
+
+This single case proves cross-stage reasoning, deterministic economics, AMD value, uncertainty handling, and governance.
+
+## SECONDARY DEMO CASE
+Returned/open-box item.
+
+Compare:
+- restock/relist,
+- refurbish then relist,
+- liquidation.
+
+Show a fragile case where the best choice changes at a resale-value or refurbishment-cost threshold.
 
 ## V1 MUST-HAVES
-A judge-ready V1 must contain:
 - synthetic case dataset
-- deterministic recovery-economics calculations
-- route eligibility logic
-- route ranking
-- visible math / assumptions
-- AMD-hosted AI interpretation or explanation
-- policy guardrails
-- human approval step
-- baseline-vs-ReclaimGrid value comparison
+- Recovery Decision Graph
+- deterministic multi-stage path expected value
+- policy/eligibility constraints
+- winning path + runner-up + value gap
+- break-even / robustness analysis
+- visible formulas/assumptions
+- AMD AI evidence-grounded case extraction
+- AMD AI grounded explanation
+- human approval
+- Decision Ledger
+- baseline-vs-ReclaimGrid evaluation
 - clean end-to-end demo
 - public GitHub repository
-- evidence that AMD powers a meaningful AI workload
+- judge-visible proof that AMD powers meaningful AI workload
 
 ## V1 SHOULD-HAVES
-Only after must-haves are stable:
-- scenario comparison
-- editable assumptions
-- merchant policy presets
-- CSV import/export
+Only after MUST-HAVES are stable:
+- portfolio Value Leak Map showing economic leakage by cause
+- simple assumption slider
+- worst/base/best scenarios
 - concise dashboard
-- case audit trail
 - downloadable decision evidence
+
+## V1 STRETCH
+- multimodal AMD condition signal
+- two-variable sensitivity heatmap
+- portfolio-level avoidable value leak map
 
 ## V1 NON-GOALS
 Explicitly OUT OF SCOPE unless later re-authorized:
@@ -251,71 +308,86 @@ Explicitly OUT OF SCOPE unless later re-authorized:
 - real courier/NDR integration
 - real payment/refund execution
 - real inventory mutation
-- customer support chatbot
+- generic customer support chatbot
 - generic returns management suite
 - generic inventory management
 - end-to-end warehouse management
 - omnichannel ERP
 - autonomous multi-agent system
 - model training / fine-tuning
+- reinforcement-learning optimizer
 - giant forecasting model
-- dozens of recovery routes
+- dozens of states/routes
 - production multi-tenant SaaS
-- authentication/roles unless absolutely necessary for demo
+- complex authentication/roles
 - large database architecture
 - mobile app
-- partner-track complexity that does not improve core scoring
+- partner-track complexity that does not strengthen core scoring
 
 ## DIFFERENTIATION
 ReclaimGrid must NOT present itself as merely:
-- an NDR chatbot
-- a returns chatbot
-- a returns portal
-- a generic recommendation engine
+- an NDR chatbot,
+- a returns chatbot,
+- a returns portal,
+- a generic "highest recovery channel" router,
+- a generic AI agent that recommends actions.
 
 Core differentiation:
-**Deterministic, economically bounded recovery-route ranking + AMD-hosted AI interpretation/explanation + human-governed action.**
+**Multi-stage counterfactual recovery-path economics + break-even/robustness analysis + evidence-grounded AMD AI + human-governed decision ledger.**
 
-## SAFETY / TRUST REQUIREMENTS
-- deterministic financial authority
-- transparent route math
-- explicit assumptions
-- bounded model output
-- schema validation
-- no secret in repository
-- synthetic data by default
-- human approval before consequential action
-- graceful fallback when AI is unavailable
-- no claim that AI guarantees recovered revenue
+## SAFE ORIGINALITY CLAIM
+Do not claim no competitor does returns optimization.
+
+Safe framing:
+**AI automation, failed-delivery recovery, and return disposition already exist. ReclaimGrid's hackathon differentiation is transparent multi-stage recovery-path economics, decision robustness, and evidence-grounded AMD AI rather than AI financial authority.**
+
+## JUDGING ALIGNMENT
+Application of Technology:
+- AMD-hosted case interpretation and grounded explanation are central to the flow.
+
+Business Value:
+- expected recovered value, opportunity cost, and baseline uplift are measurable.
+
+Originality:
+- recovery graph + counterfactual path economics + break-even robustness.
+
+Presentation:
+- messy note -> AMD extraction -> path graph -> math -> threshold -> approval is visually clear.
 
 ## SCOPE KILL TEST
 Any proposed V1 feature must pass all three:
 1. Does it strengthen a judging criterion?
-2. Does it improve the end-to-end demo or measurable business value?
+2. Does it materially improve the end-to-end demo or measurable business value?
 3. Can it be built, tested, and explained safely within hackathon time?
 
-If the answer is NO to any one, defer it.
+If NO to any one, defer it.
 
 ## PROVISIONAL FREEZE RULE
-This scope is frozen for pre-kickoff planning.
+This upgraded scope is the pre-kickoff default.
 
 Changes are allowed only if:
 - kickoff rules require them,
 - AMD environment constraints require them,
-- a critical technical feasibility issue is found, or
-- a clearly superior judge-value simplification is verified.
+- a critical technical feasibility issue appears,
+- or a clearly superior simplification is verified.
 
-Any scope change must be recorded in 07_DECISION_LOG.md once that file exists.
+All material changes must be recorded in `07_DECISION_LOG.md`.
 
 ## EXIT CRITERIA FOR PRODUCT SCOPE
 Before implementation begins, G1 must confirm:
-- Track 3 remains valid
-- official implementation timing permits build
-- AMD proof path is feasible
-- deterministic engine inputs/routes are bounded
-- baseline is defined
-- demo metrics are defined
-- non-goals remain excluded
+- Track 3 remains valid,
+- official implementation timing permits build,
+- AMD proof path is feasible,
+- state/action graph is bounded,
+- path equations are bounded,
+- uncertainty variables are bounded,
+- baseline is defined,
+- metrics are defined,
+- non-goals remain excluded.
+
+## RESEARCH BASIS
+See:
+`09_COMPETITIVE_RESEARCH_AND_PRODUCT_UPGRADE.md`
 
 ## NEXT SAFE ACTION
-Create `03_ARCHITECTURE.md` defining the planned components, data flow, trust boundaries, deterministic-vs-AI responsibility split, AMD proof path, and failure/fallback behavior — without writing application code.
+Keep implementation blocked until kickoff/rules re-verification and AMD credit state permit progression. Use the research window only for further validation, math design, fixture design, and judge-story hardening.
