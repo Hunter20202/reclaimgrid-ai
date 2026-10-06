@@ -4,7 +4,7 @@
 - PROJECT: ReclaimGrid AI
 - CONTROL CODE: RG-ACT3
 - FILE: 01_RULES_SNAPSHOT.md
-- SNAPSHOT DATE: 2026-10-06
+- SNAPSHOT DATE: 2026-10-07
 - STATUS: VERIFIED PRE-KICKOFF SNAPSHOT
 - PURPOSE: Capture only currently verified AMD Developer Hackathon: ACT III facts and explicitly record unresolved inconsistencies before implementation starts.
 
@@ -42,6 +42,7 @@ There is an unresolved official-page inconsistency:
 - Main event page: online build 12–18 October.
 - Live/dashboard-style text: online build 12–17 October.
 - Live page submission deadline: 18 October 2026 at 15:00 UTC.
+- Live dashboard currently shows "Tracks: TBA / Announced soon" while the main event page currently publishes four tracks including Track 3 — Reinvent Commerce.
 
 CONTROL RULE:
 - Treat 18 October 2026 at 15:00 UTC as the currently visible submission-close milestone.
@@ -95,6 +96,9 @@ ReclaimGrid's deterministic Recovery Economics Engine plus AMD-hosted AI interpr
 
 TRACK STATUS:
 - PROVISIONAL until kickoff/rules freeze.
+- Main event page currently publishes Track 3 — Reinvent Commerce.
+- Live dashboard currently shows Tracks: TBA.
+- Treat this as a live-page/main-page inconsistency, not as proof that Track 3 was removed.
 - Reconfirm Track 3 wording and availability at G1.
 
 ## SUBMISSION REQUIREMENTS — CURRENT EVENT PAGE
@@ -217,10 +221,17 @@ This is a conservative Control Room policy, not a claim that the official rules 
 1. Online build window:
    - Main page: 12–18 Oct
    - Live page summary: 12–17 Oct
-2. Main page schedule section:
-   - "To be announced"
-   - Live page already shows kickoff and submission-close milestones
-3. Dynamic event content may change before kickoff.
+2. Track visibility:
+   - Main page currently publishes four tracks including Track 3 — Reinvent Commerce
+   - Live dashboard currently shows Tracks: TBA / Announced soon
+3. Live page already shows kickoff and submission-close milestones while dynamic event details continue changing.
+4. Dynamic event content may change before kickoff.
+
+CONTROL INTERPRETATION:
+- Use the main event page as current evidence that Track 3 exists.
+- Keep Track 3 PROVISIONAL until kickoff.
+- Treat 17 Oct as the conservative internal build-freeze target.
+- Treat 18 Oct 15:00 UTC as the currently visible submission-close milestone.
 
 These inconsistencies are blockers to final rules freeze, not blockers to pre-kickoff planning.
 
@@ -239,4 +250,9 @@ Do not mark G1 PASS until all are re-verified after kickoff:
 - Whether any implementation timing restriction exists
 
 ## NEXT SAFE ACTION
-Create `02_PRODUCT_SCOPE.md` to freeze the provisional ReclaimGrid V1 problem, user, inputs, deterministic economics engine, AMD AI role, explicit non-goals, and demo success metrics — without writing implementation code.
+At kickoff, re-verify both the main event page and live dashboard before G1 PASS.
+
+Before kickoff:
+- no implementation code,
+- continue only research/control hardening,
+- use `17_HACKATHON_CRITICAL_PATH.md` for the competition execution plan.
